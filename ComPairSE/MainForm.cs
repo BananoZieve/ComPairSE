@@ -17,14 +17,14 @@ namespace ComPairSE
         public MainForm()
         {
             InitializeComponent();
-            this.Height -= btRnd.Bottom + 12 - ClientRectangle.Height;
+            tbInput.Width = this.ClientRectangle.Width - 2 * tbInput.Left;
         }
 
         private void btRnd_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
             List<Item> list = new List<Item>();
-            for (int i = 1; i <= rnd.Next(8,25); i++)
+            for (int i = 1; i <= rnd.Next(12,25); i++)
                 list.Add(new Item(i.ToString(), rnd.Next(20)*100 + rnd.Next(2)*50 + 49));
             Receipt receipt = Receipt.Create(list);
             ReceiptForm receiptForm = new ReceiptForm(receipt);

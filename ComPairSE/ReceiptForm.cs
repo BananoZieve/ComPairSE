@@ -15,11 +15,13 @@ namespace ComPairSE
         public ReceiptForm()
         {
             InitializeComponent();
+            dgvReceipt.AutoGenerateColumns = false;
             dgvReceipt.Width = ClientRectangle.Width - 2 * dgvReceipt.Left;
             columnPrice.Width = dgvReceipt.Width * 4 / 15;
             columnItem.Width = dgvReceipt.Width - columnPrice.Width - 3;
             tbTotal.Left = ClientRectangle.Width - dgvReceipt.Left - columnPrice.Width - 2;
             tbTotal.Width = columnPrice.Width + 2;
+            lbTotal.Left = tbTotal.Left - lbTotal.Width - lbTotal.Padding.Left;
             this.MouseWheel += this.ReceiptForm_MouseWheel;
             this.StartPosition = FormStartPosition.CenterScreen;
         }

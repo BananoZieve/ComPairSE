@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbTotal = new System.Windows.Forms.TextBox();
             this.lbTotal = new System.Windows.Forms.Label();
             this.columnItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,15 +66,16 @@
             // columnPrice
             // 
             this.columnPrice.DataPropertyName = "PriceC";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "C2";
-            this.columnPrice.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "C2";
+            this.columnPrice.DefaultCellStyle = dataGridViewCellStyle1;
             this.columnPrice.HeaderText = "Price";
             this.columnPrice.Name = "columnPrice";
             // 
             // dgvReceipt
             // 
             this.dgvReceipt.AllowUserToAddRows = false;
+            this.dgvReceipt.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvReceipt.ColumnHeadersHeight = 24;
             this.dgvReceipt.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.columnItem,
