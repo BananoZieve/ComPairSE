@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace ComPairSE
 {
-    class ReceiptManager
+    // Receipt comparisons, suggestions etc.
+    public class ReceiptManager
     {
     }
 }

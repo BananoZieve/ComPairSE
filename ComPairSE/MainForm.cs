@@ -12,19 +12,30 @@ namespace ComPairSE
 {
     public partial class MainForm : Form
     {
+        private const int DEFAULT_PAD = 12;
+
         public MainForm()
         {
             InitializeComponent();
+            this.Height -= btRnd.Bottom + 12 - ClientRectangle.Height;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btRnd_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This does nothing.");
+            Random rnd = new Random();
+            List<Item> list = new List<Item>();
+            for (int i = 1; i <= rnd.Next(8,25); i++)
+                list.Add(new Item(i.ToString(), rnd.Next(20)*100 + rnd.Next(2)*50 + 49));
+            Receipt receipt = Receipt.Create(list);
+            ReceiptForm receiptForm = new ReceiptForm(receipt);
+            receiptForm.Show();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btSubmit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This also does nothing.");
+            Receipt receipt = Receipt.Create(tbInput.Text);
+            ReceiptForm receiptForm = new ReceiptForm(receipt);
+            receiptForm.Show();
         }
     }
 }

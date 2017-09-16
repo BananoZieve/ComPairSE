@@ -6,7 +6,16 @@ using System.Threading.Tasks;
 
 namespace ComPairSE
 {
-    class DataManager
+    public interface IDataManager
     {
+        void LoadData();
+        void SaveData();
+        void AddItem(Item product);
+        List<Item> GetItems(params string[] tags);
+        void AddReceipt(Receipt receipt);
     }
+
+    //public class DataManager : IDataManager
+    //{
+    //}
 }
