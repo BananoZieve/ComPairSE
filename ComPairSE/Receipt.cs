@@ -17,26 +17,25 @@ namespace ComPairSE
         public static Receipt Create(string rawData)
         {
             Receipt receipt = new Receipt();
-            
+
             List<Item> itemList = new List<Item>(); ;
-            string pattern = @".+\r?\n?.+\d{2}\s[ABEN]"; // might need individual patterns for different shops
-            foreach (Match m in Regex.Matches(rawData, pattern))
+            string[] rawDataSplit = rawData.Split(new char[] { }, StringSplitOptions.RemoveEmptyEntries);
+            int tagCount = 0;
+            for (int i = 0; i < rawDataSplit.Length-1; i++)
             {
-                string[] split = m.Value.Split(new char[] { }, StringSplitOptions.RemoveEmptyEntries);
-
-                List<string> tagsList = new List<string>();
-
-                for (int i = 0; i < split.Length - 2; i++)
-                    if (split[i].Length > 1)
-                        tagsList.Add(split[i].Trim(','));
-
-                int price;
-
-                if (int.TryParse(split[split.Length-2].Replace(",", string.Empty), out price))
+                if (Regex.IsMatch(rawDataSplit[i], @"\d+,\d{2}") && Regex.IsMatch(rawDataSplit[i+1], @"[ABEN]"))
                 {
-                    string[] tags = tagsList.ToArray();
+                    string[] tags = new string[tagCount];
+                    Array.Copy(rawDataSplit, i-  tagCount, tags, 0, tagCount);
                     string name = string.Join(" ", tags);
+                    int price = int.Parse(rawDataSplit[i].Replace(",", string.Empty));
                     itemList.Add(new Item(name, price, tags));
+                    tagCount = 0;
+                    i++;
+                }
+                else
+                {
+                    tagCount++;
                 }
             }
 
