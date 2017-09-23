@@ -42,5 +42,20 @@ namespace ComPairSE
             else
                 dgvReceipt.FirstDisplayedScrollingRowIndex = newIndex;
         }
+
+        private void tbTotal_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvReceipt_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void lbTotal_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

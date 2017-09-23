@@ -31,12 +31,13 @@
             this.btRnd = new System.Windows.Forms.Button();
             this.tbInput = new System.Windows.Forms.TextBox();
             this.btSubmit = new System.Windows.Forms.Button();
+            this.button_SearchItemsByTag = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btRnd
             // 
             this.btRnd.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btRnd.Location = new System.Drawing.Point(3, 252);
+            this.btRnd.Location = new System.Drawing.Point(36, 252);
             this.btRnd.Name = "btRnd";
             this.btRnd.Size = new System.Drawing.Size(96, 22);
             this.btRnd.TabIndex = 0;
@@ -53,13 +54,13 @@
             this.tbInput.Location = new System.Drawing.Point(3, 3);
             this.tbInput.Multiline = true;
             this.tbInput.Name = "tbInput";
-            this.tbInput.Size = new System.Drawing.Size(255, 246);
+            this.tbInput.Size = new System.Drawing.Size(366, 246);
             this.tbInput.TabIndex = 1;
             // 
             // btSubmit
             // 
             this.btSubmit.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btSubmit.Location = new System.Drawing.Point(105, 252);
+            this.btSubmit.Location = new System.Drawing.Point(138, 252);
             this.btSubmit.Name = "btSubmit";
             this.btSubmit.Size = new System.Drawing.Size(75, 22);
             this.btSubmit.TabIndex = 2;
@@ -67,17 +68,29 @@
             this.btSubmit.UseVisualStyleBackColor = true;
             this.btSubmit.Click += new System.EventHandler(this.btSubmit_Click);
             // 
+            // button_SearchItemsByTag
+            // 
+            this.button_SearchItemsByTag.Location = new System.Drawing.Point(219, 251);
+            this.button_SearchItemsByTag.Name = "button_SearchItemsByTag";
+            this.button_SearchItemsByTag.Size = new System.Drawing.Size(121, 23);
+            this.button_SearchItemsByTag.TabIndex = 3;
+            this.button_SearchItemsByTag.Text = "Search items by tag";
+            this.button_SearchItemsByTag.UseVisualStyleBackColor = true;
+            this.button_SearchItemsByTag.Click += new System.EventHandler(this.button_SearchItemsByTag_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(270, 277);
+            this.ClientSize = new System.Drawing.Size(381, 277);
+            this.Controls.Add(this.button_SearchItemsByTag);
             this.Controls.Add(this.btSubmit);
             this.Controls.Add(this.tbInput);
             this.Controls.Add(this.btRnd);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ComPairSE";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -88,6 +101,7 @@
         private System.Windows.Forms.Button btRnd;
         private System.Windows.Forms.Button btSubmit;
         private System.Windows.Forms.TextBox tbInput;
+        private System.Windows.Forms.Button button_SearchItemsByTag;
     }
 }
 

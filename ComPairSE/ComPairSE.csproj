@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataManager.cs" />
+    <Compile Include="FoundItemsByTagForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FoundItemsByTagForm.Designer.cs">
+      <DependentUpon>FoundItemsByTagForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,15 @@
       <DependentUpon>ReceiptForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ReceiptManager.cs" />
+    <Compile Include="SearchByTagForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchByTagForm.Designer.cs">
+      <DependentUpon>SearchByTagForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="FoundItemsByTagForm.resx">
+      <DependentUpon>FoundItemsByTagForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -78,6 +93,9 @@
     </Compile>
     <EmbeddedResource Include="ReceiptForm.resx">
       <DependentUpon>ReceiptForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchByTagForm.resx">
+      <DependentUpon>SearchByTagForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

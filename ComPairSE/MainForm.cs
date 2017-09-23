@@ -37,5 +37,17 @@ namespace ComPairSE
             ReceiptForm receiptForm = new ReceiptForm(receipt);
             receiptForm.Show();
         }
+
+        private void button_SearchItemsByTag_Click(object sender, EventArgs e)
+        {
+            Receipt receipt = Receipt.Create(tbInput.Text);
+            SearchByTagForm searchByTagForm = new SearchByTagForm();
+            searchByTagForm.Show();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
