@@ -5,11 +5,11 @@ using ComPairSE;
 namespace UnitTestCSE
 {
     [TestClass]
-    public class LocalDataManagerTests
+    public class DataManagerTests
     {
-        private LocalDataManager DataManager = new LocalDataManager();
+        private DataManager DataManager = new DataManager();
 
-        public LocalDataManagerTests()
+        public DataManagerTests()
         {
             DataManager.InitTestTables();
         }

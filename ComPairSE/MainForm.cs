@@ -20,7 +20,7 @@ namespace ComPairSE
         {
             InitializeComponent();
             tbInput.Width = this.ClientRectangle.Width - 2 * tbInput.Left;
-            DataManager = new LocalDataManager();
+            DataManager = new DataManager();
         }
 
         private void btRnd_Click(object sender, EventArgs e)

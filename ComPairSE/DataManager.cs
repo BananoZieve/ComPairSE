@@ -16,11 +16,11 @@ namespace ComPairSE
         void AddReceipt(Receipt receipt);
     }
 
-    public class LocalDataManager : IDataManager
+    public class DataManager : IDataManager
     {
-        private DataTable Items;
-        private DataTable Tags;
-        private DataTable ItemsTags;
+        private DataTable productsTable;
+        private DataTable tagsTable;
+        private DataTable unionTable;
 
         public void AddItem(Item product)
         {
@@ -42,12 +42,12 @@ namespace ComPairSE
             tags = tags.Distinct().ToArray();
             foreach (string tag in tags)
             {
-                DataRow row = Tags.Rows.Find(tag);
+                DataRow row = tagsTable.Rows.Find(tag);
                 tagIds.Add((int)row["tagId"]);
             }
 
             // get item ids
-            foreach (DataRow row in ItemsTags.Rows)
+            foreach (DataRow row in unionTable.Rows)
             {
                 foreach(int id in tagIds)
                 {
@@ -68,7 +68,7 @@ namespace ComPairSE
             // create item list
             foreach (int itemId in ordered)
             {
-                DataRow row = Items.Rows.Find(itemId);
+                DataRow row = productsTable.Rows.Find(itemId);
                 ret.Add(RowToItem(row));
             }
 
@@ -93,45 +93,45 @@ namespace ComPairSE
 
         public void InitTestTables()
         {
-            Items = new DataTable();
-            Tags = new DataTable();
-            ItemsTags = new DataTable();
+            productsTable = new DataTable();
+            tagsTable = new DataTable();
+            unionTable = new DataTable();
 
             // HARD-CODE
-            Items.Columns.Add("itemId", typeof(int));
-            Items.Columns.Add("name", typeof(string));
+            productsTable.Columns.Add("itemId", typeof(int));
+            productsTable.Columns.Add("name", typeof(string));
             foreach (string shop in Enum.GetNames(typeof(Shop)))
-                Items.Columns.Add("price" + shop, typeof(int));
-            Items.PrimaryKey = new DataColumn[] { Items.Columns["itemId"] };
-            Items.Rows.Add(1, "Dvaro Pienas 1l", 1, 3, 10, 52);
-            Items.Rows.Add(2, "Rokiskio Pienas 2l", 1, 3, 10, 52);
-            Items.Rows.Add(3, "Bandele su varske", 1, 3, 10, 52);
-            Items.Rows.Add(4, "Bandele su cinamonu", 1, 3, 10, 52);
-            Items.Rows.Add(5, "Dvaro grietine", 1, 3, 10, 52);
+                productsTable.Columns.Add("price" + shop, typeof(int));
+            productsTable.PrimaryKey = new DataColumn[] { productsTable.Columns["itemId"] };
+            productsTable.Rows.Add(1, "Dvaro Pienas 1l", 1, 3, 10, 52);
+            productsTable.Rows.Add(2, "Rokiskio Pienas 2l", 1, 3, 10, 52);
+            productsTable.Rows.Add(3, "Bandele su varske", 1, 3, 10, 52);
+            productsTable.Rows.Add(4, "Bandele su cinamonu", 1, 3, 10, 52);
+            productsTable.Rows.Add(5, "Dvaro grietine", 1, 3, 10, 52);
 
-            Tags.Columns.Add("tagId", typeof(int));
-            Tags.Columns.Add("name", typeof(string));
-            Tags.PrimaryKey = new DataColumn[] { Tags.Columns["name"] };
-            Tags.Rows.Add(1, "Dvaro");
-            Tags.Rows.Add(2, "Pienas");
-            Tags.Rows.Add(3, "Rokiskio");
-            Tags.Rows.Add(4, "Bandele");
-            Tags.Rows.Add(5, "su varske");
-            Tags.Rows.Add(6, "su cinamonu");
-            Tags.Rows.Add(7, "grietine");
+            tagsTable.Columns.Add("tagId", typeof(int));
+            tagsTable.Columns.Add("name", typeof(string));
+            tagsTable.PrimaryKey = new DataColumn[] { tagsTable.Columns["name"] };
+            tagsTable.Rows.Add(1, "Dvaro");
+            tagsTable.Rows.Add(2, "Pienas");
+            tagsTable.Rows.Add(3, "Rokiskio");
+            tagsTable.Rows.Add(4, "Bandele");
+            tagsTable.Rows.Add(5, "su varske");
+            tagsTable.Rows.Add(6, "su cinamonu");
+            tagsTable.Rows.Add(7, "grietine");
 
-            ItemsTags.Columns.Add("itemId", typeof(int));
-            ItemsTags.Columns.Add("tagId", typeof(int));
-            ItemsTags.Rows.Add(1,1);
-            ItemsTags.Rows.Add(1, 2);
-            ItemsTags.Rows.Add(2, 2);
-            ItemsTags.Rows.Add(2, 3);
-            ItemsTags.Rows.Add(3, 4);
-            ItemsTags.Rows.Add(3, 5);
-            ItemsTags.Rows.Add(4, 4);
-            ItemsTags.Rows.Add(4, 6);
-            ItemsTags.Rows.Add(5, 1);
-            ItemsTags.Rows.Add(5, 7);
+            unionTable.Columns.Add("itemId", typeof(int));
+            unionTable.Columns.Add("tagId", typeof(int));
+            unionTable.Rows.Add(1,1);
+            unionTable.Rows.Add(1, 2);
+            unionTable.Rows.Add(2, 2);
+            unionTable.Rows.Add(2, 3);
+            unionTable.Rows.Add(3, 4);
+            unionTable.Rows.Add(3, 5);
+            unionTable.Rows.Add(4, 4);
+            unionTable.Rows.Add(4, 6);
+            unionTable.Rows.Add(5, 1);
+            unionTable.Rows.Add(5, 7);
         }
 
         public void LoadData()
