@@ -14,10 +14,13 @@ namespace ComPairSE
     {
         private const int DEFAULT_PAD = 12;
 
+        IDataManager DataManager;
+
         public MainForm()
         {
             InitializeComponent();
             tbInput.Width = this.ClientRectangle.Width - 2 * tbInput.Left;
+            DataManager = new LocalDataManager();
         }
 
         private void btRnd_Click(object sender, EventArgs e)
@@ -25,8 +28,8 @@ namespace ComPairSE
             Random rnd = new Random();
             List<Item> list = new List<Item>();
             for (int i = 1; i <= rnd.Next(12,25); i++)
-                list.Add(new Item(i.ToString(), rnd.Next(20)*100 + rnd.Next(2)*50 + 49));
-            Receipt receipt = Receipt.Create(list);
+                list.Add(new Item(i.ToString(), rnd.Next(20)*100 + rnd.Next(2)*50 + 49, Shop.Maxima));
+            Receipt receipt = Receipt.Create(Shop.Maxima, list);
             ReceiptForm receiptForm = new ReceiptForm(receipt);
             receiptForm.Show();
         }
@@ -47,7 +50,12 @@ namespace ComPairSE
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // load dataTables here
+        }
 
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            // save dataTables here
         }
     }
 }

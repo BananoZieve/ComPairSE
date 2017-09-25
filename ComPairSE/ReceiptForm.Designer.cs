@@ -46,7 +46,6 @@
             this.tbTotal.Size = new System.Drawing.Size(100, 20);
             this.tbTotal.TabIndex = 1;
             this.tbTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.tbTotal.TextChanged += new System.EventHandler(this.tbTotal_TextChanged);
             // 
             // lbTotal
             // 
@@ -57,19 +56,15 @@
             this.lbTotal.Size = new System.Drawing.Size(34, 13);
             this.lbTotal.TabIndex = 2;
             this.lbTotal.Text = "Total:";
-            this.lbTotal.Click += new System.EventHandler(this.lbTotal_Click);
             // 
             // columnItem
             // 
-            this.columnItem.DataPropertyName = "Name";
             this.columnItem.HeaderText = "Item";
             this.columnItem.Name = "columnItem";
             // 
             // columnPrice
             // 
-            this.columnPrice.DataPropertyName = "PriceC";
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "C2";
             this.columnPrice.DefaultCellStyle = dataGridViewCellStyle1;
             this.columnPrice.HeaderText = "Price";
             this.columnPrice.Name = "columnPrice";
@@ -90,7 +85,6 @@
             this.dgvReceipt.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvReceipt.Size = new System.Drawing.Size(235, 240);
             this.dgvReceipt.TabIndex = 0;
-            this.dgvReceipt.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvReceipt_CellContentClick);
             // 
             // ReceiptForm
             // 

@@ -7,6 +7,14 @@ using System.Text.RegularExpressions;
 
 namespace ComPairSE
 {
+    public enum Shop
+    {
+        Maxima,
+        Norfa,
+        Rimi,
+        Iki
+    }
+
     public class Receipt // : IComparable?
     {
         /// <summary>
@@ -17,6 +25,9 @@ namespace ComPairSE
         public static Receipt Create(string rawData)
         {
             Receipt receipt = new Receipt();
+
+            // extract from rawData later
+            Shop shop = Shop.Maxima;
 
             List<Item> itemList = new List<Item>(); ;
             string[] rawDataSplit = rawData.Split(new char[] { }, StringSplitOptions.RemoveEmptyEntries);
@@ -29,7 +40,7 @@ namespace ComPairSE
                     Array.Copy(rawDataSplit, i-  tagCount, tags, 0, tagCount);
                     string name = string.Join(" ", tags);
                     int price = int.Parse(rawDataSplit[i].Replace(",", string.Empty));
-                    itemList.Add(new Item(name, price, tags));
+                    itemList.Add(new Item(name, price, shop, tags));
                     tagCount = 0;
                     i++;
                 }
@@ -40,40 +51,31 @@ namespace ComPairSE
             }
 
             if (itemList.Count > 0)
-                receipt = new Receipt(itemList);
+                receipt = new Receipt(shop, itemList);
 
             return receipt;
         }
 
-        public static Receipt Create(List<Item> items)
+        public static Receipt Create(Shop shop, List<Item> items)
         {
-            return new Receipt(items);
-        }
-
-        public static Receipt Create(List<Item> items, string shopName)
-        {
-            return new Receipt(items, shopName);
+            return new Receipt(shop, items);
         }
 
         private Receipt()
         {
         }
 
-        private Receipt(List<Item> items) : this()
+        private Receipt(Shop shop, List<Item> items) : this()
         {
+            Shop = shop;
             Items = items.ToArray();
-            TotalPrice = Items.Sum(item => item.Price); // slower than foreach
+            TotalPrice = Items.Sum(item => item.Prices[(int)Shop]); // slower than foreach
             PurchaseTime = DateTime.Now;
         }
 
-        private Receipt(List<Item> items, string shopName) : this(items)
-        {
-            ShopName = shopName;
-        }
-
+        public readonly Shop Shop;
         public readonly Item[] Items;
         public readonly DateTime PurchaseTime;
-        public readonly string ShopName;
         public readonly int TotalPrice;
     }
 }

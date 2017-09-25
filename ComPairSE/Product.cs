@@ -8,29 +8,40 @@ namespace ComPairSE
 {
     public class Item
     {
-        public Item(string name, int price, string[] tags) : this(name, price)
+        private Item()
+        {
+            Prices = new int[Enum.GetNames(typeof(Shop)).Length];
+        }
+
+        public Item(string name, int price, Shop shop) : this()
+        {
+            Name = name;
+            Prices[(int)shop] = price;
+        }
+
+        public Item(string name, int price, Shop shop, string[] tags) : this(name, price, shop)
         {
             Tags = tags;
         }
 
-        public Item(string name, int price)
+        public Item(int id, string name, int[] prices)
         {
+            Id = id;
             Name = name;
-            Price = price;
+            Prices = prices;
         }
 
+        public int Id { get; private set; }
 
         public string Name { get; private set; }
 
-        public int Price { get; private set; } // in Euro cents
-
-        public decimal PriceC { get { return Price / 100m; } }
+        public int[] Prices { get; private set; } // in Euro cents
 
         public string[] Tags { get; private set; }
 
         public override string ToString()
         {
-            return string.Format("{0} {1:C2}", Name, PriceC);
+            return string.Format("{0} {1}", Id, Name);
         }
     }
 }
