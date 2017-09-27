@@ -205,7 +205,6 @@ namespace ComPairSE
             {                
                 CreateDataTables();
                 InitDataTables();
-                InitTestTables();
             }
         }
 
