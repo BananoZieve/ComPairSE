@@ -11,12 +11,14 @@ namespace ComPairSE
         public Item(string name, int price, string[] tags) : this(name, price)
         {
             Tags = tags;
+            Shop = "Maxima";
         }
 
         public Item(string name, int price)
         {
             Name = name;
             Price = price;
+            Shop = "Maxima";
         }
 
 
@@ -25,6 +27,8 @@ namespace ComPairSE
         public int Price { get; private set; } // in Euro cents
 
         public decimal PriceC { get { return Price / 100m; } }
+
+        public string Shop { get; private set; }
 
         public string[] Tags { get; private set; }
 

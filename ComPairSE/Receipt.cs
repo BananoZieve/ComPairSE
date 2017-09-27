@@ -39,8 +39,11 @@ namespace ComPairSE
                 }
             }
 
+
             if (itemList.Count > 0)
+            {
                 receipt = new Receipt(itemList);
+            }
 
             return receipt;
         }
