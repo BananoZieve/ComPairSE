@@ -22,6 +22,7 @@ namespace ComPairSE
         public Item(string name, int price, Shop shop, string[] tags) : this(name, price, shop)
         {
             Tags = tags;
+            Shop = "Maxima";
         }
 
         public Item(int id, string name, int[] prices)
@@ -29,6 +30,7 @@ namespace ComPairSE
             Id = id;
             Name = name;
             Prices = prices;
+            Shop = "Maxima";
         }
 
         public int Id { get; private set; }
@@ -36,6 +38,8 @@ namespace ComPairSE
         public string Name { get; private set; }
 
         public int[] Prices { get; private set; } // in Euro cents
+
+        public string Shop { get; private set; }
 
         public string[] Tags { get; private set; }
 

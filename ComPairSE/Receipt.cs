@@ -50,6 +50,7 @@ namespace ComPairSE
                 }
             }
 
+
             if (itemList.Count > 0)
                 receipt = new Receipt(shop, itemList);
 
