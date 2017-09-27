@@ -85,7 +85,8 @@ namespace ComPairSE
 
         public void InitTestTables()
         {
-            CreateDataTable();
+            if (productsTable == null || tagsTable == null || unionTable == null)
+                CreateDataTable();
 
             // HARD-CODE
             productsTable.Rows.Add(null, "Dvaro Pienas 1l", 1, 3, 10, 52);
@@ -195,7 +196,6 @@ namespace ComPairSE
             catch (FileNotFoundException)
             {                
                 CreateDataTable();
-                InitTestTables();
             }
         }
 
