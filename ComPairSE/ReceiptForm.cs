@@ -28,7 +28,8 @@ namespace ComPairSE
 
         public ReceiptForm(Receipt receipt) : this()
         {
-            dgvReceipt.DataSource = receipt.Items;
+            foreach (Item item in receipt.Items)
+                dgvReceipt.Rows.Add(item.Name, item.Prices[(int)receipt.Shop].ToDecimal().ToString("C2"));
             tbTotal.Text = (receipt.TotalPrice / 100m).ToString("C2");
         }
 
@@ -41,21 +42,6 @@ namespace ComPairSE
                 dgvReceipt.FirstDisplayedScrollingRowIndex = Math.Max(dgvReceipt.RowCount - 9,0);
             else
                 dgvReceipt.FirstDisplayedScrollingRowIndex = newIndex;
-        }
-
-        private void tbTotal_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvReceipt_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void lbTotal_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }
