@@ -16,7 +16,6 @@ namespace ComPairSE
         private const int DEFAULT_PAD = 12;
         IDataManager DataManager;
 
-        IDataManager DataManager;
 
         public MainForm()
         {
