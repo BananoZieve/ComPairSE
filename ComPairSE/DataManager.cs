@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+
 
 namespace ComPairSE
 {
@@ -24,11 +22,6 @@ namespace ComPairSE
         private DataTable tagsTable;
         private DataTable unionTable;
 
-
-        public void AddItem(Item product)
-        {
-            throw new NotImplementedException();
-        }
 
         public void AddReceipt(Receipt receipt)
         {
@@ -125,7 +118,7 @@ namespace ComPairSE
 
             unionTable.Columns.Add("itemId", typeof(int));
             unionTable.Columns.Add("tagId", typeof(int));
-            unionTable.Rows.Add(1,1);
+            unionTable.Rows.Add(1, 1);
             unionTable.Rows.Add(1, 2);
             unionTable.Rows.Add(2, 2);
             unionTable.Rows.Add(2, 3);
@@ -135,7 +128,7 @@ namespace ComPairSE
             unionTable.Rows.Add(4, 6);
             unionTable.Rows.Add(5, 1);
             unionTable.Rows.Add(5, 7);
-=======
+        }
         private DataSet dataSet = new DataSet();
 
         public void CreateDataTable()
@@ -174,12 +167,12 @@ namespace ComPairSE
         {
             DataRow productsTableRow = productsTable.NewRow();
             productsTableRow["Name"] = product.Name;
-            switch (product.Shop)
-            {
-                case "Maxima": productsTableRow["Maxima_price"] = product.PriceC; break;
-                case "IKI": productsTableRow["IKI_price"] = product.PriceC; break;
-                case "Norfa": productsTableRow["Norfa_price"] = product.PriceC; break;       
-            }
+         //   switch (product.Shop)
+          //  {
+           //     case "Maxima": productsTableRow["Maxima_price"] = product.PriceC; break;
+            //    case "IKI": productsTableRow["IKI_price"] = product.PriceC; break;
+             //   case "Norfa": productsTableRow["Norfa_price"] = product.PriceC; break;       
+         //   }
             productsTable.Rows.Add(productsTableRow);
 
             DataRow lastRow = productsTable.Rows[productsTable.Rows.Count - 1];
@@ -195,16 +188,6 @@ namespace ComPairSE
                 unionTableRow["TagID"] = (int)(tagsTable.Rows[tagsTable.Rows.Count - 1]["TagID"]);
                 unionTable.Rows.Add(unionTableRow);
             }
-        }
-
-        public void AddReceipt(Receipt receipt)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Item> GetItems(params string[] tags)
-        {
-            throw new NotImplementedException();
         }
 
         public void LoadData()
