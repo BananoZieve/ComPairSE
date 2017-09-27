@@ -16,8 +16,6 @@ namespace ComPairSE
         private const int DEFAULT_PAD = 12;
         IDataManager DataManager;
 
-        IDataManager DataManager;
-
         public MainForm()
         {
             InitializeComponent();
@@ -52,22 +50,10 @@ namespace ComPairSE
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // load dataTables here
+            DataManager.LoadData();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            try
-            {
-                DataManager.LoadData();
-            }
-            catch (FileNotFoundException exc)
-            {
-                DataManager.CreateDataTable();
-            }
-        }
-
-        private void MainForm_FormClosing_1(object sender, FormClosingEventArgs e)
         {
             DataManager.SaveData();
         }
