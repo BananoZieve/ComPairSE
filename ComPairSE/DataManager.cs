@@ -14,14 +14,15 @@ namespace ComPairSE
         void AddItem(Item product);
         List<Item> GetItems(params string[] tags);
         void AddReceipt(Receipt receipt);
+        void CreateDataTable();
     }
 
     public class DataManager : IDataManager
     {
-        static DataTable productsTable;
-        static DataTable tagsTable;
-        static DataTable unionTable;
-        static DataSet dataSet = new DataSet();
+        private DataTable productsTable;
+        private DataTable tagsTable;
+        private DataTable unionTable;
+        private DataSet dataSet = new DataSet();
 
         public void CreateDataTable()
         {
@@ -105,12 +106,16 @@ namespace ComPairSE
 
         public void SaveData()
         {
+
             dataSet.Clear();
-            dataSet.Tables.Add(productsTable);
-            dataSet.Tables.Add(tagsTable);
-            dataSet.Tables.Add(unionTable);
-           
-            dataSet.WriteXml("DataTables.xml");
+            if (productsTable != null)
+            {
+                dataSet.Tables.Add(productsTable);
+                dataSet.Tables.Add(tagsTable);
+                dataSet.Tables.Add(unionTable);
+            }
+                dataSet.WriteXml("DataTables.xml");
+            
         }
     }
 }

@@ -43,12 +43,6 @@ namespace ComPairSE
             if (itemList.Count > 0)
             {
                 receipt = new Receipt(itemList);
-
-                foreach (Item item in itemList)
-                {
-                    new DataManager().AddItem(item);
-
-                }
             }
 
             return receipt;

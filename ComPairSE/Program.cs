@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,14 +15,7 @@ namespace ComPairSE
         [STAThread]
         static void Main()
         {
-            try
-            {
-                (new DataManager()).LoadData();
-            }
-            catch (FileNotFoundException exc)
-            {
-                new DataManager().CreateDataTable();
-            }     
+           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainForm());
