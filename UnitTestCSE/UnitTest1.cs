@@ -11,6 +11,8 @@ namespace UnitTestCSE
 
         public DataManagerTests()
         {
+            DataManager.CreateDataTables();
+            DataManager.InitDataTables();
             DataManager.InitTestTables();
         }
 

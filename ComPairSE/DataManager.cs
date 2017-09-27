@@ -35,7 +35,8 @@ namespace ComPairSE
             foreach (string tag in tags)
             {
                 DataRow row = tagsTable.Rows.Find(tag);
-                tagIds.Add((int)row["tagId"]);
+                if (row != null)
+                    tagIds.Add((int)row["tagId"]);
             }
 
             // get item ids
@@ -86,7 +87,7 @@ namespace ComPairSE
         public void InitTestTables()
         {
             if (productsTable == null || tagsTable == null || unionTable == null)
-                CreateDataTable();
+                CreateDataTables();
 
             // HARD-CODE
             productsTable.Rows.Add(null, "Dvaro Pienas 1l", 1, 3, 10, 52);
@@ -115,29 +116,35 @@ namespace ComPairSE
             unionTable.Rows.Add(5, 7);
         }
 
-        public void CreateDataTable()
+        public void CreateDataTables()
         {
             productsTable = new DataTable("Items");
-            DataColumn columnItemId = productsTable.Columns.Add("itemId", typeof(int));
-            columnItemId.AutoIncrement = true;
-            columnItemId.AutoIncrementSeed = 1;
-            columnItemId.AutoIncrementStep = 1;
-            productsTable.PrimaryKey = new DataColumn[] { columnItemId };
+            productsTable.Columns.Add("itemId", typeof(int));
             productsTable.Columns.Add("name", typeof(string));
             foreach (string shop in Enum.GetNames(typeof(Shop)))
                 productsTable.Columns.Add("price" + shop, typeof(int));
 
             tagsTable = new DataTable("Tags");
-            DataColumn columnTagId = tagsTable.Columns.Add("tagId", typeof(int));
-            columnTagId.AutoIncrement = true;
-            columnTagId.AutoIncrementSeed = 1;
-            columnTagId.AutoIncrementStep = 1;
-            tagsTable.PrimaryKey = new DataColumn[] { columnTagId };
+            tagsTable.Columns.Add("tagId", typeof(int));
             tagsTable.Columns.Add("name", typeof(string));
 
             unionTable = new DataTable("ItemsTags");
-            unionTable.Columns.Add("tagId", typeof(int));
             unionTable.Columns.Add("itemId", typeof(int));
+            unionTable.Columns.Add("tagId", typeof(int));
+        }
+
+        public void InitDataTables()
+        {
+            DataColumn columnItemId = productsTable.Columns["itemId"];
+            columnItemId.AutoIncrement = true;
+            columnItemId.AutoIncrementSeed = 1;
+            columnItemId.AutoIncrementStep = 1;
+            productsTable.PrimaryKey = new DataColumn[] { columnItemId };
+            DataColumn columnTagId = tagsTable.Columns["tagId"];
+            columnTagId.AutoIncrement = true;
+            columnTagId.AutoIncrementSeed = 1;
+            columnTagId.AutoIncrementStep = 1;
+            tagsTable.PrimaryKey = new DataColumn[] { tagsTable.Columns["name"] };
         }
 
         public void AddItem(Item item)
@@ -187,27 +194,26 @@ namespace ComPairSE
             dataSet.Clear();
             try
             {
-                dataSet.ReadXml("DataTables.xml");
-                productsTable = dataSet.Tables["Items"];
-                tagsTable = dataSet.Tables["Tags"];
-                unionTable = dataSet.Tables["ItemsTags"];
-                DataTable customerTable = dataSet.Tables["Customer"];
+                productsTable = new DataTable();
+                tagsTable = new DataTable();
+                unionTable = new DataTable();
+                productsTable.ReadXml("Items.xml");
+                tagsTable.ReadXml("Tags.xml");
+                unionTable.ReadXml("ItemsTags.xml");
             }
             catch (FileNotFoundException)
             {                
-                CreateDataTable();
+                CreateDataTables();
+                InitDataTables();
+                InitTestTables();
             }
         }
 
         public void SaveData()
         {
-            if (dataSet.Tables.Count == 0)
-            {
-                dataSet.Tables.Add(productsTable);
-                dataSet.Tables.Add(tagsTable);
-                dataSet.Tables.Add(unionTable);
-            }
-            dataSet.WriteXml("DataTables.xml");
+            productsTable.WriteXml("Items.xml", XmlWriteMode.WriteSchema);
+            tagsTable.WriteXml("Tags.xml", XmlWriteMode.WriteSchema);
+            unionTable.WriteXml("ItemsTags.xml", XmlWriteMode.WriteSchema);
         }
     }
 }
