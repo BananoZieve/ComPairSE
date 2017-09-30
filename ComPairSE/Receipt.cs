@@ -76,6 +76,8 @@ namespace ComPairSE
             {
                 if (this.Items != null && other.Items != null)
                 {
+                    // assume ReferenceEquals(this.Items, other.Items) == true
+
                     // number of non-zero priced (present in the shop) items
                     int r1Count = this.Items.Count(item => item.Prices[(int)this.Shop] > 0);
                     int r2Count = other.Items.Count(item => item.Prices[(int)other.Shop] > 0);
