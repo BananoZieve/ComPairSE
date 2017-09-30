@@ -89,6 +89,7 @@ namespace ComPairSE
                 }
                 else
                 {
+                    // special cases
                     if (this.Items == null && other.Items == null)
                         return 0;
                     else
@@ -98,7 +99,7 @@ namespace ComPairSE
             }
             else
             {
-                throw new ArgumentNullException();
+                return -1; // if other is null reference, this instance is "smaller" (better)
             }
         }
 
