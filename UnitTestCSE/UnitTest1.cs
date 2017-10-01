@@ -45,11 +45,33 @@ namespace UnitTestCSE
     }
 
     [TestClass]
-    public class UnitTest1
+    public class ReceiptTests
     {
-        [TestMethod]
-        public void TestMethod1()
+        private DataManager DataManager = new DataManager();
+
+        public ReceiptTests()
         {
+            DataManager.CreateDataTables();
+            DataManager.InitDataTables();
+            DataManager.InitTestTables();
+        }
+        
+        [TestMethod]
+        public void CompareTo_ReceipList_Sort()
+        {
+            System.Collections.Generic.List<Item> itemList = DataManager.GetItems("Dvaro", "Pienas");
+            System.Collections.Generic.List<Receipt> receiptList = new System.Collections.Generic.List<Receipt>()
+            {
+                Receipt.Create(Shop.Iki, itemList),
+                Receipt.Create(Shop.Norfa, itemList),
+                Receipt.Create(Shop.Maxima, itemList),
+                Receipt.Create(Shop.Rimi, itemList)
+            };
+            receiptList.Sort();
+            Assert.AreEqual(Shop.Maxima, receiptList[0].Shop);
+            Assert.AreEqual(Shop.Norfa, receiptList[1].Shop);
+            Assert.AreEqual(Shop.Rimi, receiptList[2].Shop);
+            Assert.AreEqual(Shop.Iki, receiptList[3].Shop);
         }
     }
 }
