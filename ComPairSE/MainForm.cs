@@ -38,6 +38,10 @@ namespace ComPairSE
         {
             Receipt receipt = Receipt.Create(tbInput.Text);
             ReceiptForm receiptForm = new ReceiptForm(receipt);
+            foreach (Item item in receipt.Items)
+            {
+                DataManager.AddItem(item);
+            }
             receiptForm.Show();
         }
 
