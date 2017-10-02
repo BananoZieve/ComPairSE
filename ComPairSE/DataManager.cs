@@ -150,9 +150,9 @@ namespace ComPairSE
         public void AddItem(Item item)
         {
             List<Item> found = GetItems(item.Tags);
-            if (found[0].Name != item.Name)
+            if (!found.Contains(item))
             {
-                // add new entry to database
+               //  add new entry to database
                 DataRow itemRow = productsTable.Rows.Add(
                     null,
                     item.Name,
@@ -173,7 +173,7 @@ namespace ComPairSE
                 }
             }
             else
-            {
+           {
                 // update existing entry
                 DataRow itemRow = productsTable.Rows.Find(found[0].Id);
                 int i = 2;
