@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace ComPairSE
 {
@@ -57,5 +59,21 @@ namespace ComPairSE
         {
             DataManager.SaveData();
         }
+
+        public void buttonCheck_Click(object sender, EventArgs e)
+        {
+            string inputText = tbInput.Text;
+            string[] wordsArray = inputText.Split(' ');
+            foreach(string word in wordsArray)
+            {
+                if (word.EndsWith("."))
+                {
+                    string rightValue = "Default Value";
+                    Interaction.InputBox(word, "Can you clarify this word?", rightValue, -1, -1);
+                }
+            }
+
+        }
     }
 }
+

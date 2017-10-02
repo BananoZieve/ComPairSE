@@ -214,5 +214,6 @@ namespace ComPairSE
             tagsTable.WriteXml("Tags.xml", XmlWriteMode.WriteSchema);
             unionTable.WriteXml("ItemsTags.xml", XmlWriteMode.WriteSchema);
         }
+        
     }
 }
