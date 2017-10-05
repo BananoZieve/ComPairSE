@@ -110,13 +110,13 @@ namespace ComPairSE
         private Receipt(Shop shop, List<Item> items) : this()
         {
             Shop = shop;
-            Items = items.ToArray();
+            Items = items;
             TotalPrice = Items.Sum(item => item.Prices[(int)Shop]); // slower than foreach
             PurchaseTime = DateTime.Now;
         }
 
         public readonly Shop Shop;
-        public readonly Item[] Items;
+        public readonly List<Item> Items;
         public readonly DateTime PurchaseTime;
         public readonly int TotalPrice;
     }
