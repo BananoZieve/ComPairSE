@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btRnd = new System.Windows.Forms.Button();
             this.tbInput = new System.Windows.Forms.TextBox();
             this.btSubmit = new System.Windows.Forms.Button();
             this.button_SearchItemsByTag = new System.Windows.Forms.Button();
-            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.btBrowse = new System.Windows.Forms.Button();
             this.rbFile = new System.Windows.Forms.RadioButton();
             this.tbFile = new System.Windows.Forms.TextBox();
             this.rbInput = new System.Windows.Forms.RadioButton();
-            this.pnFile = new System.Windows.Forms.Panel();
-            this.pnFile.SuspendLayout();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // btRnd
@@ -57,10 +57,10 @@
             this.tbInput.AcceptsTab = true;
             this.tbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.tbInput.Location = new System.Drawing.Point(3, 78);
+            this.tbInput.Location = new System.Drawing.Point(3, 75);
             this.tbInput.Multiline = true;
             this.tbInput.Name = "tbInput";
-            this.tbInput.Size = new System.Drawing.Size(265, 210);
+            this.tbInput.Size = new System.Drawing.Size(265, 213);
             this.tbInput.TabIndex = 1;
             // 
             // btSubmit
@@ -85,13 +85,13 @@
             this.button_SearchItemsByTag.UseVisualStyleBackColor = true;
             this.button_SearchItemsByTag.Click += new System.EventHandler(this.button_SearchItemsByTag_Click);
             // 
-            // openFileDialog1
+            // openFileDialog
             // 
-            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog.RestoreDirectory = true;
             // 
             // btBrowse
             // 
-            this.btBrowse.Location = new System.Drawing.Point(213, 0);
+            this.btBrowse.Location = new System.Drawing.Point(216, 24);
             this.btBrowse.Name = "btBrowse";
             this.btBrowse.Size = new System.Drawing.Size(52, 23);
             this.btBrowse.TabIndex = 4;
@@ -113,16 +113,16 @@
             // 
             // tbFile
             // 
-            this.tbFile.Enabled = false;
-            this.tbFile.Location = new System.Drawing.Point(0, 2);
+            this.tbFile.Location = new System.Drawing.Point(3, 26);
             this.tbFile.Name = "tbFile";
+            this.tbFile.ReadOnly = true;
             this.tbFile.Size = new System.Drawing.Size(207, 20);
             this.tbFile.TabIndex = 6;
             // 
             // rbInput
             // 
             this.rbInput.AutoSize = true;
-            this.rbInput.Location = new System.Drawing.Point(3, 55);
+            this.rbInput.Location = new System.Drawing.Point(3, 52);
             this.rbInput.Name = "rbInput";
             this.rbInput.Size = new System.Drawing.Size(72, 17);
             this.rbInput.TabIndex = 5;
@@ -131,21 +131,13 @@
             this.rbInput.UseVisualStyleBackColor = true;
             this.rbInput.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
-            // pnFile
-            // 
-            this.pnFile.Controls.Add(this.btBrowse);
-            this.pnFile.Controls.Add(this.tbFile);
-            this.pnFile.Location = new System.Drawing.Point(3, 26);
-            this.pnFile.Name = "pnFile";
-            this.pnFile.Size = new System.Drawing.Size(270, 23);
-            this.pnFile.TabIndex = 7;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(285, 316);
-            this.Controls.Add(this.pnFile);
+            this.Controls.Add(this.btBrowse);
+            this.Controls.Add(this.tbFile);
             this.Controls.Add(this.rbInput);
             this.Controls.Add(this.rbFile);
             this.Controls.Add(this.button_SearchItemsByTag);
@@ -159,8 +151,6 @@
             this.Text = "ComPairSE";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.Load += new System.EventHandler(this.MainForm_Load);
-            this.pnFile.ResumeLayout(false);
-            this.pnFile.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,12 +162,12 @@
         private System.Windows.Forms.Button btSubmit;
         private System.Windows.Forms.TextBox tbInput;
         private System.Windows.Forms.Button button_SearchItemsByTag;
-        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Button btBrowse;
         private System.Windows.Forms.RadioButton rbFile;
         private System.Windows.Forms.TextBox tbFile;
         private System.Windows.Forms.RadioButton rbInput;
-        private System.Windows.Forms.Panel pnFile;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 

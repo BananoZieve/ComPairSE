@@ -1,4 +1,5 @@
-﻿using System;
+﻿//#define OCR
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,24 +19,23 @@ namespace ComPairSE
         public MainForm()
         {
             InitializeComponent();
-            rbFile.Tag = pnFile;
+            rbFile.Tag = btBrowse;
             rbInput.Tag = tbInput;
-            rbInput.Checked = true;
-            rbFile.Checked = true;
-#if DEBUG
-            // project directory
-            openFileDialog1.InitialDirectory = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\"));
-#else
-            openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-#endif
-            openFileDialog1.RestoreDirectory = true;
-            openFileDialog1.Filter = "Text Files (*.txt)|*.txt";
+            rbFile.Checked = rbInput.Checked = true;
+
+            openFileDialog.Filter = "Text Files (*.txt)|*.txt";
 #if OCR
             openFileDialog1.Filter += "|Image Files(*.bmp;*.jpg;*.png)|*.bmp;*.jpg;*.png";
 #endif
+#if DEBUG   // project directory
+            openFileDialog.InitialDirectory = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\"));
+#else       // my docs
+            openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+#endif
+            
             this.Width -= this.ClientRectangle.Width - 2 * tbInput.Left - tbInput.Width;
             this.MinimumSize = this.Size;
-            this.MaximumSize = new Size(this.Width, this.Height*2);
+            this.MaximumSize = new Size(this.Width, 1080);
 
             DataManager = new DataManager();
         }
@@ -53,15 +53,16 @@ namespace ComPairSE
 
         private void btSubmit_Click(object sender, EventArgs e)
         {
-            Receipt receipt;
+            string data = string.Empty;
             if (rbInput.Checked)
             {
-                receipt = Receipt.Create(tbInput.Text);
+                if (tbInput.Text == string.Empty) { toolTip.Show("Empty field", tbInput, 3000); return; }
+                data = tbInput.Text;
             }
             else
             {
-                string data = string.Empty;
-                switch (openFileDialog1.FilterIndex)
+                if (tbFile.Text == string.Empty) { toolTip.Show("Empty field", tbFile, 3000); return; }
+                switch (openFileDialog.FilterIndex)
                 {
                     case 1:
                         data = File.ReadAllText(tbFile.Text);
@@ -69,14 +70,13 @@ namespace ComPairSE
                     default:
                         break;
                 }
-                receipt = Receipt.Create(data);
             }
 
+            Receipt receipt = Receipt.Create(data);
             ReceiptForm receiptForm = new ReceiptForm(receipt);
-            foreach (Item item in receipt.Items)
-            {
-                DataManager.AddItem(item);
-            }
+            if (receipt.Items != null)
+                foreach (Item item in receipt.Items)
+                    DataManager.AddItem(item);
             receiptForm.Show();
         }
 
@@ -99,9 +99,10 @@ namespace ComPairSE
 
         private void btBrowse_Click(object sender, EventArgs e)
         {
-            if (openFileDialog1.ShowDialog(this) == DialogResult.OK)
+            if (openFileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                tbFile.Text = openFileDialog1.FileName;
+                tbFile.Text = openFileDialog.FileName;
+                toolTip.SetToolTip(tbFile, tbFile.Text);
             }
         }
 
@@ -112,9 +113,7 @@ namespace ComPairSE
             {
                 Control ctrl = rb.Tag as Control;
                 if (ctrl != null)
-                {
                     ctrl.Enabled = rb.Checked;
-                }
             }
         }
     }
