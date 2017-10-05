@@ -15,12 +15,14 @@ namespace ComPairSE
     {
         private const int DEFAULT_PAD = 12;
         IDataManager DataManager;
+        TesseractOCR Tesseract;
 
         public MainForm()
         {
             InitializeComponent();
             tbInput.Width = this.ClientRectangle.Width - 2 * tbInput.Left;
             DataManager = new DataManager();
+            Tesseract = new TesseractOCR();
         }
 
         private void btRnd_Click(object sender, EventArgs e)
@@ -38,6 +40,7 @@ namespace ComPairSE
         {
             Receipt receipt = Receipt.Create(tbInput.Text);
             ReceiptForm receiptForm = new ReceiptForm(receipt);
+            if (receipt.Items != null)
             foreach (Item item in receipt.Items)
             {
                 DataManager.AddItem(item);
@@ -60,6 +63,11 @@ namespace ComPairSE
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             DataManager.SaveData();
+        }
+
+        private void ClickOcr(object sender, EventArgs e)
+        {
+            MessageBox.Show(Tesseract.GetText("./img.jpg"));
         }
     }
 }
