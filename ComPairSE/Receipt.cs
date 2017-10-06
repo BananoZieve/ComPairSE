@@ -20,7 +20,7 @@ namespace ComPairSE
             Match match;
             List<Item> itemList = new List<Item>();
 
-            match = Regex.Match(rawData, @"PVM mok[eė]tojo kodas (LT\d{9})");
+            match = Regex.Match(rawData, @"PVM mok[eė]tojo kodas:? (LT\d{9})");
             if (match.Success)
                 shop = Shop.GetShop(match.Groups[1].Value);
             else
@@ -38,8 +38,8 @@ namespace ComPairSE
                 if (extraName != string.Empty)
                     name += " " + extraName;
 
-                price = int.Parse(match.Groups["price"].Value.Replace(",", ""));
-                unitPrice = match.Groups["unitPrice"].Value != string.Empty ? int.Parse(match.Groups["unitPrice"].Value.Replace(",","")) : price;
+                price = int.Parse(match.Groups["price"].Value.Replace(",", "").Replace(".",""));
+                unitPrice = match.Groups["unitPrice"].Value != string.Empty ? int.Parse(match.Groups["unitPrice"].Value.Replace(",","").Replace(".", "")) : price;
                 if (name == string.Empty && price < 0)
                     name = "Nuolaida";
 
