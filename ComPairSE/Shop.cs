@@ -57,9 +57,9 @@ namespace ComPairSE
 
         private class Norfa : IShop
         {
-            public string ItemPattern => throw new NotImplementedException();
+            public string ItemPattern => @"^(?<name>.*?)((?<amount>\d+\.\d{2,3})x(?<unitPrice>\d+\.\d{2}))?\s+(?<price>-?\d+\.\d{2})(M1|EUR)\r$";
 
-            public ShopEnum ShopEnum => throw new NotImplementedException();
+            public ShopEnum ShopEnum => ShopEnum.Norfa;
         }
 
         private class Rimi : IShop
