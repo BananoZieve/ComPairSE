@@ -171,6 +171,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btRnd;
         private System.Windows.Forms.Button btSubmit;
         private System.Windows.Forms.TextBox tbInput;
         private System.Windows.Forms.Button button_SearchItemsByTag;
