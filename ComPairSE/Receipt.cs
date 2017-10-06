@@ -40,7 +40,9 @@ namespace ComPairSE
                     case "LT107783219":
                         shop = Shop.Norfa; break;
                     case "LT237153113":
-                        shop = Shop.Rimi; break;
+                        shop = Shop.Rimi;
+                        itemPattern = @"(^\sNuol\.\s(?<price>-\d+,\d{2})\sGalut\.\skaina\s\d+,\d{2}\r$|^(?<name>.*?)((\n|\r|\r\n)(?<extraName>.*?))?\s+(?<price>\d+,\d{2})\s[AE]\r$)";
+                        break;
                     case "LT101937219":
                         shop = Shop.Iki; break;
                     default:
@@ -48,20 +50,22 @@ namespace ComPairSE
                 }
             }
 
-            Match itemMatch = Regex.Match(rawData, itemPattern, RegexOptions.Multiline);
-            while (itemMatch.Success)
+            match = Regex.Match(rawData, itemPattern, RegexOptions.Multiline);
+            while (match.Success)
             {
-                string extraName = itemMatch.Groups["extraName"].Value;
-                string name = itemMatch.Groups["name"].Value;
+                string extraName = match.Groups["extraName"].Value;
+                string name = match.Groups["name"].Value;
                 if (extraName != string.Empty)
                     name += " " + extraName;
-                int price = int.Parse(itemMatch.Groups["price"].Value.Replace(",", ""));
-                int unitPrice = itemMatch.Groups["unitPrice"].Value != string.Empty ? int.Parse(itemMatch.Groups["unitPrice"].Value.Replace(",","")) : price;
+                int price = int.Parse(match.Groups["price"].Value.Replace(",", ""));
+                if (name == string.Empty && price < 0)
+                    name = "Nuolaida";
+                int unitPrice = match.Groups["unitPrice"].Value != string.Empty ? int.Parse(match.Groups["unitPrice"].Value.Replace(",","")) : price;
                 decimal amount;
-                if (!decimal.TryParse(itemMatch.Groups["amount"].Value, out amount))
+                if (!decimal.TryParse(match.Groups["amount"].Value, out amount))
                     amount = 1;
                 itemList.Add(new Item(name, price, shop));
-                itemMatch = itemMatch.NextMatch();
+                match = match.NextMatch();
             }
 
             return new Receipt(shop, itemList);
