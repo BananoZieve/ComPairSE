@@ -15,7 +15,7 @@ namespace ComPairSE
         Iki
     }
 
-    public class Receipt // : IComparable?
+    public class Receipt : IComparable<Receipt>, IComparable
     {
         /// <summary>
         /// Create a receipt from a raw string
@@ -62,6 +62,47 @@ namespace ComPairSE
             return new Receipt(shop, items);
         }
 
+        public int CompareTo(object obj)
+        {
+            if (obj != null && !(obj is Receipt))
+                throw new ArgumentException();
+
+            return CompareTo(obj as Receipt);
+        }
+
+        public int CompareTo(Receipt other)
+        {
+            if (other != null)
+            {
+                if (this.Items != null && other.Items != null)
+                {
+                    // assume ReferenceEquals(this.Items, other.Items) == true
+
+                    // number of non-zero priced (present in the shop) items
+                    int r1Count = this.Items.Count(item => item.Prices[(int)this.Shop] > 0);
+                    int r2Count = other.Items.Count(item => item.Prices[(int)other.Shop] > 0);
+
+                    if (r1Count == r2Count)
+                        return this.TotalPrice - other.TotalPrice;
+                    else
+                        return r2Count - r1Count;
+                }
+                else
+                {
+                    // special cases
+                    if (this.Items == null && other.Items == null)
+                        return 0;
+                    else
+                        return this.Items != null ? -1 : 1;
+                }
+
+            }
+            else
+            {
+                return -1; // if other is null reference, this instance is "smaller" (better)
+            }
+        }
+
         private Receipt()
         {
         }
@@ -69,13 +110,13 @@ namespace ComPairSE
         private Receipt(Shop shop, List<Item> items) : this()
         {
             Shop = shop;
-            Items = items.ToArray();
+            Items = items;
             TotalPrice = Items.Sum(item => item.Prices[(int)Shop]); // slower than foreach
             PurchaseTime = DateTime.Now;
         }
 
         public readonly Shop Shop;
-        public readonly Item[] Items;
+        public readonly List<Item> Items;
         public readonly DateTime PurchaseTime;
         public readonly int TotalPrice;
     }
