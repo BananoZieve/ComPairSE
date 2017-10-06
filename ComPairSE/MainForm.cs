@@ -45,8 +45,8 @@ namespace ComPairSE
             Random rnd = new Random();
             List<Item> list = new List<Item>();
             for (int i = 1; i <= rnd.Next(12,25); i++)
-                list.Add(new Item(i.ToString(), rnd.Next(20)*100 + rnd.Next(2)*50 + 49, Shop.Maxima));
-            Receipt receipt = Receipt.Create(Shop.Maxima, list);
+                list.Add(new Item(i.ToString(), rnd.Next(20)*100 + rnd.Next(2)*50 + 49, ShopEnum.Maxima));
+            Receipt receipt = Receipt.Create(ShopEnum.Maxima, list);
             ReceiptForm receiptForm = new ReceiptForm(receipt);
             receiptForm.Show();
         }

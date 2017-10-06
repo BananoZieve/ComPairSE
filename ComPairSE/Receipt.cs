@@ -7,14 +7,6 @@ using System.Text.RegularExpressions;
 
 namespace ComPairSE
 {
-    public enum Shop
-    {
-        Maxima,
-        Norfa,
-        Rimi,
-        Iki
-    }
-
     public class Receipt : IComparable<Receipt>, IComparable
     {
         /// <summary>
@@ -24,54 +16,44 @@ namespace ComPairSE
         /// <returns></returns>
         public static Receipt Create(string rawData)
         {
-            Shop shop = Shop.Maxima; // Shop.Undefined?
-            List<Item> itemList = new List<Item>();
+            IShop shop;
             Match match;
-            string itemPattern = string.Empty;
+            List<Item> itemList = new List<Item>();
+
             match = Regex.Match(rawData, @"PVM mok[eė]tojo kodas (LT\d{9})");
             if (match.Success)
-            {
-                switch (match.Groups[1].Value)
-                {
-                    case "LT230335113":
-                        shop = Shop.Maxima;
-                        itemPattern = @"^(?<name>.*?)((\n|\r|\r\n)(\s{1,3}(?<unitPrice>\d+,\d{2})\sX\s(?<amount>\d{1,2}(,\d{3})?)\s(vnt\.|pak\.|kg)|(?<extraName>\p{L}+)))?\s+(?<price>-?\d+,\d{2})\s[ABEN]\r$";
-                        break;
-                    case "LT107783219":
-                        shop = Shop.Norfa; break;
-                    case "LT237153113":
-                        shop = Shop.Rimi;
-                        itemPattern = @"(^\sNuol\.\s(?<price>-\d+,\d{2})\sGalut\.\skaina\s\d+,\d{2}\r$|^(?<name>.*?)((\n|\r|\r\n)(?<extraName>.*?))?\s+(?<price>\d+,\d{2})\s[AE]\r$)";
-                        break;
-                    case "LT101937219":
-                        shop = Shop.Iki; break;
-                    default:
-                         throw new ArgumentException("Unknown shop");
-                }
-            }
+                shop = Shop.GetShop(match.Groups[1].Value);
+            else
+                throw new ArgumentException("No shop ID");
 
-            match = Regex.Match(rawData, itemPattern, RegexOptions.Multiline);
+            match = Regex.Match(rawData, shop.ItemPattern, RegexOptions.Multiline);
             while (match.Success)
             {
-                string extraName = match.Groups["extraName"].Value;
-                string name = match.Groups["name"].Value;
+                string name, extraName;
+                int price, unitPrice;
+                decimal amount;
+
+                name = match.Groups["name"].Value;
+                extraName = match.Groups["extraName"].Value;
                 if (extraName != string.Empty)
                     name += " " + extraName;
-                int price = int.Parse(match.Groups["price"].Value.Replace(",", ""));
+
+                price = int.Parse(match.Groups["price"].Value.Replace(",", ""));
+                unitPrice = match.Groups["unitPrice"].Value != string.Empty ? int.Parse(match.Groups["unitPrice"].Value.Replace(",","")) : price;
                 if (name == string.Empty && price < 0)
                     name = "Nuolaida";
-                int unitPrice = match.Groups["unitPrice"].Value != string.Empty ? int.Parse(match.Groups["unitPrice"].Value.Replace(",","")) : price;
-                decimal amount;
+
                 if (!decimal.TryParse(match.Groups["amount"].Value, out amount))
                     amount = 1;
-                itemList.Add(new Item(name, price, shop));
+
+                itemList.Add(new Item(name, price, shop.ShopEnum));
                 match = match.NextMatch();
             }
 
-            return new Receipt(shop, itemList);
+            return new Receipt(shop.ShopEnum, itemList);
         }
 
-        public static Receipt Create(Shop shop, List<Item> items)
+        public static Receipt Create(ShopEnum shop, List<Item> items)
         {
             return new Receipt(shop, items);
         }
@@ -93,8 +75,8 @@ namespace ComPairSE
                     // assume ReferenceEquals(this.Items, other.Items) == true
 
                     // number of non-zero priced (present in the shop) items
-                    int r1Count = this.Items.Count(item => item.Prices[(int)this.Shop] > 0);
-                    int r2Count = other.Items.Count(item => item.Prices[(int)other.Shop] > 0);
+                    int r1Count = this.Items.Count(item => item.Prices[(int)this.ShopEnum] > 0);
+                    int r2Count = other.Items.Count(item => item.Prices[(int)other.ShopEnum] > 0);
 
                     if (r1Count == r2Count)
                         return this.TotalPrice - other.TotalPrice;
@@ -121,15 +103,15 @@ namespace ComPairSE
         {
         }
 
-        private Receipt(Shop shop, List<Item> items) : this()
+        private Receipt(ShopEnum shop, List<Item> items) : this()
         {
-            Shop = shop;
+            ShopEnum = shop;
             Items = items;
-            TotalPrice = Items.Sum(item => item.Prices[(int)Shop]); // slower than foreach
+            TotalPrice = Items.Sum(item => item.Prices[(int)ShopEnum]); // slower than foreach
             PurchaseTime = DateTime.Now;
         }
 
-        public readonly Shop Shop;
+        public readonly ShopEnum ShopEnum;
         public readonly List<Item> Items;
         public readonly DateTime PurchaseTime;
         public readonly int TotalPrice;

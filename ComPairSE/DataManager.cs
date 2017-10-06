@@ -31,23 +31,29 @@ namespace ComPairSE
             List<Item> ret = new List<Item>();
 
             // get tag ids
-            tags = tags.Distinct().ToArray();
-            foreach (string tag in tags)
+            if (tags != null)
             {
-                DataRow row = tagsTable.Rows.Find(tag);
-                if (row != null)
-                    tagIds.Add((int)row["tagId"]);
+                tags = tags.Distinct().ToArray();
+                foreach (string tag in tags)
+                {
+                    DataRow row = tagsTable.Rows.Find(tag);
+                    if (row != null)
+                        tagIds.Add((int)row["tagId"]);
+                }
             }
 
             // get item ids
-            foreach (DataRow row in unionTable.Rows)
+            if (tagIds.Count > 0)
             {
-                foreach(int id in tagIds)
+                foreach (DataRow row in unionTable.Rows)
                 {
-                    if ((int)row["tagId"] == id)
+                    foreach (int id in tagIds)
                     {
-                        itemIds.Add((int)row["itemId"]);
-                        break;
+                        if ((int)row["tagId"] == id)
+                        {
+                            itemIds.Add((int)row["itemId"]);
+                            break;
+                        }
                     }
                 }
             }
@@ -121,7 +127,7 @@ namespace ComPairSE
             productsTable = new DataTable("Items");
             productsTable.Columns.Add("itemId", typeof(int));
             productsTable.Columns.Add("name", typeof(string));
-            foreach (string shop in Enum.GetNames(typeof(Shop)))
+            foreach (string shop in Enum.GetNames(typeof(ShopEnum)))
                 productsTable.Columns.Add("price" + shop, typeof(int));
 
             tagsTable = new DataTable("Tags");
@@ -156,14 +162,14 @@ namespace ComPairSE
                 DataRow itemRow = productsTable.Rows.Add(
                     null,
                     item.Name,
-                    item.Prices[(int)Shop.Maxima],
-                    item.Prices[(int)Shop.Norfa],
-                    item.Prices[(int)Shop.Rimi],
-                    item.Prices[(int)Shop.Iki]);
+                    item.Prices[(int)ShopEnum.Maxima],
+                    item.Prices[(int)ShopEnum.Norfa],
+                    item.Prices[(int)ShopEnum.Rimi],
+                    item.Prices[(int)ShopEnum.Iki]);
 
                 int itemId = (int)itemRow["itemId"];
 
-                foreach (string tag in item.Tags)
+                foreach (string tag in item.GetTags())
                 {
                     DataRow tagRow = tagsTable.Rows.Find(tag);
                     if (tagRow == null)
@@ -173,7 +179,7 @@ namespace ComPairSE
                 }
             }
             else
-           {
+            {
                 // update existing entry
                 DataRow itemRow = productsTable.Rows.Find(found[0].Id);
                 int i = 2;

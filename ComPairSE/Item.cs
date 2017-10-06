@@ -10,16 +10,16 @@ namespace ComPairSE
     {
         private Item()
         {
-            Prices = new int[Enum.GetNames(typeof(Shop)).Length];
+            Prices = new int[Enum.GetNames(typeof(ShopEnum)).Length];
         }
 
-        public Item(string name, int price, Shop shop) : this()
+        public Item(string name, int price, ShopEnum shop) : this()
         {
             Name = name;
             Prices[(int)shop] = price;
         }
 
-        public Item(string name, int price, Shop shop, string[] tags) : this(name, price, shop)
+        public Item(string name, int price, ShopEnum shop, string[] tags) : this(name, price, shop)
         {
             Tags = tags;
         }
@@ -50,5 +50,9 @@ namespace ComPairSE
             return string.Format("{0} {1}", Id, Name);
         }
 
+        public string[] GetTags()
+        {
+            return new string[0];
+        }
     }
 }

@@ -76,6 +76,7 @@
     <Compile Include="SearchByTagForm.Designer.cs">
       <DependentUpon>SearchByTagForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Shop.cs" />
     <Compile Include="Util.cs" />
     <EmbeddedResource Include="FoundItemsByTagForm.resx">
       <DependentUpon>FoundItemsByTagForm.cs</DependentUpon>
