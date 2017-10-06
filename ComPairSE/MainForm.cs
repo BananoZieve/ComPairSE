@@ -37,7 +37,6 @@ namespace ComPairSE
             this.Width -= this.ClientRectangle.Width - 2 * tbInput.Left - tbInput.Width;
             this.MinimumSize = this.Size;
             this.MaximumSize = new Size(this.Width, 1080);
-
             DataManager = new DataManager();
             Tesseract = new TesseractOCR();
         }
