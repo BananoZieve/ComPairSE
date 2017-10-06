@@ -28,13 +28,15 @@ namespace ComPairSE
 
         public ReceiptForm(Receipt receipt) : this()
         {
-            foreach (Item item in receipt.Items)
-                dgvReceipt.Rows.Add(item.Name, item.Prices[(int)receipt.Shop].ToDecimal().ToString("C2"));
-            tbTotal.Text = (receipt.TotalPrice / 100m).ToString("C2");
+            if (receipt.Items != null)
+                foreach (Item item in receipt.Items)
+                    dgvReceipt.Rows.Add(item.Name, item.Prices[(int)receipt.Shop].ToDecimal().ToString("C2"));
+            tbTotal.Text = receipt.TotalPrice.ToDecimal().ToString("C2");
         }
 
         private void ReceiptForm_MouseWheel(object sender, MouseEventArgs e)
         {
+            if (dgvReceipt.Rows.Count == 0) return;
             int newIndex = dgvReceipt.FirstDisplayedScrollingRowIndex - e.Delta / 120;
             if (newIndex < 0)
                 dgvReceipt.FirstDisplayedScrollingRowIndex = 0;
