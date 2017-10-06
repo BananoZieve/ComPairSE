@@ -24,37 +24,47 @@ namespace ComPairSE
         /// <returns></returns>
         public static Receipt Create(string rawData)
         {
-            Receipt receipt = new Receipt();
-
-            // extract from rawData later
-            Shop shop = Shop.Maxima;
-
-            List<Item> itemList = new List<Item>(); ;
-            string[] rawDataSplit = rawData.Split(new char[] { }, StringSplitOptions.RemoveEmptyEntries);
-            int tagCount = 0;
-            for (int i = 0; i < rawDataSplit.Length-1; i++)
+            Shop shop = Shop.Maxima; // Shop.Undefined?
+            List<Item> itemList = new List<Item>();
+            Match match;
+            string itemPattern = string.Empty;
+            match = Regex.Match(rawData, @"PVM mok[eė]tojo kodas (LT\d{9})");
+            if (match.Success)
             {
-                if (Regex.IsMatch(rawDataSplit[i], @"\d+,\d{2}") && Regex.IsMatch(rawDataSplit[i+1], @"[ABEN]"))
+                switch (match.Groups[1].Value)
                 {
-                    string[] tags = new string[tagCount];
-                    Array.Copy(rawDataSplit, i-  tagCount, tags, 0, tagCount);
-                    string name = string.Join(" ", tags);
-                    int price = int.Parse(rawDataSplit[i].Replace(",", string.Empty));
-                    itemList.Add(new Item(name, price, shop, tags));
-                    tagCount = 0;
-                    i++;
-                }
-                else
-                {
-                    tagCount++;
+                    case "LT230335113":
+                        shop = Shop.Maxima;
+                        itemPattern = @"^(?<name>.*?)((\n|\r|\r\n)(\s{1,3}(?<unitPrice>\d+,\d{2})\sX\s(?<amount>\d{1,2}(,\d{3})?)\s(vnt\.|pak\.|kg)|(?<extraName>\p{L}+)))?\s+(?<price>-?\d+,\d{2})\s[ABEN]\r$";
+                        break;
+                    case "LT107783219":
+                        shop = Shop.Norfa; break;
+                    case "LT237153113":
+                        shop = Shop.Rimi; break;
+                    case "LT101937219":
+                        shop = Shop.Iki; break;
+                    default:
+                         throw new ArgumentException("Unknown shop");
                 }
             }
 
+            Match itemMatch = Regex.Match(rawData, itemPattern, RegexOptions.Multiline);
+            while (itemMatch.Success)
+            {
+                string extraName = itemMatch.Groups["extraName"].Value;
+                string name = itemMatch.Groups["name"].Value;
+                if (extraName != string.Empty)
+                    name += " " + extraName;
+                int price = int.Parse(itemMatch.Groups["price"].Value.Replace(",", ""));
+                int unitPrice = itemMatch.Groups["unitPrice"].Value != string.Empty ? int.Parse(itemMatch.Groups["unitPrice"].Value.Replace(",","")) : price;
+                decimal amount;
+                if (!decimal.TryParse(itemMatch.Groups["amount"].Value, out amount))
+                    amount = 1;
+                itemList.Add(new Item(name, price, shop));
+                itemMatch = itemMatch.NextMatch();
+            }
 
-            if (itemList.Count > 0)
-                receipt = new Receipt(shop, itemList);
-
-            return receipt;
+            return new Receipt(shop, itemList);
         }
 
         public static Receipt Create(Shop shop, List<Item> items)
