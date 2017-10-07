@@ -14,7 +14,7 @@ namespace ComPairSE
         {
             Bitmap myBmp = (Bitmap)Image.FromFile(picture);
             var ocrtext = string.Empty;
-            using (var engine = new TesseractEngine(@"./tessdata", "lit", EngineMode.Default))
+            using (var engine = new TesseractEngine(@"../../tessdata", "lit", EngineMode.Default))
             {
                 using (var img = PixConverter.ToPix(myBmp))
                 {
