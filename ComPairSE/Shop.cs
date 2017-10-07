@@ -27,10 +27,10 @@ namespace ComPairSE
             ShopEnum shop;
             switch (shopId)
             {
-                case "LT230335113": shop = ShopEnum.Maxima; break;
-                case "LT107783219": shop = ShopEnum.Norfa; break;
-                case "LT237153113": shop = ShopEnum.Rimi; break;
-                case "LT101937219": shop = ShopEnum.Iki; break;
+                case "230335113": shop = ShopEnum.Maxima; break;
+                case "107783219": shop = ShopEnum.Norfa; break;
+                case "237153113": shop = ShopEnum.Rimi; break;
+                case "101937219": shop = ShopEnum.Iki; break;
                 default: throw new ArgumentException("Unknown shop");
             }
             return GetShop(shop);
