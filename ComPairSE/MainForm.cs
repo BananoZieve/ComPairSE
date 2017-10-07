@@ -1,4 +1,4 @@
-﻿//#define OCR
+﻿#define OCR
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +15,7 @@ namespace ComPairSE
     public partial class MainForm : Form
     {
         IDataManager DataManager;
+        TesseractOCR Tesseract;
 
         public MainForm()
         {
@@ -25,7 +26,7 @@ namespace ComPairSE
 
             openFileDialog.Filter = "Text Files (*.txt)|*.txt";
 #if OCR
-            openFileDialog1.Filter += "|Image Files(*.bmp;*.jpg;*.png)|*.bmp;*.jpg;*.png";
+            openFileDialog.Filter += "|Image Files(*.bmp;*.jpg;*.png)|*.bmp;*.jpg;*.png";
 #endif
 #if DEBUG   // project directory
             openFileDialog.InitialDirectory = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\"));
@@ -36,8 +37,8 @@ namespace ComPairSE
             this.Width -= this.ClientRectangle.Width - 2 * tbInput.Left - tbInput.Width;
             this.MinimumSize = this.Size;
             this.MaximumSize = new Size(this.Width, 1080);
-
             DataManager = new DataManager();
+            Tesseract = new TesseractOCR();
         }
 
         private void btRnd_Click(object sender, EventArgs e)
@@ -97,6 +98,12 @@ namespace ComPairSE
             DataManager.SaveData();
         }
 
+        private void ClickOcr(object sender, EventArgs e)
+        {
+            if (openFileDialog.FilterIndex == 2 && tbFile.Text != string.Empty)
+                MessageBox.Show(Tesseract.GetText(tbFile.Text));
+        }
+        
         private void btBrowse_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog(this) == DialogResult.OK)

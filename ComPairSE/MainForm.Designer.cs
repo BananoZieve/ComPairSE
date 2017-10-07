@@ -39,17 +39,20 @@
             this.tbFile = new System.Windows.Forms.TextBox();
             this.rbInput = new System.Windows.Forms.RadioButton();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btRnd
             // 
             this.btRnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btRnd.Enabled = false;
             this.btRnd.Location = new System.Drawing.Point(3, 291);
             this.btRnd.Name = "btRnd";
             this.btRnd.Size = new System.Drawing.Size(96, 22);
             this.btRnd.TabIndex = 0;
             this.btRnd.Text = "Random Test";
             this.btRnd.UseVisualStyleBackColor = true;
+            this.btRnd.Visible = false;
             this.btRnd.Click += new System.EventHandler(this.btRnd_Click);
             // 
             // tbInput
@@ -70,7 +73,7 @@
             this.btSubmit.Name = "btSubmit";
             this.btSubmit.Size = new System.Drawing.Size(75, 22);
             this.btSubmit.TabIndex = 2;
-            this.btSubmit.Text = "Submit";
+            this.btSubmit.Text = "Submit receipt";
             this.btSubmit.UseVisualStyleBackColor = true;
             this.btSubmit.Click += new System.EventHandler(this.btSubmit_Click);
             // 
@@ -81,10 +84,20 @@
             this.button_SearchItemsByTag.Name = "button_SearchItemsByTag";
             this.button_SearchItemsByTag.Size = new System.Drawing.Size(82, 23);
             this.button_SearchItemsByTag.TabIndex = 3;
-            this.button_SearchItemsByTag.Text = "Search items by tag";
+            this.button_SearchItemsByTag.Text = "Search items by tags";
             this.button_SearchItemsByTag.UseVisualStyleBackColor = true;
             this.button_SearchItemsByTag.Click += new System.EventHandler(this.button_SearchItemsByTag_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 291);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(96, 22);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "OCR";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.ClickOcr);
+            //
             // openFileDialog
             // 
             this.openFileDialog.RestoreDirectory = true;
@@ -136,6 +149,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(285, 316);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btBrowse);
             this.Controls.Add(this.tbFile);
             this.Controls.Add(this.rbInput);
@@ -162,6 +176,7 @@
         private System.Windows.Forms.Button btSubmit;
         private System.Windows.Forms.TextBox tbInput;
         private System.Windows.Forms.Button button_SearchItemsByTag;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Button btBrowse;
         private System.Windows.Forms.RadioButton rbFile;
