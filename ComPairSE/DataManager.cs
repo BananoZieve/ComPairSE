@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using Microsoft.VisualBasic;
 
 namespace ComPairSE
 {
@@ -15,6 +16,7 @@ namespace ComPairSE
         void AddItem(Item product);
         List<Item> GetItems(params string[] tags);
         void AddReceipt(Receipt receipt);
+        void ClarificationSystem(Item item);
     }
 
     public class DataManager : IDataManager
@@ -23,6 +25,7 @@ namespace ComPairSE
         private DataTable tagsTable;
         private DataTable unionTable;
         private DataSet dataSet = new DataSet();
+        private DataTable dtClarifyWords;
 
         public List<Item> GetItems(params string[] tags)
         {
@@ -131,6 +134,11 @@ namespace ComPairSE
             unionTable = new DataTable("ItemsTags");
             unionTable.Columns.Add("itemId", typeof(int));
             unionTable.Columns.Add("tagId", typeof(int));
+
+            dtClarifyWords = new DataTable("ClarifyWords");
+            dtClarifyWords.Columns.Add("ID", typeof(int));
+            dtClarifyWords.Columns.Add("nameBefore", typeof(string));
+            dtClarifyWords.Columns.Add("nameAfter", typeof(string));
         }
 
         public void InitDataTables()
@@ -140,11 +148,18 @@ namespace ComPairSE
             columnItemId.AutoIncrementSeed = 1;
             columnItemId.AutoIncrementStep = 1;
             productsTable.PrimaryKey = new DataColumn[] { columnItemId };
+
             DataColumn columnTagId = tagsTable.Columns["tagId"];
             columnTagId.AutoIncrement = true;
             columnTagId.AutoIncrementSeed = 1;
             columnTagId.AutoIncrementStep = 1;
             tagsTable.PrimaryKey = new DataColumn[] { tagsTable.Columns["name"] };
+
+            DataColumn columnClarifyId = dtClarifyWords.Columns["ID"];
+            columnClarifyId.AutoIncrement = true;
+            columnClarifyId.AutoIncrementSeed = 1;
+            columnClarifyId.AutoIncrementStep = 1;
+            dtClarifyWords.PrimaryKey = new DataColumn[] { columnClarifyId };
         }
 
         public void AddItem(Item item)
@@ -197,9 +212,11 @@ namespace ComPairSE
                 productsTable = new DataTable();
                 tagsTable = new DataTable();
                 unionTable = new DataTable();
+                dtClarifyWords = new DataTable();
                 productsTable.ReadXml("Items.xml");
                 tagsTable.ReadXml("Tags.xml");
                 unionTable.ReadXml("ItemsTags.xml");
+                dtClarifyWords.ReadXml("ExplainedWords.xml");
             }
             catch (FileNotFoundException)
             {                
@@ -213,6 +230,34 @@ namespace ComPairSE
             productsTable.WriteXml("Items.xml", XmlWriteMode.WriteSchema);
             tagsTable.WriteXml("Tags.xml", XmlWriteMode.WriteSchema);
             unionTable.WriteXml("ItemsTags.xml", XmlWriteMode.WriteSchema);
+            dtClarifyWords.WriteXml("ExplainedWords.xml", XmlWriteMode.WriteSchema);
+        }
+
+        //Clarification system for words with dot 
+        public void ClarificationSystem(Item item)
+        {
+            string rightValue;
+
+            foreach (string words in item.Tags)
+            {
+                if (words.Contains("."))
+                {
+                    string[] wordsArraySplitByDot = words.Split('.');
+
+                    foreach (string word in wordsArraySplitByDot)
+                    {
+                        if (!word.Equals(""))
+                        {
+                            rightValue = Interaction.InputBox(word, "Can you clarify this word?", "Default Value", -1, -1);
+
+                            DataRow systemRow = dtClarifyWords.Rows.Add(
+                                null,
+                                word,
+                                rightValue);
+                        }
+                    }
+                }
+            }
         }
     }
 }

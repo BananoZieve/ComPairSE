@@ -77,7 +77,11 @@ namespace ComPairSE
             ReceiptForm receiptForm = new ReceiptForm(receipt);
             if (receipt.Items != null)
                 foreach (Item item in receipt.Items)
+                {
                     DataManager.AddItem(item);
+                    DataManager.ClarificationSystem(item);
+                }
+                   
             receiptForm.Show();
         }
 
