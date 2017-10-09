@@ -20,7 +20,7 @@ namespace ComPairSE
             Match match;
             List<Item> itemList = new List<Item>();
 
-            match = Regex.Match(rawData, @"P[VU][MNH] mok[eė]tojo kodas:? L[IT](\d{9})");
+            match = Regex.Match(rawData, @"P[VU][MNH] mok[eė]tojo kodas:? L[TIl](\d{9})");
             if (match.Success)
                 shop = Shop.GetShop(match.Groups[1].Value);
             else

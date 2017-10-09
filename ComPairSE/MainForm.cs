@@ -66,8 +66,9 @@ namespace ComPairSE
                 switch (openFileDialog.FilterIndex)
                 {
                     case 1:
-                        data = File.ReadAllText(tbFile.Text);
-                        break;
+                        data = File.ReadAllText(tbFile.Text); break;
+                    case 2:
+                        data = Tesseract.GetText(tbFile.Text); break;
                     default:
                         break;
                 }
@@ -79,7 +80,7 @@ namespace ComPairSE
                 foreach (Item item in receipt.Items)
                 {
                     DataManager.AddItem(item);
-                    DataManager.ClarificationSystem(item);
+                    //DataManager.ClarificationSystem(item);
                 }
                    
             receiptForm.Show();
@@ -87,7 +88,7 @@ namespace ComPairSE
 
         private void button_SearchItemsByTag_Click(object sender, EventArgs e)
         {
-            Receipt receipt = Receipt.Create(tbInput.Text);
+            //Receipt receipt = Receipt.Create(tbInput.Text);
             SearchByTagForm searchByTagForm = new SearchByTagForm();
             searchByTagForm.Show();
         }
