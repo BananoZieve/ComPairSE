@@ -62,16 +62,16 @@ namespace UnitTestCSE
             System.Collections.Generic.List<Item> itemList = DataManager.GetItems("Dvaro", "Pienas");
             System.Collections.Generic.List<Receipt> receiptList = new System.Collections.Generic.List<Receipt>()
             {
-                Receipt.Create(Shop.Iki, itemList),
-                Receipt.Create(Shop.Norfa, itemList),
-                Receipt.Create(Shop.Maxima, itemList),
-                Receipt.Create(Shop.Rimi, itemList)
+                Receipt.Create(ShopEnum.Iki, itemList),
+                Receipt.Create(ShopEnum.Norfa, itemList),
+                Receipt.Create(ShopEnum.Maxima, itemList),
+                Receipt.Create(ShopEnum.Rimi, itemList)
             };
             receiptList.Sort();
-            Assert.AreEqual(Shop.Maxima, receiptList[0].Shop);
-            Assert.AreEqual(Shop.Norfa, receiptList[1].Shop);
-            Assert.AreEqual(Shop.Rimi, receiptList[2].Shop);
-            Assert.AreEqual(Shop.Iki, receiptList[3].Shop);
+            Assert.AreEqual(ShopEnum.Maxima, receiptList[0].ShopEnum);
+            Assert.AreEqual(ShopEnum.Norfa, receiptList[1].ShopEnum);
+            Assert.AreEqual(ShopEnum.Rimi, receiptList[2].ShopEnum);
+            Assert.AreEqual(ShopEnum.Iki, receiptList[3].ShopEnum);
         }
     }
 }
