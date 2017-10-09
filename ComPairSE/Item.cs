@@ -19,10 +19,10 @@ namespace ComPairSE
             Prices[(int)shop] = price;
         }
 
-        public Item(string name, int price, ShopEnum shop, string[] tags) : this(name, price, shop)
-        {
-            Tags = tags;
-        }
+        //public Item(string name, int price, ShopEnum shop, string[] tags) : this(name, price, shop)
+        //{
+        //    Tags = tags;
+        //}
 
         public Item(int id, string name, int[] prices)
         {
@@ -43,7 +43,7 @@ namespace ComPairSE
 
         public int[] Prices { get; private set; } // in Euro cents
 
-        public string[] Tags { get; private set; }
+        public string[] Tags { get { return Name.Split(' '); } }
 
         public override string ToString()
         {

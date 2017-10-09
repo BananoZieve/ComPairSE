@@ -169,7 +169,7 @@ namespace ComPairSE
 
                 int itemId = (int)itemRow["itemId"];
 
-                foreach (string tag in item.GetTags())
+                foreach (string tag in item.Tags)
                 {
                     DataRow tagRow = tagsTable.Rows.Find(tag);
                     if (tagRow == null)
