@@ -50,6 +50,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HistoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoryForm.Designer.cs">
+      <DependentUpon>HistoryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="TesseractOCR.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="FoundItemsByTagForm.cs">
@@ -84,6 +90,9 @@
     <Compile Include="Util.cs" />
     <EmbeddedResource Include="FoundItemsByTagForm.resx">
       <DependentUpon>FoundItemsByTagForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistoryForm.resx">
+      <DependentUpon>HistoryForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

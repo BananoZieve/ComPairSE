@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.btRnd = new System.Windows.Forms.Button();
             this.tbInput = new System.Windows.Forms.TextBox();
             this.btSubmit = new System.Windows.Forms.Button();
             this.button_SearchItemsByTag = new System.Windows.Forms.Button();
@@ -40,73 +39,56 @@
             this.rbInput = new System.Windows.Forms.RadioButton();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.button1 = new System.Windows.Forms.Button();
+            this.btRnd = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // btRnd
-            // 
-            this.btRnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btRnd.Enabled = false;
-            this.btRnd.Location = new System.Drawing.Point(3, 291);
-            this.btRnd.Name = "btRnd";
-            this.btRnd.Size = new System.Drawing.Size(96, 22);
-            this.btRnd.TabIndex = 0;
-            this.btRnd.Text = "Random Test";
-            this.btRnd.UseVisualStyleBackColor = true;
-            this.btRnd.Visible = false;
-            this.btRnd.Click += new System.EventHandler(this.btRnd_Click);
             // 
             // tbInput
             // 
             this.tbInput.AcceptsTab = true;
             this.tbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.tbInput.Location = new System.Drawing.Point(3, 75);
+            this.tbInput.Location = new System.Drawing.Point(4, 92);
+            this.tbInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbInput.Multiline = true;
             this.tbInput.Name = "tbInput";
-            this.tbInput.Size = new System.Drawing.Size(265, 213);
+            this.tbInput.Size = new System.Drawing.Size(352, 261);
             this.tbInput.TabIndex = 1;
             // 
             // btSubmit
             // 
             this.btSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btSubmit.Location = new System.Drawing.Point(105, 291);
+            this.btSubmit.Location = new System.Drawing.Point(364, 196);
+            this.btSubmit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btSubmit.Name = "btSubmit";
-            this.btSubmit.Size = new System.Drawing.Size(75, 22);
+            this.btSubmit.Size = new System.Drawing.Size(131, 28);
             this.btSubmit.TabIndex = 2;
-            this.btSubmit.Text = "Submit receipt";
+            this.btSubmit.Text = "Submit";
             this.btSubmit.UseVisualStyleBackColor = true;
             this.btSubmit.Click += new System.EventHandler(this.btSubmit_Click);
             // 
             // button_SearchItemsByTag
             // 
             this.button_SearchItemsByTag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.button_SearchItemsByTag.Location = new System.Drawing.Point(186, 291);
+            this.button_SearchItemsByTag.Location = new System.Drawing.Point(364, 126);
+            this.button_SearchItemsByTag.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button_SearchItemsByTag.Name = "button_SearchItemsByTag";
-            this.button_SearchItemsByTag.Size = new System.Drawing.Size(82, 23);
+            this.button_SearchItemsByTag.Size = new System.Drawing.Size(131, 28);
             this.button_SearchItemsByTag.TabIndex = 3;
-            this.button_SearchItemsByTag.Text = "Search items by tags";
+            this.button_SearchItemsByTag.Text = "Search Items";
             this.button_SearchItemsByTag.UseVisualStyleBackColor = true;
             this.button_SearchItemsByTag.Click += new System.EventHandler(this.button_SearchItemsByTag_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(3, 291);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 22);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "OCR";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.ClickOcr);
-            //
             // openFileDialog
             // 
             this.openFileDialog.RestoreDirectory = true;
             // 
             // btBrowse
             // 
-            this.btBrowse.Location = new System.Drawing.Point(216, 24);
+            this.btBrowse.Location = new System.Drawing.Point(288, 30);
+            this.btBrowse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btBrowse.Name = "btBrowse";
-            this.btBrowse.Size = new System.Drawing.Size(52, 23);
+            this.btBrowse.Size = new System.Drawing.Size(69, 28);
             this.btBrowse.TabIndex = 4;
             this.btBrowse.Text = "Browse";
             this.btBrowse.UseVisualStyleBackColor = true;
@@ -115,9 +97,10 @@
             // rbFile
             // 
             this.rbFile.AutoSize = true;
-            this.rbFile.Location = new System.Drawing.Point(3, 3);
+            this.rbFile.Location = new System.Drawing.Point(4, 4);
+            this.rbFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rbFile.Name = "rbFile";
-            this.rbFile.Size = new System.Drawing.Size(67, 17);
+            this.rbFile.Size = new System.Drawing.Size(87, 21);
             this.rbFile.TabIndex = 5;
             this.rbFile.TabStop = true;
             this.rbFile.Text = "From file:";
@@ -126,29 +109,67 @@
             // 
             // tbFile
             // 
-            this.tbFile.Location = new System.Drawing.Point(3, 26);
+            this.tbFile.Location = new System.Drawing.Point(4, 32);
+            this.tbFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbFile.Name = "tbFile";
             this.tbFile.ReadOnly = true;
-            this.tbFile.Size = new System.Drawing.Size(207, 20);
+            this.tbFile.Size = new System.Drawing.Size(275, 22);
             this.tbFile.TabIndex = 6;
             // 
             // rbInput
             // 
             this.rbInput.AutoSize = true;
-            this.rbInput.Location = new System.Drawing.Point(3, 52);
+            this.rbInput.Location = new System.Drawing.Point(4, 64);
+            this.rbInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rbInput.Name = "rbInput";
-            this.rbInput.Size = new System.Drawing.Size(72, 17);
+            this.rbInput.Size = new System.Drawing.Size(90, 21);
             this.rbInput.TabIndex = 5;
             this.rbInput.TabStop = true;
             this.rbInput.Text = "Input text:";
             this.rbInput.UseVisualStyleBackColor = true;
             this.rbInput.CheckedChanged += new System.EventHandler(this.radioButton_CheckedChanged);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(364, 92);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(131, 28);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Read from Image";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.ClickOcr);
+            // 
+            // btRnd
+            // 
+            this.btRnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btRnd.Enabled = false;
+            this.btRnd.Location = new System.Drawing.Point(4, 358);
+            this.btRnd.Margin = new System.Windows.Forms.Padding(4);
+            this.btRnd.Name = "btRnd";
+            this.btRnd.Size = new System.Drawing.Size(128, 27);
+            this.btRnd.TabIndex = 0;
+            this.btRnd.Text = "Random Test";
+            this.btRnd.UseVisualStyleBackColor = true;
+            this.btRnd.Visible = false;
+            this.btRnd.Click += new System.EventHandler(this.btRnd_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(364, 161);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(131, 28);
+            this.button2.TabIndex = 7;
+            this.button2.Text = "History";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(285, 316);
+            this.ClientSize = new System.Drawing.Size(501, 389);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btBrowse);
             this.Controls.Add(this.tbFile);
@@ -158,6 +179,7 @@
             this.Controls.Add(this.btSubmit);
             this.Controls.Add(this.tbInput);
             this.Controls.Add(this.btRnd);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
@@ -171,8 +193,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btRnd;
         private System.Windows.Forms.Button btSubmit;
         private System.Windows.Forms.TextBox tbInput;
         private System.Windows.Forms.Button button_SearchItemsByTag;
@@ -183,6 +203,8 @@
         private System.Windows.Forms.TextBox tbFile;
         private System.Windows.Forms.RadioButton rbInput;
         private System.Windows.Forms.ToolTip toolTip;
+        private System.Windows.Forms.Button btRnd;
+        private System.Windows.Forms.Button button2;
     }
 }
 
