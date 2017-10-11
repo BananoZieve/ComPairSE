@@ -28,7 +28,7 @@ namespace ComPairSE
         private DataTable unionTable;
         private DataTable dtClarifyWords;
         private DataTable receiptsTable;
-        private DataSet dataSet = new DataSet();
+        private DataSet dataSetReceipts = new DataSet();
 
 
         public List<Item> GetItems(params string[] tags)
@@ -147,8 +147,9 @@ namespace ComPairSE
             receiptsTable = new DataTable("Receipts");
             receiptsTable.Columns.Add("receiptID", typeof(int));
             receiptsTable.Columns.Add("date", typeof(DateTime));
-            receiptsTable.Columns.Add("shop", typeof(String));
-            receiptsTable.Columns.Add("receipt", typeof(Receipt));
+            receiptsTable.Columns.Add("shop", typeof(Shop));
+            receiptsTable.Columns.Add("price", typeof(int));
+            receiptsTable.Columns.Add("items", typeof(string));
 
         }
 
@@ -218,31 +219,33 @@ namespace ComPairSE
 
         public void AddReceipt(Receipt receipt)
         {
-            DataRow itemRow = productsTable.Rows.Add(
+            DataRow itemRow = receiptsTable.Rows.Add(
                 null,
                 receipt.PurchaseTime,
-                receipt.Shop.ToString(),
-                receipt);
+                receipt.Shop,
+                receipt.TotalPrice,
+                Util.ObjToString(receipt.Items));
         }
+
         public List<Receipt> GetReceipts(DateTime date)
         {
-
-                IEnumerable <Receipt> currentDayReceipts = from row in receiptsTable.AsEnumerable()
+            return new List<Receipt>();
+               /* IEnumerable <Receipt> currentDayReceipts = from row in receiptsTable.AsEnumerable()
                                   where (DateTime)row["date"] == date
-                                  select (Receipt)row["receipt"];
-                return currentDayReceipts.Cast<Receipt>().ToList<Receipt>();
+                                  select (Receipt)Util.StringToObj<Receipt>((string)row["receipt"]);
+                return currentDayReceipts.Cast<Receipt>().ToList<Receipt>();*/
         }
 
         public List<Receipt> GetReceipts()
         {
             IEnumerable<Receipt> allReceipts = from row in receiptsTable.AsEnumerable()
-                                               select (Receipt)row["receipt"];
+                                               select new Receipt((Shop)row["shop"], Util.StringToObj((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
+
             return allReceipts.Cast<Receipt>().ToList<Receipt>();
         }
 
         public void LoadData()
         {
-            dataSet.Clear();
             try
             {
                 productsTable = new DataTable();

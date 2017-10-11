@@ -15,7 +15,7 @@ namespace ComPairSE
         IDataManager DataManager;
         Form MainForm;
 
-        public HistoryForm(Form MainForm, DataManager DataManager)
+        public HistoryForm(Form MainForm, IDataManager DataManager)
         {
             InitializeComponent();
             this.DataManager = DataManager;
@@ -25,14 +25,32 @@ namespace ComPairSE
 
         private void InitListView()
         {
-            this.listView1.Columns.Add("Date");
-
-
+            listView1.View = View.Details;
+            listView1.GridLines = true;
+            this.listView1.Columns.Add("Date", -2, HorizontalAlignment.Left);
+            this.listView1.Columns.Add("Price", -2, HorizontalAlignment.Left);
+            this.listView1.Columns.Add("Shop", -2, HorizontalAlignment.Left);
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
+            this.listView1.Items.Clear();
             List<Receipt> receipts = DataManager.GetReceipts();
 
+            if (receipts.Count > 0)
+            {
+                foreach (Receipt receipt in receipts)
+                {
+                    Console.WriteLine(receipt.TotalPrice);
+                    Console.WriteLine(receipt.Shop.ToString());
+                    this.listView1.Items.Add(new ListViewItem(new[] { receipt.PurchaseTime.ToString(), Util.ToDecimal(receipt.TotalPrice).ToString("C2"), receipt.Shop.ToString() }));
+                }
+            }
+        }
+
+        private void HistoryForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MainForm.Visible = true;
         }
     }
 }

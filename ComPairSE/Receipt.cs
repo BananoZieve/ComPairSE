@@ -115,6 +115,15 @@ namespace ComPairSE
             PurchaseTime = DateTime.Now;
         }
 
+        public Receipt (Shop shop, List<Item> items, DateTime datetime, int price)
+        {
+
+            Shop = shop;
+            Items = items;
+            PurchaseTime = datetime;
+            TotalPrice = price;
+        }
+
         public readonly Shop Shop;
         public readonly List<Item> Items;
         public readonly DateTime PurchaseTime;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,17 @@ namespace ComPairSE
         public static decimal ToDecimal(this int arg)
         {
             return arg / 100m;
+        }
+
+        public static string ObjToString(Object obj)
+        {
+            string ObjectString = JsonConvert.SerializeObject(obj);
+            return ObjectString;
+        }
+
+        public static List<Item> StringToObj (this string str)
+        {
+            return JsonConvert.DeserializeObject<List<Item>>(str);
         }
     }
 }

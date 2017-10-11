@@ -81,7 +81,8 @@ namespace ComPairSE
                     DataManager.AddItem(item);
                     DataManager.ClarificationSystem(item);
                 }
-                   
+
+            DataManager.AddReceipt(receipt);                  
             receiptForm.Show();
         }
 
@@ -131,9 +132,9 @@ namespace ComPairSE
         private void button2_Click(object sender, EventArgs e)
         {
 
-          //  this.Visible = false;
-          //  HistoryForm form = new HistoryForm(this);
-          //  form.show();
+            this.Visible = false;
+            HistoryForm form = new HistoryForm(this, DataManager);
+            form.Show();
         }
     }
 }

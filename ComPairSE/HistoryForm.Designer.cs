@@ -70,6 +70,7 @@
             this.Controls.Add(this.button1);
             this.Name = "HistoryForm";
             this.Text = "Receipt History";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.HistoryForm_FormClosing);
             this.ResumeLayout(false);
 
         }
