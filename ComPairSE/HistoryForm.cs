@@ -41,8 +41,6 @@ namespace ComPairSE
             {
                 foreach (Receipt receipt in receipts)
                 {
-                    Console.WriteLine(receipt.TotalPrice);
-                    Console.WriteLine(receipt.Shop.ToString());
                     this.listView1.Items.Add(new ListViewItem(new[] { receipt.PurchaseTime.ToString(), Util.ToDecimal(receipt.TotalPrice).ToString("C2"), receipt.Shop.ToString() }));
                 }
             }
@@ -51,6 +49,16 @@ namespace ComPairSE
         private void HistoryForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             MainForm.Visible = true;
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

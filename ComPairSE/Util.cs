@@ -20,9 +20,9 @@ namespace ComPairSE
             return ObjectString;
         }
 
-        public static List<Item> StringToObj (this string str)
+        public static List<T> StringToObj <T> (this string str)
         {
-            return JsonConvert.DeserializeObject<List<Item>>(str);
+            return JsonConvert.DeserializeObject<List<T>>(str);
         }
     }
 }

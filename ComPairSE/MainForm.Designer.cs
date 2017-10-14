@@ -49,7 +49,7 @@
             this.tbInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.tbInput.Location = new System.Drawing.Point(4, 92);
-            this.tbInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbInput.Margin = new System.Windows.Forms.Padding(4);
             this.tbInput.Multiline = true;
             this.tbInput.Name = "tbInput";
             this.tbInput.Size = new System.Drawing.Size(352, 261);
@@ -59,7 +59,7 @@
             // 
             this.btSubmit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btSubmit.Location = new System.Drawing.Point(364, 196);
-            this.btSubmit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btSubmit.Margin = new System.Windows.Forms.Padding(4);
             this.btSubmit.Name = "btSubmit";
             this.btSubmit.Size = new System.Drawing.Size(131, 28);
             this.btSubmit.TabIndex = 2;
@@ -71,7 +71,7 @@
             // 
             this.button_SearchItemsByTag.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.button_SearchItemsByTag.Location = new System.Drawing.Point(364, 126);
-            this.button_SearchItemsByTag.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button_SearchItemsByTag.Margin = new System.Windows.Forms.Padding(4);
             this.button_SearchItemsByTag.Name = "button_SearchItemsByTag";
             this.button_SearchItemsByTag.Size = new System.Drawing.Size(131, 28);
             this.button_SearchItemsByTag.TabIndex = 3;
@@ -86,7 +86,7 @@
             // btBrowse
             // 
             this.btBrowse.Location = new System.Drawing.Point(288, 30);
-            this.btBrowse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btBrowse.Margin = new System.Windows.Forms.Padding(4);
             this.btBrowse.Name = "btBrowse";
             this.btBrowse.Size = new System.Drawing.Size(69, 28);
             this.btBrowse.TabIndex = 4;
@@ -98,7 +98,7 @@
             // 
             this.rbFile.AutoSize = true;
             this.rbFile.Location = new System.Drawing.Point(4, 4);
-            this.rbFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbFile.Margin = new System.Windows.Forms.Padding(4);
             this.rbFile.Name = "rbFile";
             this.rbFile.Size = new System.Drawing.Size(87, 21);
             this.rbFile.TabIndex = 5;
@@ -110,7 +110,7 @@
             // tbFile
             // 
             this.tbFile.Location = new System.Drawing.Point(4, 32);
-            this.tbFile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbFile.Margin = new System.Windows.Forms.Padding(4);
             this.tbFile.Name = "tbFile";
             this.tbFile.ReadOnly = true;
             this.tbFile.Size = new System.Drawing.Size(275, 22);
@@ -120,7 +120,7 @@
             // 
             this.rbInput.AutoSize = true;
             this.rbInput.Location = new System.Drawing.Point(4, 64);
-            this.rbInput.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.rbInput.Margin = new System.Windows.Forms.Padding(4);
             this.rbInput.Name = "rbInput";
             this.rbInput.Size = new System.Drawing.Size(90, 21);
             this.rbInput.TabIndex = 5;
@@ -131,8 +131,8 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(364, 92);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Location = new System.Drawing.Point(364, 90);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 28);
             this.button1.TabIndex = 4;
@@ -144,7 +144,7 @@
             // 
             this.btRnd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btRnd.Enabled = false;
-            this.btRnd.Location = new System.Drawing.Point(4, 358);
+            this.btRnd.Location = new System.Drawing.Point(4, 361);
             this.btRnd.Margin = new System.Windows.Forms.Padding(4);
             this.btRnd.Name = "btRnd";
             this.btRnd.Size = new System.Drawing.Size(128, 27);
@@ -179,7 +179,7 @@
             this.Controls.Add(this.btSubmit);
             this.Controls.Add(this.tbInput);
             this.Controls.Add(this.btRnd);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";

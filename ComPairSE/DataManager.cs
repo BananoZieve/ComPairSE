@@ -239,7 +239,7 @@ namespace ComPairSE
         public List<Receipt> GetReceipts()
         {
             IEnumerable<Receipt> allReceipts = from row in receiptsTable.AsEnumerable()
-                                               select new Receipt((Shop)row["shop"], Util.StringToObj((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
+                                               select new Receipt((Shop)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
 
             return allReceipts.Cast<Receipt>().ToList<Receipt>();
         }
