@@ -229,11 +229,10 @@ namespace ComPairSE
 
         public List<Receipt> GetReceipts(DateTime date)
         {
-            return new List<Receipt>();
-               /* IEnumerable <Receipt> currentDayReceipts = from row in receiptsTable.AsEnumerable()
-                                  where (DateTime)row["date"] == date
-                                  select (Receipt)Util.StringToObj<Receipt>((string)row["receipt"]);
-                return currentDayReceipts.Cast<Receipt>().ToList<Receipt>();*/
+                IEnumerable <Receipt> currentDayReceipts = from row in receiptsTable.AsEnumerable()
+                                  where ((DateTime)row["date"]).Date == date
+                                  select new Receipt((Shop)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
+            return currentDayReceipts.Cast<Receipt>().ToList<Receipt>();
         }
 
         public List<Receipt> GetReceipts()

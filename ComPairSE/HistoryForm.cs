@@ -58,7 +58,24 @@ namespace ComPairSE
 
         private void button1_Click(object sender, EventArgs e)
         {
+            DatePicker.Visible = true;
+            ShowHistory.Visible = true;
+        }
 
+        private void ShowHistory_Click(object sender, EventArgs e)
+        {
+            this.listView1.Items.Clear();
+            List<Receipt> receipts = DataManager.GetReceipts(DatePicker.Value.Date);
+
+            if (receipts.Count > 0)
+            {
+                foreach (Receipt receipt in receipts)
+                {
+                    this.listView1.Items.Add(new ListViewItem(new[] { receipt.PurchaseTime.ToString(), Util.ToDecimal(receipt.TotalPrice).ToString("C2"), receipt.Shop.ToString() }));
+                }
+            }
+            DatePicker.Visible = false;
+            ShowHistory.Visible = false;
         }
     }
 }
