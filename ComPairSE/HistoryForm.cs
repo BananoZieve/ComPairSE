@@ -14,6 +14,7 @@ namespace ComPairSE
     {
         IDataManager DataManager;
         Form MainForm;
+        List<Receipt> receipts;
 
         public HistoryForm(Form MainForm, IDataManager DataManager)
         {
@@ -35,25 +36,24 @@ namespace ComPairSE
         private void button2_Click(object sender, EventArgs e)
         {
             this.listView1.Items.Clear();
-            List<Receipt> receipts = DataManager.GetReceipts();
-
+            this.receipts = DataManager.GetReceipts();
             if (receipts.Count > 0)
             {
                 foreach (Receipt receipt in receipts)
                 {
                     this.listView1.Items.Add(new ListViewItem(new[] { receipt.PurchaseTime.ToString(), Util.ToDecimal(receipt.TotalPrice).ToString("C2"), receipt.Shop.ToString() }));
                 }
+                info.Visible = true;
+            }
+            else
+            {
+                info.Visible = false;
             }
         }
 
         private void HistoryForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             MainForm.Visible = true;
-        }
-
-        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -65,7 +65,7 @@ namespace ComPairSE
         private void ShowHistory_Click(object sender, EventArgs e)
         {
             this.listView1.Items.Clear();
-            List<Receipt> receipts = DataManager.GetReceipts(DatePicker.Value.Date);
+            this.receipts = DataManager.GetReceipts(DatePicker.Value.Date);
 
             if (receipts.Count > 0)
             {
@@ -73,9 +73,20 @@ namespace ComPairSE
                 {
                     this.listView1.Items.Add(new ListViewItem(new[] { receipt.PurchaseTime.ToString(), Util.ToDecimal(receipt.TotalPrice).ToString("C2"), receipt.Shop.ToString() }));
                 }
+                info.Visible = true;
+            }
+            else
+            {
+                info.Visible = false;
             }
             DatePicker.Visible = false;
             ShowHistory.Visible = false;
+        }
+
+        private void info_Click(object sender, EventArgs e)
+        {
+                ReceiptForm receiptForm = new ReceiptForm(receipts.ElementAt(listView1.SelectedIndices[0]));
+                receiptForm.Show();
         }
     }
 }
