@@ -85,8 +85,15 @@ namespace ComPairSE
 
         private void info_Click(object sender, EventArgs e)
         {
+            if (listView1.SelectedItems.Count > 0)
+            {
                 ReceiptForm receiptForm = new ReceiptForm(receipts.ElementAt(listView1.SelectedIndices[0]));
                 receiptForm.Show();
+            }
+            else
+            {
+                toolTip.Show("Select an item first", listView1, 3000);
+            }
         }
     }
 }

@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
             this.DatePicker = new System.Windows.Forms.DateTimePicker();
             this.ShowHistory = new System.Windows.Forms.Button();
             this.info = new System.Windows.Forms.Button();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // button1
@@ -124,5 +126,6 @@
         private System.Windows.Forms.DateTimePicker DatePicker;
         private System.Windows.Forms.Button ShowHistory;
         private System.Windows.Forms.Button info;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
