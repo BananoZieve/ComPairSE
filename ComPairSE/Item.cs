@@ -37,13 +37,13 @@ namespace ComPairSE
             else return false;
         }
 
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
-        public int[] Prices { get; private set; } // in Euro cents
+        public int[] Prices { get; set; } // in Euro cents
 
-        public string[] Tags { get; private set; }
+        public string[] Tags { get; set; }
 
         public override string ToString()
         {

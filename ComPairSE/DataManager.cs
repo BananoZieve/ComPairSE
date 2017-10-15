@@ -16,6 +16,8 @@ namespace ComPairSE
         void AddItem(Item product);
         List<Item> GetItems(params string[] tags);
         void AddReceipt(Receipt receipt);
+        List<Receipt> GetReceipts(DateTime date);
+        List<Receipt> GetReceipts();
         void ClarificationSystem(Item item);
     }
 
@@ -24,8 +26,10 @@ namespace ComPairSE
         private DataTable productsTable;
         private DataTable tagsTable;
         private DataTable unionTable;
-        private DataSet dataSet = new DataSet();
         private DataTable dtClarifyWords;
+        private DataTable receiptsTable;
+        private DataSet dataSetReceipts = new DataSet();
+
 
         public List<Item> GetItems(params string[] tags)
         {
@@ -139,6 +143,14 @@ namespace ComPairSE
             dtClarifyWords.Columns.Add("ID", typeof(int));
             dtClarifyWords.Columns.Add("nameBefore", typeof(string));
             dtClarifyWords.Columns.Add("nameAfter", typeof(string));
+
+            receiptsTable = new DataTable("Receipts");
+            receiptsTable.Columns.Add("receiptID", typeof(int));
+            receiptsTable.Columns.Add("date", typeof(DateTime));
+            receiptsTable.Columns.Add("shop", typeof(Shop));
+            receiptsTable.Columns.Add("price", typeof(int));
+            receiptsTable.Columns.Add("items", typeof(string));
+
         }
 
         public void InitDataTables()
@@ -160,6 +172,12 @@ namespace ComPairSE
             columnClarifyId.AutoIncrementSeed = 1;
             columnClarifyId.AutoIncrementStep = 1;
             dtClarifyWords.PrimaryKey = new DataColumn[] { columnClarifyId };
+
+            DataColumn columnReceiptId = receiptsTable.Columns["receiptID"];
+            columnReceiptId.AutoIncrement = true;
+            columnReceiptId.AutoIncrementSeed = 1;
+            columnReceiptId.AutoIncrementStep = 1;
+            receiptsTable.PrimaryKey = new DataColumn[] { columnReceiptId };
         }
 
         public void AddItem(Item item)
@@ -201,22 +219,44 @@ namespace ComPairSE
 
         public void AddReceipt(Receipt receipt)
         {
-            throw new NotImplementedException();
+            DataRow itemRow = receiptsTable.Rows.Add(
+                null,
+                receipt.PurchaseTime,
+                receipt.Shop,
+                receipt.TotalPrice,
+                Util.ObjToString(receipt.Items));
+        }
+
+        public List<Receipt> GetReceipts(DateTime date)
+        {
+                IEnumerable <Receipt> currentDayReceipts = from row in receiptsTable.AsEnumerable()
+                                  where ((DateTime)row["date"]).Date == date
+                                  select new Receipt((Shop)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
+            return currentDayReceipts.Cast<Receipt>().ToList<Receipt>();
+        }
+
+        public List<Receipt> GetReceipts()
+        {
+            IEnumerable<Receipt> allReceipts = from row in receiptsTable.AsEnumerable()
+                                               select new Receipt((Shop)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
+
+            return allReceipts.Cast<Receipt>().ToList<Receipt>();
         }
 
         public void LoadData()
         {
-            dataSet.Clear();
             try
             {
                 productsTable = new DataTable();
                 tagsTable = new DataTable();
                 unionTable = new DataTable();
                 dtClarifyWords = new DataTable();
+                receiptsTable = new DataTable();
                 productsTable.ReadXml("Items.xml");
                 tagsTable.ReadXml("Tags.xml");
                 unionTable.ReadXml("ItemsTags.xml");
                 dtClarifyWords.ReadXml("ExplainedWords.xml");
+                receiptsTable.ReadXml("Receipts.xml");
             }
             catch (FileNotFoundException)
             {                
@@ -231,6 +271,7 @@ namespace ComPairSE
             tagsTable.WriteXml("Tags.xml", XmlWriteMode.WriteSchema);
             unionTable.WriteXml("ItemsTags.xml", XmlWriteMode.WriteSchema);
             dtClarifyWords.WriteXml("ExplainedWords.xml", XmlWriteMode.WriteSchema);
+            receiptsTable.WriteXml("Receipts.xml", XmlWriteMode.WriteSchema);
         }
 
         //Clarification system for words with dot 
@@ -259,5 +300,6 @@ namespace ComPairSE
                 }
             }
         }
+
     }
 }
