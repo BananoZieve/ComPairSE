@@ -30,7 +30,8 @@ namespace ComPairSE.UI
             // create receipt and send it to receiptViewPage
             if (tbFile.Text != string.Empty)
             {
-                Receipt receipt = Receipt.Create(tbFile.Text);
+                Receipt receipt = Receipt.Create(File.ReadAllText(tbFile.Text));
+                (NextPage as ReceiptPage).Receipts.Add(new ReceiptView(receipt));
                 base.OnNextButtonClick(e);
             }
         }
