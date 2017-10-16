@@ -47,13 +47,15 @@ namespace ComPairSE
         private void btAdd_Click(object sender, EventArgs e)
         {
             OnAddClicked(e);
-            AddClick?.Invoke(this, e);
+            if (AddClick != null)
+                AddClick.Invoke(this, e);
         }
 
         private void btRemove_Click(object sender, EventArgs e)
         {
             OnRemoveClicked(e);
-            RemoveClick?.Invoke(this, e);
+            if (RemoveClick != null)
+                RemoveClick.Invoke(this, e);
         }
     }
 }

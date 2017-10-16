@@ -21,21 +21,26 @@ namespace ComPairSE.UI
         public ReceiptViewCollection Receipts
         {
             get;
+            private set;
         }
 
         public class ReceiptViewCollection : IList, ICollection, IEnumerable
         {
-            public object this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+            public object this[int index]
+            {
+                get { throw new NotImplementedException(); }
+                set { throw new NotImplementedException(); }
+            }
 
-            public bool IsReadOnly => throw new NotImplementedException();
+            public bool IsReadOnly { get { throw new NotImplementedException(); } }
 
-            public bool IsFixedSize => throw new NotImplementedException();
+            public bool IsFixedSize { get { throw new NotImplementedException(); } }
 
-            public int Count => throw new NotImplementedException();
+            public int Count { get { throw new NotImplementedException(); } }
 
-            public object SyncRoot => throw new NotImplementedException();
+            public object SyncRoot { get { throw new NotImplementedException(); } }
 
-            public bool IsSynchronized => throw new NotImplementedException();
+            public bool IsSynchronized { get { throw new NotImplementedException(); } }
 
             public int Add(object value)
             {

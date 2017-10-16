@@ -119,13 +119,15 @@ namespace ComPairSE.UI
         private void btNext_Click(object sender, EventArgs e)
         {
             OnNextButtonClick(e);
-            NextClick?.Invoke(this, e);
+            if (NextClick != null)
+                NextClick.Invoke(this, e);
         }
 
         private void btPrev_Click(object sender, EventArgs e)
         {
             OnPreviousButtonClick(e);
-            PreviousClick?.Invoke(this, e);
+            if (PreviousClick != null)
+                PreviousClick.Invoke(this, e);
         }
     }
 

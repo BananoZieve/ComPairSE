@@ -51,30 +51,30 @@ namespace ComPairSE
         private class Maxima : IShop
         {
             //public string ItemPattern => @"^(?<name>.*?)((\n|\r|\r\n)(\s{1,3}(?<unitPrice>\d+,\d{2})\sX\s(?<amount>\d{1,2}(,\d{3})?)\s(vnt\.|pak\.|kg)|(?<extraName>\p{L}+)))?\s+(?<price>-?\d+,\d{2})\s[ABEN]\r$";
-            public string ItemPattern => @"^(?<name>.*?)((\n|\r|\r\n)(\s{1,3}(?<unitPrice>\d+,\d{2})\sX\s(?<amount>\d{1,2}(,\d{3})?)\s(vnt\.|pak\.|kg)|(?<extraName>\p{L}+)))?\s+(?<price>-?\d+,\d{2})\s[ABEN9g]\r?$";
+            public string ItemPattern { get { return @"^(?<name>.*?)((\n|\r|\r\n)(\s{1,3}(?<unitPrice>\d+,\d{2})\sX\s(?<amount>\d{1,2}(,\d{3})?)\s(vnt\.|pak\.|kg)|(?<extraName>\p{L}+)))?\s+(?<price>-?\d+,\d{2})\s[ABEN9g]\r?$"; } }
 
-            public ShopEnum ShopEnum => ShopEnum.Maxima;
+            public ShopEnum ShopEnum { get { return ShopEnum.Maxima; } }
         }
 
         private class Norfa : IShop
         {
-            public string ItemPattern => @"^(?<name>.*?)((?<amount>\d+\.\d{2,3})x(?<unitPrice>\d+\.\d{2}))?\s+(?<price>-?\d+\.\d{2})(M1|EUR)\r$";
+            public string ItemPattern { get { return @"^(?<name>.*?)((?<amount>\d+\.\d{2,3})x(?<unitPrice>\d+\.\d{2}))?\s+(?<price>-?\d+\.\d{2})(M1|EUR)\r$"; } }
 
-            public ShopEnum ShopEnum => ShopEnum.Norfa;
+            public ShopEnum ShopEnum { get { return ShopEnum.Norfa; } }
         }
 
         private class Rimi : IShop
         {
-            public string ItemPattern => @"(^\sNuol\.\s(?<price>-\d+,\d{2})\sGalut\.\skaina\s\d+,\d{2}\r$|^(?<name>.*?)((\n|\r|\r\n)(?<extraName>.*?))?\s+(?<price>\d+,\d{2})\s[AE]\r$)";
+            public string ItemPattern { get { return @"(^\sNuol\.\s(?<price>-\d+,\d{2})\sGalut\.\skaina\s\d+,\d{2}\r$|^(?<name>.*?)((\n|\r|\r\n)(?<extraName>.*?))?\s+(?<price>\d+,\d{2})\s[AE]\r$)"; } }
 
-            public ShopEnum ShopEnum => ShopEnum.Rimi;
+            public ShopEnum ShopEnum { get { return ShopEnum.Rimi; } }
         }
 
         private class Iki : IShop
         {
-            public string ItemPattern => throw new NotImplementedException();
+            public string ItemPattern { get { throw new NotImplementedException(); } }
 
-            public ShopEnum ShopEnum => throw new NotImplementedException();
+            public ShopEnum ShopEnum { get { throw new NotImplementedException(); } }
         }
     }
 }
