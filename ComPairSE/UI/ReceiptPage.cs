@@ -23,6 +23,11 @@ namespace ComPairSE.UI
             get;
             private set;
         }
+        
+        public ReceiptView ReceiptView
+        {
+            get { return receiptView1; }            
+        }
 
         public class ReceiptViewCollection : IList, ICollection, IEnumerable
         {

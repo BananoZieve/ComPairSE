@@ -34,7 +34,8 @@
             this.btCreate = new System.Windows.Forms.Button();
             this.btScan = new System.Windows.Forms.Button();
             this.searchPage1 = new ComPairSE.UI.SearchPage();
-            this.receiptPage1 = new ComPairSE.UI.CartPage();
+            this.cartPage1 = new ComPairSE.UI.CartPage();
+            this.receiptPage1 = new ComPairSE.UI.ReceiptPage();
             this.homePage1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,6 +46,7 @@
             this.scanPage1.MaximumSize = new System.Drawing.Size(225, 400);
             this.scanPage1.MinimumSize = new System.Drawing.Size(225, 400);
             this.scanPage1.Name = "scanPage1";
+            this.scanPage1.NextPage = this.receiptPage1;
             this.scanPage1.NextText = "Read >";
             this.scanPage1.PreviousPage = this.homePage1;
             this.scanPage1.PreviousText = "< Home";
@@ -105,8 +107,8 @@
             this.searchPage1.MaximumSize = new System.Drawing.Size(225, 400);
             this.searchPage1.MinimumSize = new System.Drawing.Size(225, 400);
             this.searchPage1.Name = "searchPage1";
-            this.searchPage1.NextPage = this.receiptPage1;
-            this.searchPage1.NextText = "Receipt >";
+            this.searchPage1.NextPage = this.cartPage1;
+            this.searchPage1.NextText = "Cart >";
             this.searchPage1.PreviousPage = this.homePage1;
             this.searchPage1.PreviousText = "< Home";
             this.searchPage1.Size = new System.Drawing.Size(225, 400);
@@ -114,8 +116,21 @@
             this.searchPage1.Text = "searchPage1";
             this.searchPage1.Visible = false;
             // 
-            // receiptPage1
+            // cartPage1
             // 
+            this.cartPage1.Location = new System.Drawing.Point(0, 0);
+            this.cartPage1.MaximumSize = new System.Drawing.Size(225, 400);
+            this.cartPage1.MinimumSize = new System.Drawing.Size(225, 400);
+            this.cartPage1.Name = "cartPage1";
+            this.cartPage1.PreviousPage = this.searchPage1;
+            this.cartPage1.PreviousText = "< Search";
+            this.cartPage1.Size = new System.Drawing.Size(225, 400);
+            this.cartPage1.TabIndex = 3;
+            this.cartPage1.Text = "cartPage1";
+            this.cartPage1.Visible = false;
+            //
+            // receiptPage1
+            //
             this.receiptPage1.Location = new System.Drawing.Point(0, 0);
             this.receiptPage1.MaximumSize = new System.Drawing.Size(225, 400);
             this.receiptPage1.MinimumSize = new System.Drawing.Size(225, 400);
@@ -133,9 +148,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(225, 400);
             this.Controls.Add(this.homePage1);
-            this.Controls.Add(this.receiptPage1);
+            this.Controls.Add(this.cartPage1);
             this.Controls.Add(this.searchPage1);
             this.Controls.Add(this.scanPage1);
+            this.Controls.Add(this.receiptPage1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -149,8 +165,9 @@
         #endregion
         private UI.ScanPage scanPage1;
         private UI.SearchPage searchPage1;
-        private UI.CartPage receiptPage1;
+        private UI.CartPage cartPage1;
         private UI.HomePage homePage1;
+        private UI.ReceiptPage receiptPage1;
         private System.Windows.Forms.Button btBrowse;
         private System.Windows.Forms.Button btCreate;
         private System.Windows.Forms.Button btScan;

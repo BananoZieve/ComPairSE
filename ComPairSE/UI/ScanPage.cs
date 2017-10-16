@@ -31,7 +31,8 @@ namespace ComPairSE.UI
             if (tbFile.Text != string.Empty)
             {
                 Receipt receipt = Receipt.Create(File.ReadAllText(tbFile.Text));
-                (NextPage as ReceiptPage).Receipts.Add(new ReceiptView(receipt));
+                (NextPage as ReceiptPage).ReceiptView.Receipt = receipt;
+                //(NextPage as ReceiptPage).Receipts.Add(new ReceiptView(receipt));
                 base.OnNextButtonClick(e);
             }
         }

@@ -30,15 +30,15 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvReceipt = new System.Windows.Forms.DataGridView();
+            this.ColumnItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbShop = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lbTotal = new System.Windows.Forms.Label();
-            this.ColumnItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceipt)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvReceipt
             // 
             this.dgvReceipt.AllowUserToAddRows = false;
             this.dgvReceipt.AllowUserToDeleteRows = false;
@@ -47,11 +47,30 @@
             this.ColumnItem,
             this.ColumnPrice});
             this.dgvReceipt.Location = new System.Drawing.Point(3, 23);
-            this.dgvReceipt.Name = "dataGridView1";
+            this.dgvReceipt.Name = "dgvReceipt";
             this.dgvReceipt.ReadOnly = true;
             this.dgvReceipt.RowHeadersVisible = false;
+            this.dgvReceipt.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvReceipt.Size = new System.Drawing.Size(219, 280);
             this.dgvReceipt.TabIndex = 0;
+            // 
+            // ColumnItem
+            // 
+            this.ColumnItem.HeaderText = "Item";
+            this.ColumnItem.Name = "ColumnItem";
+            this.ColumnItem.ReadOnly = true;
+            this.ColumnItem.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnItem.Width = 150;
+            // 
+            // ColumnPrice
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.ColumnPrice.DefaultCellStyle = dataGridViewCellStyle1;
+            this.ColumnPrice.HeaderText = "Price";
+            this.ColumnPrice.Name = "ColumnPrice";
+            this.ColumnPrice.ReadOnly = true;
+            this.ColumnPrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ColumnPrice.Width = 66;
             // 
             // lbShop
             // 
@@ -81,24 +100,6 @@
             this.lbTotal.TabIndex = 1;
             this.lbTotal.Text = "Total:";
             // 
-            // ColumnItem
-            // 
-            this.ColumnItem.HeaderText = "Item";
-            this.ColumnItem.Name = "ColumnItem";
-            this.ColumnItem.ReadOnly = true;
-            this.ColumnItem.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnItem.Width = 150;
-            // 
-            // ColumnPrice
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.ColumnPrice.DefaultCellStyle = dataGridViewCellStyle1;
-            this.ColumnPrice.HeaderText = "Price";
-            this.ColumnPrice.Name = "ColumnPrice";
-            this.ColumnPrice.ReadOnly = true;
-            this.ColumnPrice.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.ColumnPrice.Width = 66;
-            // 
             // ReceiptView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -110,7 +111,6 @@
             this.Name = "ReceiptView";
             this.Size = new System.Drawing.Size(225, 333);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceipt)).EndInit();
-            this.MouseWheel += ReceiptView_MouseWheel;
             this.ResumeLayout(false);
             this.PerformLayout();
 

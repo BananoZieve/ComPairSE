@@ -28,13 +28,16 @@ namespace ComPairSE.UI
             get { return receipt; }
             set
             {
-                receipt = value;
-                lbShop.Text = receipt.ShopEnum.ToString();
-                dgvReceipt.Rows.Clear();
-                dgvReceipt.Refresh();
-                foreach (Item item in receipt.Items)
-                    dgvReceipt.Rows.Add(item.Name, item.Prices[(int)receipt.ShopEnum].ToDecimal().ToString("C2"));
-                lbTotal.Text = receipt.TotalPrice.ToDecimal().ToString("C2");
+                if (value != null)
+                {
+                    receipt = value;
+                    lbShop.Text = receipt.ShopEnum.ToString();
+                    dgvReceipt.Rows.Clear();
+                    dgvReceipt.Refresh();
+                    foreach (Item item in receipt.Items)
+                        dgvReceipt.Rows.Add(item.Name, item.Prices[(int)receipt.ShopEnum].ToDecimal().ToString("C2"));
+                    textBox1.Text = receipt.TotalPrice.ToDecimal().ToString("C2");                    
+                }
             }
         }
 
