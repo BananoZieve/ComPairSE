@@ -12,19 +12,16 @@ namespace ComPairSE
 {
     public partial class MainForm2 : Form
     {
-        public MainForm2()
+        public MainForm2(IDataManager dataManager)
         {
             InitializeComponent();
-            DataManager = new DataManager();
-            DataManager.CreateDataTables();
-            DataManager.InitDataTables();
-            DataManager.InitTestTables();
             this.Width -= this.ClientRectangle.Width - homePage1.Width;
             this.Height -= this.ClientRectangle.Height - homePage1.Height;
-            searchPage1.DataManager = DataManager;
+            DataManager = dataManager;
+            searchPage1.DataManager = dataManager;
         }
 
-        private DataManager DataManager;
+        private IDataManager DataManager;
 
         private void btScan_Click(object sender, EventArgs e)
         {

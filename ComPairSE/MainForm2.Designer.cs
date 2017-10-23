@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.scanPage1 = new ComPairSE.UI.ScanPage();
+            this.receiptPage1 = new ComPairSE.UI.ReceiptPage();
             this.homePage1 = new ComPairSE.UI.HomePage();
             this.btBrowse = new System.Windows.Forms.Button();
             this.btCreate = new System.Windows.Forms.Button();
             this.btScan = new System.Windows.Forms.Button();
             this.searchPage1 = new ComPairSE.UI.SearchPage();
             this.cartPage1 = new ComPairSE.UI.CartPage();
-            this.receiptPage1 = new ComPairSE.UI.ReceiptPage();
             this.homePage1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +54,20 @@
             this.scanPage1.TabIndex = 1;
             this.scanPage1.Text = "scanPage1";
             this.scanPage1.Visible = false;
+            // 
+            // receiptPage1
+            // 
+            this.receiptPage1.Location = new System.Drawing.Point(0, 0);
+            this.receiptPage1.MaximumSize = new System.Drawing.Size(225, 400);
+            this.receiptPage1.MinimumSize = new System.Drawing.Size(225, 400);
+            this.receiptPage1.Name = "receiptPage1";
+            this.receiptPage1.PreviousPage = this.scanPage1;
+            this.receiptPage1.PreviousText = "< Scan";
+            this.receiptPage1.Receipt = null;
+            this.receiptPage1.Size = new System.Drawing.Size(225, 400);
+            this.receiptPage1.TabIndex = 3;
+            this.receiptPage1.Text = "receiptPage1";
+            this.receiptPage1.Visible = false;
             // 
             // homePage1
             // 
@@ -128,19 +142,6 @@
             this.cartPage1.TabIndex = 3;
             this.cartPage1.Text = "cartPage1";
             this.cartPage1.Visible = false;
-            //
-            // receiptPage1
-            //
-            this.receiptPage1.Location = new System.Drawing.Point(0, 0);
-            this.receiptPage1.MaximumSize = new System.Drawing.Size(225, 400);
-            this.receiptPage1.MinimumSize = new System.Drawing.Size(225, 400);
-            this.receiptPage1.Name = "receiptPage1";
-            this.receiptPage1.PreviousPage = this.searchPage1;
-            this.receiptPage1.PreviousText = "< Search";
-            this.receiptPage1.Size = new System.Drawing.Size(225, 400);
-            this.receiptPage1.TabIndex = 3;
-            this.receiptPage1.Text = "receiptPage1";
-            this.receiptPage1.Visible = false;
             // 
             // MainForm2
             // 

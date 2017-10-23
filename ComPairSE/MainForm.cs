@@ -17,7 +17,7 @@ namespace ComPairSE
         IDataManager DataManager;
         TesseractOCR Tesseract;
 
-        public MainForm()
+        public MainForm(IDataManager dataManager)
         {
             InitializeComponent();
             rbFile.Tag = btBrowse;
@@ -37,7 +37,7 @@ namespace ComPairSE
             this.Width -= this.ClientRectangle.Width - 2 * tbInput.Left - tbInput.Width;
             this.MinimumSize = this.Size;
             this.MaximumSize = new Size(this.Width, 1080);
-            DataManager = new DataManager();
+            DataManager = dataManager;
             Tesseract = new TesseractOCR();
         }
 
@@ -95,7 +95,7 @@ namespace ComPairSE
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            DataManager.LoadData();
+            //DataManager.LoadData();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
