@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.VisualBasic;
+using ComPairSE.Properties;
 
 namespace ComPairSE
 {
@@ -176,19 +177,19 @@ namespace ComPairSE
         public virtual void LoadData()
         {
             if (
-                File.Exists(Properties.Resources.ItemsTableFile) &&
-                File.Exists(Properties.Resources.TagsTableFile) &&
-                File.Exists(Properties.Resources.ItemsTagsTableFile)
+                File.Exists(Resources.ItemsTableFile) &&
+                File.Exists(Resources.TagsTableFile) &&
+                File.Exists(Resources.ItemsTagsTableFile)
                 )
             {
                 productsTable = new DataTable();
                 tagsTable = new DataTable();
                 unionTable = new DataTable();
                 dtClarifyWords = new DataTable();
-                productsTable.ReadXml(Properties.Resources.ItemsTableFile);
-                tagsTable.ReadXml(Properties.Resources.TagsTableFile);
-                unionTable.ReadXml(Properties.Resources.ItemsTagsTableFile);
-                dtClarifyWords.ReadXml("ExplainedWords.xml");
+                productsTable.ReadXml(Resources.ItemsTableFile);
+                tagsTable.ReadXml(Resources.TagsTableFile);
+                unionTable.ReadXml(Resources.ItemsTagsTableFile);
+                //dtClarifyWords.ReadXml("ExplainedWords.xml");
             }
             else
             {
@@ -199,10 +200,10 @@ namespace ComPairSE
 
         public virtual void SaveData()
         {
-            productsTable.WriteXml(Properties.Resources.ItemsTableFile, XmlWriteMode.WriteSchema);
-            tagsTable.WriteXml(Properties.Resources.TagsTableFile, XmlWriteMode.WriteSchema);
-            unionTable.WriteXml(Properties.Resources.ItemsTagsTableFile, XmlWriteMode.WriteSchema);
-            dtClarifyWords.WriteXml("ExplainedWords.xml", XmlWriteMode.WriteSchema);
+            productsTable.WriteXml(Resources.ItemsTableFile, XmlWriteMode.WriteSchema);
+            tagsTable.WriteXml(Resources.TagsTableFile, XmlWriteMode.WriteSchema);
+            unionTable.WriteXml(Resources.ItemsTagsTableFile, XmlWriteMode.WriteSchema);
+            //dtClarifyWords.WriteXml("ExplainedWords.xml", XmlWriteMode.WriteSchema);
         }
 
         //Clarification system for words with dot 
