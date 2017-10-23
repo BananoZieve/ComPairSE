@@ -40,7 +40,7 @@
             this.btPrev.Name = "btPrev";
             this.btPrev.Size = new System.Drawing.Size(75, 23);
             this.btPrev.TabIndex = 0;
-            this.btPrev.Text = "Previous";
+            this.btPrev.Text = "< Previous";
             this.btPrev.UseVisualStyleBackColor = true;
             this.btPrev.Click += new System.EventHandler(this.btPrev_Click);
             // 
@@ -51,7 +51,7 @@
             this.btNext.Name = "btNext";
             this.btNext.Size = new System.Drawing.Size(75, 23);
             this.btNext.TabIndex = 0;
-            this.btNext.Text = "Next";
+            this.btNext.Text = "Next >";
             this.btNext.UseVisualStyleBackColor = true;
             this.btNext.Click += new System.EventHandler(this.btNext_Click);
             // 

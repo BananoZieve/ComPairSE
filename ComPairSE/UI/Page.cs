@@ -73,6 +73,7 @@ namespace ComPairSE.UI
             {
                 btNext.Visible = value != null;
                 nextPage = value;
+                if (nextPage != null) nextPage.previousPage = this;
             }
         }
 
