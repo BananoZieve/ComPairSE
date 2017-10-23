@@ -12,5 +12,10 @@ namespace ComPairSE
         {
             return arg / 100m;
         }
+
+        public static string RemoveDecimalMark(this string arg)
+        {
+            return arg.Replace(",", "").Replace(".", "");
+        }
     }
 }

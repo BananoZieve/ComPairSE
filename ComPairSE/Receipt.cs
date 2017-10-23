@@ -38,8 +38,8 @@ namespace ComPairSE
                 if (extraName != string.Empty)
                     name += " " + extraName;
 
-                price = int.Parse(match.Groups["price"].Value.Replace(",", "").Replace(".",""));
-                unitPrice = match.Groups["unitPrice"].Value != string.Empty ? int.Parse(match.Groups["unitPrice"].Value.Replace(",","").Replace(".", "")) : price;
+                price = int.Parse(match.Groups["price"].Value.RemoveDecimalMark());
+                unitPrice = match.Groups["unitPrice"].Value != string.Empty ? int.Parse(match.Groups["unitPrice"].Value.RemoveDecimalMark()) : price;
                 if (name == string.Empty && price < 0)
                     name = "Nuolaida";
 
