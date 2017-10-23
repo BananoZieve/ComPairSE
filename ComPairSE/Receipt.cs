@@ -79,7 +79,7 @@ namespace ComPairSE
                     int r2Count = other.Items.Count(item => item.Prices[(int)other.ShopEnum] > 0);
 
                     if (r1Count == r2Count)
-                        return this.TotalPrice - other.TotalPrice;
+                        return this.Total - other.Total;
                     else
                         return r2Count - r1Count;
                 }
@@ -107,13 +107,13 @@ namespace ComPairSE
         {
             ShopEnum = shop;
             Items = items;
-            TotalPrice = Items.Sum(item => item.Prices[(int)ShopEnum]); // slower than foreach
+            Total = Items.Sum(item => item.Prices[(int)ShopEnum]); // slower than foreach
             PurchaseTime = DateTime.Now;
         }
 
         public readonly ShopEnum ShopEnum;
         public readonly List<Item> Items;
         public readonly DateTime PurchaseTime;
-        public readonly int TotalPrice;
+        public readonly int Total;
     }
 }
