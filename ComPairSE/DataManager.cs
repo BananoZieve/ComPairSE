@@ -21,9 +21,9 @@ namespace ComPairSE
 
     public class DataManager : IDataManager
     {
-        private DataTable productsTable;
-        private DataTable tagsTable;
-        private DataTable unionTable;
+        protected DataTable productsTable;
+        protected DataTable tagsTable;
+        protected DataTable unionTable;
         private DataSet dataSet = new DataSet();
         private DataTable dtClarifyWords;
 
@@ -77,11 +77,6 @@ namespace ComPairSE
             return ret;
         }
 
-        public List<string> GetItemsStrTest(string[] tags)
-        {
-            return GetItems(tags).Select(i => i.Name).ToList();
-        }
-
         private Item RowToItem(DataRow row)
         {
             int id = (int)row["itemId"];
@@ -91,38 +86,6 @@ namespace ComPairSE
                 prices[i] = row[i + 2] != DBNull.Value ? (int)row[i + 2] : 0;
 
             return new Item(id, name, prices);
-        }
-
-        public void InitTestTables()
-        {
-            if (productsTable == null || tagsTable == null || unionTable == null)
-                CreateDataTables();
-
-            // HARD-CODE
-            productsTable.Rows.Add(null, "Dvaro Pienas 1l", 1, 3, 10, 52);
-            productsTable.Rows.Add(null, "Rokiskio Pienas 2l", 1, 3, 10, 52);
-            productsTable.Rows.Add(null, "Bandele su varske", 1, 3, 10, 52);
-            productsTable.Rows.Add(null, "Bandele su cinamonu", 1, 3, 10, 52);
-            productsTable.Rows.Add(null, "Dvaro grietine", 1, 3, 10, 52);
-
-            tagsTable.Rows.Add(null, "Dvaro");
-            tagsTable.Rows.Add(null, "Pienas");
-            tagsTable.Rows.Add(null, "Rokiskio");
-            tagsTable.Rows.Add(null, "Bandele");
-            tagsTable.Rows.Add(null, "su varske");
-            tagsTable.Rows.Add(null, "su cinamonu");
-            tagsTable.Rows.Add(null, "grietine");
-            
-            unionTable.Rows.Add(1, 1);
-            unionTable.Rows.Add(1, 2);
-            unionTable.Rows.Add(2, 2);
-            unionTable.Rows.Add(2, 3);
-            unionTable.Rows.Add(3, 4);
-            unionTable.Rows.Add(3, 5);
-            unionTable.Rows.Add(4, 4);
-            unionTable.Rows.Add(4, 6);
-            unionTable.Rows.Add(5, 1);
-            unionTable.Rows.Add(5, 7);
         }
 
         public void CreateDataTables()
@@ -173,7 +136,7 @@ namespace ComPairSE
             List<Item> found = GetItems(item.Tags);
             if (!found.Contains(item))
             {
-               //  add new entry to database
+                // add new entry to database
                 DataRow itemRow = productsTable.Rows.Add(
                     null,
                     item.Name,
@@ -210,32 +173,35 @@ namespace ComPairSE
             throw new NotImplementedException();
         }
 
-        public void LoadData()
+        public virtual void LoadData()
         {
-            dataSet.Clear();
-            try
+            if (
+                File.Exists(Properties.Resources.ItemsTableFile) &&
+                File.Exists(Properties.Resources.TagsTableFile) &&
+                File.Exists(Properties.Resources.ItemsTagsTableFile)
+                )
             {
                 productsTable = new DataTable();
                 tagsTable = new DataTable();
                 unionTable = new DataTable();
                 dtClarifyWords = new DataTable();
-                productsTable.ReadXml("Items.xml");
-                tagsTable.ReadXml("Tags.xml");
-                unionTable.ReadXml("ItemsTags.xml");
+                productsTable.ReadXml(Properties.Resources.ItemsTableFile);
+                tagsTable.ReadXml(Properties.Resources.TagsTableFile);
+                unionTable.ReadXml(Properties.Resources.ItemsTagsTableFile);
                 dtClarifyWords.ReadXml("ExplainedWords.xml");
             }
-            catch (FileNotFoundException)
-            {                
+            else
+            {
                 CreateDataTables();
                 InitDataTables();
             }
         }
 
-        public void SaveData()
+        public virtual void SaveData()
         {
-            productsTable.WriteXml("Items.xml", XmlWriteMode.WriteSchema);
-            tagsTable.WriteXml("Tags.xml", XmlWriteMode.WriteSchema);
-            unionTable.WriteXml("ItemsTags.xml", XmlWriteMode.WriteSchema);
+            productsTable.WriteXml(Properties.Resources.ItemsTableFile, XmlWriteMode.WriteSchema);
+            tagsTable.WriteXml(Properties.Resources.TagsTableFile, XmlWriteMode.WriteSchema);
+            unionTable.WriteXml(Properties.Resources.ItemsTagsTableFile, XmlWriteMode.WriteSchema);
             dtClarifyWords.WriteXml("ExplainedWords.xml", XmlWriteMode.WriteSchema);
         }
 
@@ -264,6 +230,50 @@ namespace ComPairSE
                     }
                 }
             }
+        }
+    }
+
+    public class DemoDataManager : DataManager
+    {
+        public override void LoadData()
+        {
+            CreateDataTables();
+            InitDataTables();
+            InitTestTables();
+        }
+
+        public override void SaveData()
+        {
+            // Saving disabled
+        }
+
+        private void InitTestTables()
+        {
+            // HARD-CODE
+            productsTable.Rows.Add(null, "Dvaro Pienas 1l", 1, 3, 10, 52);
+            productsTable.Rows.Add(null, "Rokiskio Pienas 2l", 1, 3, 10, 52);
+            productsTable.Rows.Add(null, "Bandele su varske", 1, 3, 10, 52);
+            productsTable.Rows.Add(null, "Bandele su cinamonu", 1, 3, 10, 52);
+            productsTable.Rows.Add(null, "Dvaro grietine", 1, 3, 10, 52);
+
+            tagsTable.Rows.Add(null, "Dvaro");
+            tagsTable.Rows.Add(null, "Pienas");
+            tagsTable.Rows.Add(null, "Rokiskio");
+            tagsTable.Rows.Add(null, "Bandele");
+            tagsTable.Rows.Add(null, "su varske");
+            tagsTable.Rows.Add(null, "su cinamonu");
+            tagsTable.Rows.Add(null, "grietine");
+
+            unionTable.Rows.Add(1, 1);
+            unionTable.Rows.Add(1, 2);
+            unionTable.Rows.Add(2, 2);
+            unionTable.Rows.Add(2, 3);
+            unionTable.Rows.Add(3, 4);
+            unionTable.Rows.Add(3, 5);
+            unionTable.Rows.Add(4, 4);
+            unionTable.Rows.Add(4, 6);
+            unionTable.Rows.Add(5, 1);
+            unionTable.Rows.Add(5, 7);
         }
     }
 }
