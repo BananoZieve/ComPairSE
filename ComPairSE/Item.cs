@@ -19,11 +19,6 @@ namespace ComPairSE
             Prices[(int)shop] = price;
         }
 
-        //public Item(string name, int price, ShopEnum shop, string[] tags) : this(name, price, shop)
-        //{
-        //    Tags = tags;
-        //}
-
         public Item(int id, string name, int[] prices)
         {
             Id = id;
@@ -33,8 +28,8 @@ namespace ComPairSE
 
         public bool Equals(Item other)
         {
-            if (this.Name.Equals(other.Name)) return true;
-            else return false;
+            if (this.Id != 0 && other.Id != 0) return this.Id == other.Id;
+            else return this.Name.Equals(other.Name);
         }
 
         public int Id { get; private set; }
@@ -47,7 +42,7 @@ namespace ComPairSE
 
         public override string ToString()
         {
-            return string.Format("{0} {1}", Id, Name);
+            return string.Format("{0} - {1}", Id, Name);
         }
 
         public string[] GetTags()
