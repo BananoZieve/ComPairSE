@@ -19,6 +19,7 @@ namespace ComPairSE
             this.Height -= this.ClientRectangle.Height - homePage1.Height;
             DataManager = dataManager;
             searchPage1.DataManager = dataManager;
+            scanPage1.DataManager = dataManager;
         }
 
         private IDataManager DataManager;
@@ -31,6 +32,11 @@ namespace ComPairSE
         private void btCreate_Click(object sender, EventArgs e)
         {
             if (searchPage1 != null) { searchPage1.Visible = true; homePage1.Visible = false; }
+        }
+
+        private void MainForm2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DataManager.SaveData();
         }
 
         //private void btBrowse_Click(object sender, EventArgs e)

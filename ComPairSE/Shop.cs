@@ -50,7 +50,6 @@ namespace ComPairSE
 
         private class Maxima : IShop
         {
-            //public string ItemPattern => @"^(?<name>.*?)((\n|\r|\r\n)(\s{1,3}(?<unitPrice>\d+,\d{2})\sX\s(?<amount>\d{1,2}(,\d{3})?)\s(vnt\.|pak\.|kg)|(?<extraName>\p{L}+)))?\s+(?<price>-?\d+,\d{2})\s[ABEN]\r$";
             public string ItemPattern { get { return @"^(?<name>.*?)((\n|\r|\r\n)(\s{1,3}(?<unitPrice>\d+,\d{2})\sX\s(?<amount>\d{1,2}(,\d{3})?)\s(vnt\.|pak\.|kg)|(?<extraName>\p{L}+)))?\s+(?<price>-?\d+,\d{2})\s[ABEN9g]\r?$"; } }
 
             public ShopEnum ShopEnum { get { return ShopEnum.Maxima; } }
