@@ -28,30 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.receiptView1 = new ComPairSE.UI.ReceiptView();
+            this.receiptView = new ComPairSE.UI.ReceiptView();
             this.SuspendLayout();
             // 
             // receiptView1
             // 
-            this.receiptView1.Location = new System.Drawing.Point(0, 27);
-            this.receiptView1.Name = "receiptView1";
-            this.receiptView1.Receipt = null;
-            this.receiptView1.Size = new System.Drawing.Size(225, 333);
-            this.receiptView1.TabIndex = 2;
+            this.receiptView.Location = new System.Drawing.Point(0, 27);
+            this.receiptView.Name = "receiptView1";
+            this.receiptView.Receipt = null;
+            this.receiptView.Size = new System.Drawing.Size(225, 333);
+            this.receiptView.TabIndex = 2;
             // 
             // ReceiptPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.receiptView1);
+            this.Controls.Add(this.receiptView);
             this.Name = "ReceiptPage";
-            this.Controls.SetChildIndex(this.receiptView1, 0);
+            this.Controls.SetChildIndex(this.receiptView, 0);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private ReceiptView receiptView1;
+        private ReceiptView receiptView;
     }
 }
