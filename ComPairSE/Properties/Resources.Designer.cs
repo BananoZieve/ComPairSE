@@ -81,6 +81,24 @@ namespace ComPairSE.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Items.xml.
+        /// </summary>
+        internal static string ItemsTableFile {
+            get {
+                return ResourceManager.GetString("ItemsTableFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ItemsTags.xml.
+        /// </summary>
+        internal static string ItemsTagsTableFile {
+            get {
+                return ResourceManager.GetString("ItemsTagsTableFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap plus16 {
@@ -117,6 +135,15 @@ namespace ComPairSE.Properties {
             get {
                 object obj = ResourceManager.GetObject("search32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tags.xml.
+        /// </summary>
+        internal static string TagsTableFile {
+            get {
+                return ResourceManager.GetString("TagsTableFile", resourceCulture);
             }
         }
     }
