@@ -30,8 +30,8 @@ namespace ComPairSE
         {
             if (receipt.Items != null)
                 foreach (Item item in receipt.Items)
-                    dgvReceipt.Rows.Add(item.Name, item.Prices[(int)receipt.ShopEnum].ToDecimal().ToString("C2"));
-            tbTotal.Text = receipt.TotalPrice.ToDecimal().ToString("C2");
+                    dgvReceipt.Rows.Add(item.Name, item.Prices[(int)receipt.ShopEnum].ToPrice().ToString("C2"));
+            tbTotal.Text = receipt.Total.ToPrice().ToString("C2");
         }
 
         private void ReceiptForm_MouseWheel(object sender, MouseEventArgs e)

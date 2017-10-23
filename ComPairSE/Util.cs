@@ -8,7 +8,7 @@ namespace ComPairSE
 {
     public static class Util
     {
-        public static decimal ToDecimal(this int arg)
+        public static decimal ToPrice(this int arg)
         {
             return arg / 100m;
         }
