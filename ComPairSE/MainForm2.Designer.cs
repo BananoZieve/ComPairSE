@@ -42,6 +42,7 @@
             // scanPage1
             // 
             this.scanPage1.AllowDrop = true;
+            this.scanPage1.DataManager = null;
             this.scanPage1.Location = new System.Drawing.Point(0, 0);
             this.scanPage1.MaximumSize = new System.Drawing.Size(225, 400);
             this.scanPage1.MinimumSize = new System.Drawing.Size(225, 400);
@@ -61,6 +62,7 @@
             this.receiptPage1.MaximumSize = new System.Drawing.Size(225, 400);
             this.receiptPage1.MinimumSize = new System.Drawing.Size(225, 400);
             this.receiptPage1.Name = "receiptPage1";
+            this.receiptPage1.NextText = "Next >";
             this.receiptPage1.PreviousPage = this.scanPage1;
             this.receiptPage1.PreviousText = "< Scan";
             this.receiptPage1.Receipt = null;
@@ -79,6 +81,8 @@
             this.homePage1.MaximumSize = new System.Drawing.Size(225, 400);
             this.homePage1.MinimumSize = new System.Drawing.Size(225, 400);
             this.homePage1.Name = "homePage1";
+            this.homePage1.NextText = "Next >";
+            this.homePage1.PreviousText = "< Previous";
             this.homePage1.ScanPage = null;
             this.homePage1.SearchPage = null;
             this.homePage1.Size = new System.Drawing.Size(225, 400);
@@ -136,6 +140,7 @@
             this.cartPage1.MaximumSize = new System.Drawing.Size(225, 400);
             this.cartPage1.MinimumSize = new System.Drawing.Size(225, 400);
             this.cartPage1.Name = "cartPage1";
+            this.cartPage1.NextText = "Next >";
             this.cartPage1.PreviousPage = this.searchPage1;
             this.cartPage1.PreviousText = "< Search";
             this.cartPage1.Size = new System.Drawing.Size(225, 400);
@@ -158,6 +163,7 @@
             this.MinimizeBox = false;
             this.Name = "MainForm2";
             this.Text = "MainForm2";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm2_FormClosing);
             this.homePage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
