@@ -15,22 +15,18 @@ namespace ComPairSE
         [STAThread]
         static void Main(params string[] args)
         {
-
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            if (args.Length == 0)
-                Application.Run(new MainForm());
-            else if (args.Length == 1)
-            {
-                switch (args[0])
-                {
-                    case "-v2":
-                        Application.Run(new MainForm2());
-                        break;
-                    default:
-                        break;
-                }
-            }
+
+            IDataManager dataManager;
+
+            if (args.Contains("-demo")) dataManager = new DemoDataManager();
+            else dataManager = new DataManager();
+
+            dataManager.LoadData();
+
+            if (args.Contains("-v2")) Application.Run(new MainForm2(dataManager));
+            else Application.Run(new MainForm(dataManager));
         }
     }
 }
