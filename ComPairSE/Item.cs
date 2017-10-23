@@ -38,7 +38,16 @@ namespace ComPairSE
 
         public int[] Prices { get; private set; } // in Euro cents
 
-        public string[] Tags { get { return Name.Split(' '); } }
+        private string[] tags;
+        public string[] Tags
+        {
+            get
+            {
+                if (tags == null)
+                    tags = GetTags();
+                return tags;
+            }
+        }
 
         public override string ToString()
         {
@@ -47,7 +56,33 @@ namespace ComPairSE
 
         public string[] GetTags()
         {
-            return new string[0];
+            //if (Id != 0)
+            //{ }
+            //else
+            //{
+            List<string> ret = new List<string>();
+            string[] split = Name.Split(' ');
+            string prielinksnis = string.Empty;
+            bool prev = false;
+            foreach (string rawTag in split)
+            {
+                string tag = rawTag.ToLower();
+                if (prev)
+                {
+                    tag = prielinksnis + " " + tag;
+                    prev = false;
+                }
+                else
+                {
+                    if (tag == "su") { prev = true; prielinksnis = tag; continue; }
+                }
+                // skip additional tags for now
+                if (tag.EndsWith(",")) { ret.Add(tag.TrimEnd(',')); break; }
+                else { ret.Add(tag); }
+            }
+            return ret.ToArray();
+
+            //}
         }
     }
 }
