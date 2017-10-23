@@ -50,6 +50,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm2.Designer.cs">
+      <DependentUpon>MainForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shop.cs" />
     <Compile Include="UI\ReceiptComparePage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -61,12 +68,6 @@
     </Compile>
     <Compile Include="UI\ItemView.Designer.cs">
       <DependentUpon>ItemView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="MainForm2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="MainForm2.Designer.cs">
-      <DependentUpon>MainForm2.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\HomePage.cs">
       <SubType>UserControl</SubType>
@@ -116,7 +117,6 @@
     <Compile Include="SearchByTagForm.Designer.cs">
       <DependentUpon>SearchByTagForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Shop.cs" />
     <Compile Include="UI\CartPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -157,15 +157,15 @@
     <EmbeddedResource Include="FoundItemsByTagForm.resx">
       <DependentUpon>FoundItemsByTagForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainForm2.resx">
+      <DependentUpon>MainForm2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\ItemView.resx">
       <DependentUpon>ItemView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="MainForm2.resx">
-      <DependentUpon>MainForm2.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\HomePage.resx">
       <DependentUpon>HomePage.cs</DependentUpon>
