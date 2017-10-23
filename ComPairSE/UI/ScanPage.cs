@@ -16,6 +16,7 @@ namespace ComPairSE.UI
         public ScanPage()
         {
             InitializeComponent();
+            openFileDialog.Filter = "Text Files (*.txt)|*.txt";
         }
 
         public IDataManager DataManager { get; set; }
@@ -56,9 +57,9 @@ namespace ComPairSE.UI
                 switch (Path.GetExtension(files[0]))
                 {
                     case ".txt":
-                    case ".png":
-                    case ".jpg":
-                    case ".bmp":
+                    //case ".png":
+                    //case ".jpg":
+                    //case ".bmp":
                         tbFile.Text = files[0];
                         label1.Text = Path.GetFileName(files[0]);
                         break;
