@@ -33,7 +33,7 @@
             this.ColumnItem = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColumnPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbShop = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tbTotal = new System.Windows.Forms.TextBox();
             this.lbTotal = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReceipt)).BeginInit();
             this.SuspendLayout();
@@ -42,7 +42,8 @@
             // 
             this.dgvReceipt.AllowUserToAddRows = false;
             this.dgvReceipt.AllowUserToDeleteRows = false;
-            this.dgvReceipt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReceipt.ColumnHeadersHeight = 20;
+            this.dgvReceipt.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvReceipt.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColumnItem,
             this.ColumnPrice});
@@ -50,9 +51,12 @@
             this.dgvReceipt.Name = "dgvReceipt";
             this.dgvReceipt.ReadOnly = true;
             this.dgvReceipt.RowHeadersVisible = false;
+            this.dgvReceipt.RowTemplate.Height = 20;
+            this.dgvReceipt.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvReceipt.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvReceipt.Size = new System.Drawing.Size(219, 280);
             this.dgvReceipt.TabIndex = 0;
+            this.dgvReceipt.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.ReceiptView_MouseWheel);
             // 
             // ColumnItem
             // 
@@ -83,18 +87,19 @@
             this.lbShop.Text = "label1";
             this.lbShop.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox1
+            // tbTotal
             // 
-            this.textBox1.Location = new System.Drawing.Point(147, 309);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(75, 20);
-            this.textBox1.TabIndex = 2;
+            this.tbTotal.Location = new System.Drawing.Point(154, 309);
+            this.tbTotal.Name = "tbTotal";
+            this.tbTotal.ReadOnly = true;
+            this.tbTotal.Size = new System.Drawing.Size(68, 20);
+            this.tbTotal.TabIndex = 2;
+            this.tbTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // lbTotal
             // 
             this.lbTotal.AutoSize = true;
-            this.lbTotal.Location = new System.Drawing.Point(107, 312);
+            this.lbTotal.Location = new System.Drawing.Point(114, 312);
             this.lbTotal.Name = "lbTotal";
             this.lbTotal.Size = new System.Drawing.Size(34, 13);
             this.lbTotal.TabIndex = 1;
@@ -104,7 +109,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tbTotal);
             this.Controls.Add(this.lbTotal);
             this.Controls.Add(this.lbShop);
             this.Controls.Add(this.dgvReceipt);
@@ -120,7 +125,7 @@
 
         private System.Windows.Forms.DataGridView dgvReceipt;
         private System.Windows.Forms.Label lbShop;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tbTotal;
         private System.Windows.Forms.Label lbTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnItem;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPrice;

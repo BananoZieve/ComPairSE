@@ -15,12 +15,15 @@ namespace ComPairSE.UI
         public ReceiptView()
         {
             InitializeComponent();
+            maxVisibleRowCount = (this.dgvReceipt.Height - this.dgvReceipt.ColumnHeadersHeight) / this.dgvReceipt.RowTemplate.Height;
         }
 
         public ReceiptView(Receipt receipt) : this()
         {
             Receipt = receipt;
         }
+
+        private readonly int maxVisibleRowCount;
 
         private Receipt receipt;
         public Receipt Receipt
@@ -35,20 +38,23 @@ namespace ComPairSE.UI
                     dgvReceipt.Rows.Clear();
                     dgvReceipt.Refresh();
                     foreach (Item item in receipt.Items)
-                        dgvReceipt.Rows.Add(item.Name, item.Prices[(int)receipt.ShopEnum].ToDecimal().ToString("C2"));
-                    textBox1.Text = receipt.TotalPrice.ToDecimal().ToString("C2");                    
+                        dgvReceipt.Rows.Add(item.Name, item.Prices[(int)receipt.ShopEnum].ToPrice().ToString("C2"));
+                    tbTotal.Text = receipt.Total.ToPrice().ToString("C2");
                 }
             }
         }
 
         private void ReceiptView_MouseWheel(object sender, MouseEventArgs e)
         {
-            if (dgvReceipt.Rows.Count == 0) return;
+            if (dgvReceipt.RowCount == 0 || dgvReceipt.RowCount <= maxVisibleRowCount) return;
+
             int newIndex = dgvReceipt.FirstDisplayedScrollingRowIndex - e.Delta / 120;
+            int endScrollIndex = dgvReceipt.RowCount - maxVisibleRowCount;
+
             if (newIndex < 0)
                 dgvReceipt.FirstDisplayedScrollingRowIndex = 0;
-            else if (newIndex > dgvReceipt.RowCount - 9)
-                dgvReceipt.FirstDisplayedScrollingRowIndex = Math.Max(dgvReceipt.RowCount - 9, 0);
+            else if (newIndex > endScrollIndex)
+                dgvReceipt.FirstDisplayedScrollingRowIndex = endScrollIndex;
             else
                 dgvReceipt.FirstDisplayedScrollingRowIndex = newIndex;
         }
