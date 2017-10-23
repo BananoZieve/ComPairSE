@@ -16,7 +16,6 @@ namespace ComPairSE.UI
         public ScanPage()
         {
             InitializeComponent();
-            NextButton.Enabled = false;
         }
 
         [Browsable(true)]
@@ -30,11 +29,13 @@ namespace ComPairSE.UI
             // create receipt and send it to receiptViewPage
             if (tbFile.Text != string.Empty)
             {
-                Receipt receipt = Receipt.Create(File.ReadAllText(tbFile.Text));
-                (NextPage as ReceiptPage).ReceiptView.Receipt = receipt;
-                //(NextPage as ReceiptPage).Receipts.Add(new ReceiptView(receipt));
+                ReceiptPage receiptPage = NextPage as ReceiptPage;
+                receiptPage.Receipt = Receipt.Create(File.ReadAllText(tbFile.Text));
                 base.OnNextButtonClick(e);
             }
+#if DEBUG
+            else base.OnNextButtonClick(e);
+#endif
         }
 
         private void ScanPage_DragEnter(object sender, DragEventArgs e)
@@ -68,13 +69,11 @@ namespace ComPairSE.UI
             {
                 tbFile.Text = openFileDialog.FileName;
                 label1.Text = openFileDialog.SafeFileName;
-                //toolTip.SetToolTip(tbFile, tbFile.Text);
             }
         }
 
         private void tbFile_TextChanged(object sender, EventArgs e)
         {
-            NextButton.Enabled = tbFile.Text != string.Empty;
         }
     }
 }

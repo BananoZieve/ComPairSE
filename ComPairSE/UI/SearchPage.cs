@@ -17,7 +17,7 @@ namespace ComPairSE.UI
             InitializeComponent();
         }
 
-        public DataManager DataManager { get; set; }
+        public IDataManager DataManager { get; set; }
 
         private CartPage ReceiptPage { get { return NextPage as CartPage; } }
 
