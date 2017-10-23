@@ -50,6 +50,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UI\ComparePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ComparePage.Designer.cs">
+      <DependentUpon>ComparePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\ItemView.cs">
       <SubType>UserControl</SubType>
     </Compile>
