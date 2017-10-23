@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ComPairSE.UI
 {
-    public partial class ComparePage : Page
+    public partial class ReceiptComparePage : Page
     {
-        public ComparePage()
+        public ReceiptComparePage()
         {
             InitializeComponent();
         }

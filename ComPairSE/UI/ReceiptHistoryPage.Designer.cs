@@ -1,6 +1,6 @@
 ﻿namespace ComPairSE.UI
 {
-    partial class ComparePage
+    partial class ReceiptHistoryPage
     {
         /// <summary> 
         /// Required designer variable.

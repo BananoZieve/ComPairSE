@@ -50,11 +50,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UI\ComparePage.cs">
+    <Compile Include="UI\ReceiptComparePage.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UI\ComparePage.Designer.cs">
-      <DependentUpon>ComparePage.cs</DependentUpon>
+    <Compile Include="UI\ReceiptComparePage.Designer.cs">
+      <DependentUpon>ReceiptComparePage.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ItemView.cs">
       <SubType>UserControl</SubType>
@@ -122,6 +122,12 @@
     </Compile>
     <Compile Include="UI\CartPage.Designer.cs">
       <DependentUpon>CartPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReceiptHistoryPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ReceiptHistoryPage.Designer.cs">
+      <DependentUpon>ReceiptHistoryPage.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\ReceiptPage.cs">
       <SubType>UserControl</SubType>
