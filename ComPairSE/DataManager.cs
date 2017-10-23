@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.VisualBasic;
+using System.Xml.Linq;
 
 namespace ComPairSE
 {
@@ -289,12 +290,20 @@ namespace ComPairSE
                     {
                         if (!word.Equals(""))
                         {
-                            rightValue = Interaction.InputBox(word, "Can you clarify this word?", "Default Value", -1, -1);
+                            XDocument doc = XDocument.Load("ExplainedWords.xml");
 
-                            DataRow systemRow = dtClarifyWords.Rows.Add(
-                                null,
-                                word,
-                                rightValue);
+                            var wordExist = doc.Descendants("ClarifyWords")
+                                .Any(x => (string)x.Element("nameBefore") == word);
+
+                            if (!wordExist)
+                            {
+                                rightValue = Interaction.InputBox(word, "Can you clarify this word?", "Default Value", -1, -1);
+
+                                DataRow systemRow = dtClarifyWords.Rows.Add(
+                                    null,
+                                    word,
+                                    rightValue);
+                            }
                         }
                     }
                 }
