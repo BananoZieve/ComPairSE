@@ -31,12 +31,10 @@
             this.scanPage1 = new ComPairSE.UI.ScanPage();
             this.receiptPage1 = new ComPairSE.UI.ReceiptPage();
             this.homePage1 = new ComPairSE.UI.HomePage();
-            this.btBrowse = new System.Windows.Forms.Button();
-            this.btCreate = new System.Windows.Forms.Button();
-            this.btScan = new System.Windows.Forms.Button();
             this.searchPage1 = new ComPairSE.UI.SearchPage();
             this.cartPage1 = new ComPairSE.UI.CartPage();
-            this.homePage1.SuspendLayout();
+            this.receiptComparePage1 = new ComPairSE.UI.ReceiptComparePage();
+            this.receiptHistoryPage1 = new ComPairSE.UI.ReceiptHistoryPage();
             this.SuspendLayout();
             // 
             // scanPage1
@@ -73,50 +71,18 @@
             // 
             // homePage1
             // 
-            this.homePage1.BrowsePage = null;
-            this.homePage1.Controls.Add(this.btBrowse);
-            this.homePage1.Controls.Add(this.btCreate);
-            this.homePage1.Controls.Add(this.btScan);
             this.homePage1.Location = new System.Drawing.Point(0, 0);
             this.homePage1.MaximumSize = new System.Drawing.Size(225, 400);
             this.homePage1.MinimumSize = new System.Drawing.Size(225, 400);
             this.homePage1.Name = "homePage1";
             this.homePage1.NextText = "Next >";
             this.homePage1.PreviousText = "< Previous";
-            this.homePage1.ScanPage = null;
-            this.homePage1.SearchPage = null;
             this.homePage1.Size = new System.Drawing.Size(225, 400);
             this.homePage1.TabIndex = 0;
             this.homePage1.Text = "homePage1";
-            // 
-            // btBrowse
-            // 
-            this.btBrowse.Location = new System.Drawing.Point(62, 218);
-            this.btBrowse.Name = "btBrowse";
-            this.btBrowse.Size = new System.Drawing.Size(100, 23);
-            this.btBrowse.TabIndex = 3;
-            this.btBrowse.Text = "Browse Receipts";
-            this.btBrowse.UseVisualStyleBackColor = true;
-            // 
-            // btCreate
-            // 
-            this.btCreate.Location = new System.Drawing.Point(62, 189);
-            this.btCreate.Name = "btCreate";
-            this.btCreate.Size = new System.Drawing.Size(100, 23);
-            this.btCreate.TabIndex = 4;
-            this.btCreate.Text = "Create a Receipt";
-            this.btCreate.UseVisualStyleBackColor = true;
-            this.btCreate.Click += new System.EventHandler(this.btCreate_Click);
-            // 
-            // btScan
-            // 
-            this.btScan.Location = new System.Drawing.Point(62, 160);
-            this.btScan.Name = "btScan";
-            this.btScan.Size = new System.Drawing.Size(100, 23);
-            this.btScan.TabIndex = 5;
-            this.btScan.Text = "Scan receipt";
-            this.btScan.UseVisualStyleBackColor = true;
-            this.btScan.Click += new System.EventHandler(this.btScan_Click);
+            this.homePage1.ScanClick += new System.EventHandler(this.homePage1_ScanClick);
+            this.homePage1.SearchClick += new System.EventHandler(this.homePage1_SearchClick);
+            this.homePage1.BrowseClick += new System.EventHandler(this.homePage1_BrowseClick);
             // 
             // searchPage1
             // 
@@ -140,13 +106,42 @@
             this.cartPage1.MaximumSize = new System.Drawing.Size(225, 400);
             this.cartPage1.MinimumSize = new System.Drawing.Size(225, 400);
             this.cartPage1.Name = "cartPage1";
-            this.cartPage1.NextText = "Next >";
+            this.cartPage1.NextPage = this.receiptComparePage1;
+            this.cartPage1.NextText = "Receipts >";
             this.cartPage1.PreviousPage = this.searchPage1;
             this.cartPage1.PreviousText = "< Search";
             this.cartPage1.Size = new System.Drawing.Size(225, 400);
             this.cartPage1.TabIndex = 3;
             this.cartPage1.Text = "cartPage1";
             this.cartPage1.Visible = false;
+            // 
+            // receiptComparePage1
+            // 
+            this.receiptComparePage1.Location = new System.Drawing.Point(0, 0);
+            this.receiptComparePage1.MaximumSize = new System.Drawing.Size(225, 400);
+            this.receiptComparePage1.MinimumSize = new System.Drawing.Size(225, 400);
+            this.receiptComparePage1.Name = "receiptComparePage1";
+            this.receiptComparePage1.NextText = "Next >";
+            this.receiptComparePage1.PreviousPage = this.cartPage1;
+            this.receiptComparePage1.PreviousText = "< Previous";
+            this.receiptComparePage1.Size = new System.Drawing.Size(225, 400);
+            this.receiptComparePage1.TabIndex = 5;
+            this.receiptComparePage1.Text = "receiptComparePage1";
+            this.receiptComparePage1.Visible = false;
+            // 
+            // receiptHistoryPage1
+            // 
+            this.receiptHistoryPage1.Location = new System.Drawing.Point(0, 0);
+            this.receiptHistoryPage1.MaximumSize = new System.Drawing.Size(225, 400);
+            this.receiptHistoryPage1.MinimumSize = new System.Drawing.Size(225, 400);
+            this.receiptHistoryPage1.Name = "receiptHistoryPage1";
+            this.receiptHistoryPage1.NextText = "Next >";
+            this.receiptHistoryPage1.PreviousPage = this.homePage1;
+            this.receiptHistoryPage1.PreviousText = "< Home";
+            this.receiptHistoryPage1.Size = new System.Drawing.Size(225, 400);
+            this.receiptHistoryPage1.TabIndex = 4;
+            this.receiptHistoryPage1.Text = "receiptHistoryPage1";
+            this.receiptHistoryPage1.Visible = false;
             // 
             // MainForm2
             // 
@@ -158,13 +153,14 @@
             this.Controls.Add(this.searchPage1);
             this.Controls.Add(this.scanPage1);
             this.Controls.Add(this.receiptPage1);
+            this.Controls.Add(this.receiptHistoryPage1);
+            this.Controls.Add(this.receiptComparePage1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm2";
             this.Text = "MainForm2";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm2_FormClosing);
-            this.homePage1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -175,8 +171,7 @@
         private UI.CartPage cartPage1;
         private UI.HomePage homePage1;
         private UI.ReceiptPage receiptPage1;
-        private System.Windows.Forms.Button btBrowse;
-        private System.Windows.Forms.Button btCreate;
-        private System.Windows.Forms.Button btScan;
+        private UI.ReceiptHistoryPage receiptHistoryPage1;
+        private UI.ReceiptComparePage receiptComparePage1;
     }
 }

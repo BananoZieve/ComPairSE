@@ -11,33 +11,30 @@ using System.ComponentModel.Design;
 
 namespace ComPairSE.UI
 {
-    [Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
+    //[Designer("System.Windows.Forms.Design.ParentControlDesigner, System.Design", typeof(IDesigner))]
     public partial class HomePage : Page
     {
         public HomePage()
         {
             InitializeComponent();
         }
-        
-        public ScanPage ScanPage { get; set; }
 
-        public SearchPage SearchPage { get; set; }
-
-        public Page BrowsePage { get; set; }
-
-        private void btScan_Click(object sender, EventArgs e)
+        public event EventHandler ScanClick
         {
-            if (ScanPage != null) { ScanPage.Visible = true; this.Visible = false; }
+            add { btScan.Click += value; }
+            remove { btScan.Click -= value; }
         }
 
-        private void btCreate_Click(object sender, EventArgs e)
+        public event EventHandler SearchClick
         {
-            if (SearchPage != null) { SearchPage.Visible = true; this.Visible = false; }
+            add { btCreate.Click += value; }
+            remove { btCreate.Click -= value; }
         }
 
-        private void btBrowse_Click(object sender, EventArgs e)
+        public event EventHandler BrowseClick
         {
-            if (BrowsePage != null) { BrowsePage.Visible = true; this.Visible = false; }
+            add { btBrowse.Click += value; }
+            remove { btBrowse.Click -= value; }
         }
     }
 }
