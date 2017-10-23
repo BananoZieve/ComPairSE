@@ -86,7 +86,7 @@ namespace ComPairSE
             for (int i = 0; i < prices.Length; i++)
                 prices[i] = row[i + 2] != DBNull.Value ? (int)row[i + 2] : 0;
 
-            return new Item(id, name, prices);
+            return new Item(name, prices, id: id);
         }
 
         public void CreateDataTables()

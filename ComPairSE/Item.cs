@@ -19,7 +19,7 @@ namespace ComPairSE
             Prices[(int)shop] = price;
         }
 
-        public Item(int id, string name, int[] prices)
+        public Item(string name, int[] prices, int id = 0)
         {
             Id = id;
             Name = name;
