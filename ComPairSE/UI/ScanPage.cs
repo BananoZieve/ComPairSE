@@ -18,6 +18,8 @@ namespace ComPairSE.UI
             InitializeComponent();
         }
 
+        public IDataManager DataManager { get; set; }
+
         [Browsable(true)]
         public OpenFileDialog OpenFileDialog
         {
@@ -30,7 +32,10 @@ namespace ComPairSE.UI
             if (tbFile.Text != string.Empty)
             {
                 ReceiptPage receiptPage = NextPage as ReceiptPage;
-                receiptPage.Receipt = Receipt.Create(File.ReadAllText(tbFile.Text));
+                Receipt receipt = Receipt.Create(File.ReadAllText(tbFile.Text));
+                receiptPage.Receipt = receipt;
+                foreach (Item item in receipt.Items)
+                    DataManager.AddItem(item);
                 base.OnNextButtonClick(e);
             }
 #if DEBUG
