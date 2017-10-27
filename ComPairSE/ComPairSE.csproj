@@ -53,6 +53,42 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm2.Designer.cs">
+      <DependentUpon>MainForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shop.cs" />
+    <Compile Include="UI\ReceiptComparePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ReceiptComparePage.Designer.cs">
+      <DependentUpon>ReceiptComparePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ItemView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ItemView.Designer.cs">
+      <DependentUpon>ItemView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\HomePage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\HomePage.Designer.cs">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\Page.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\Page.Designer.cs">
+      <DependentUpon>Page.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="HistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,9 +126,52 @@
     <Compile Include="SearchByTagForm.Designer.cs">
       <DependentUpon>SearchByTagForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="UI\CartPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\CartPage.Designer.cs">
+      <DependentUpon>CartPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReceiptHistoryPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ReceiptHistoryPage.Designer.cs">
+      <DependentUpon>ReceiptHistoryPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReceiptPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ReceiptPage.Designer.cs">
+      <DependentUpon>ReceiptPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ReceiptView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ReceiptView.Designer.cs">
+      <DependentUpon>ReceiptView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\ScanPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\ScanPage.Designer.cs">
+      <DependentUpon>ScanPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\SearchPage.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UI\SearchPage.Designer.cs">
+      <DependentUpon>SearchPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Util.cs" />
     <EmbeddedResource Include="FoundItemsByTagForm.resx">
       <DependentUpon>FoundItemsByTagForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm2.resx">
+      <DependentUpon>MainForm2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ItemView.resx">
+      <DependentUpon>ItemView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="HistoryForm.resx">
       <DependentUpon>HistoryForm.cs</DependentUpon>
@@ -100,24 +179,39 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UI\HomePage.resx">
+      <DependentUpon>HomePage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\Page.resx">
+      <DependentUpon>Page.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="ReceiptForm.resx">
       <DependentUpon>ReceiptForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchByTagForm.resx">
       <DependentUpon>SearchByTagForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
+    <EmbeddedResource Include="UI\CartPage.resx">
+      <DependentUpon>CartPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReceiptPage.resx">
+      <DependentUpon>ReceiptPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ReceiptView.resx">
+      <DependentUpon>ReceiptView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\ScanPage.resx">
+      <DependentUpon>ScanPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UI\SearchPage.resx">
+      <DependentUpon>SearchPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -132,6 +226,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\plus32.png" />
+    <None Include="Resources\ex32.png" />
+    <None Include="Resources\ex16.png" />
+    <None Include="Resources\plus16.png" />
+    <None Include="Resources\search16.png" />
+    <None Include="Resources\search32.png" />
     <Content Include="x64\liblept172.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

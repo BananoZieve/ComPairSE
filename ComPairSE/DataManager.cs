@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.VisualBasic;
+using ComPairSE.Properties;
 using System.Xml.Linq;
 
 namespace ComPairSE
@@ -24,9 +25,10 @@ namespace ComPairSE
 
     public class DataManager : IDataManager
     {
-        private DataTable productsTable;
-        private DataTable tagsTable;
-        private DataTable unionTable;
+        protected DataTable productsTable;
+        protected DataTable tagsTable;
+        protected DataTable unionTable;
+        private DataSet dataSet = new DataSet();
         private DataTable dtClarifyWords;
         private DataTable receiptsTable;
         private DataSet dataSetReceipts = new DataSet();
@@ -39,23 +41,29 @@ namespace ComPairSE
             List<Item> ret = new List<Item>();
 
             // get tag ids
-            tags = tags.Distinct().ToArray();
-            foreach (string tag in tags)
+            if (tags != null)
             {
-                DataRow row = tagsTable.Rows.Find(tag);
-                if (row != null)
-                    tagIds.Add((int)row["tagId"]);
+                tags = tags.Distinct().ToArray();
+                foreach (string tag in tags)
+                {
+                    DataRow row = tagsTable.Rows.Find(tag);
+                    if (row != null)
+                        tagIds.Add((int)row["tagId"]);
+                }
             }
 
             // get item ids
-            foreach (DataRow row in unionTable.Rows)
+            if (tagIds.Count > 0)
             {
-                foreach(int id in tagIds)
+                foreach (DataRow row in unionTable.Rows)
                 {
-                    if ((int)row["tagId"] == id)
+                    foreach (int id in tagIds)
                     {
-                        itemIds.Add((int)row["itemId"]);
-                        break;
+                        if ((int)row["tagId"] == id)
+                        {
+                            itemIds.Add((int)row["itemId"]);
+                            break;
+                        }
                     }
                 }
             }
@@ -76,11 +84,6 @@ namespace ComPairSE
             return ret;
         }
 
-        public List<string> GetItemsStrTest(string[] tags)
-        {
-            return GetItems(tags).Select(i => i.Name).ToList();
-        }
-
         private Item RowToItem(DataRow row)
         {
             int id = (int)row["itemId"];
@@ -89,39 +92,7 @@ namespace ComPairSE
             for (int i = 0; i < prices.Length; i++)
                 prices[i] = row[i + 2] != DBNull.Value ? (int)row[i + 2] : 0;
 
-            return new Item(id, name, prices);
-        }
-
-        public void InitTestTables()
-        {
-            if (productsTable == null || tagsTable == null || unionTable == null)
-                CreateDataTables();
-
-            // HARD-CODE
-            productsTable.Rows.Add(null, "Dvaro Pienas 1l", 1, 3, 10, 52);
-            productsTable.Rows.Add(null, "Rokiskio Pienas 2l", 1, 3, 10, 52);
-            productsTable.Rows.Add(null, "Bandele su varske", 1, 3, 10, 52);
-            productsTable.Rows.Add(null, "Bandele su cinamonu", 1, 3, 10, 52);
-            productsTable.Rows.Add(null, "Dvaro grietine", 1, 3, 10, 52);
-
-            tagsTable.Rows.Add(null, "Dvaro");
-            tagsTable.Rows.Add(null, "Pienas");
-            tagsTable.Rows.Add(null, "Rokiskio");
-            tagsTable.Rows.Add(null, "Bandele");
-            tagsTable.Rows.Add(null, "su varske");
-            tagsTable.Rows.Add(null, "su cinamonu");
-            tagsTable.Rows.Add(null, "grietine");
-            
-            unionTable.Rows.Add(1, 1);
-            unionTable.Rows.Add(1, 2);
-            unionTable.Rows.Add(2, 2);
-            unionTable.Rows.Add(2, 3);
-            unionTable.Rows.Add(3, 4);
-            unionTable.Rows.Add(3, 5);
-            unionTable.Rows.Add(4, 4);
-            unionTable.Rows.Add(4, 6);
-            unionTable.Rows.Add(5, 1);
-            unionTable.Rows.Add(5, 7);
+            return new Item(name, prices, id: id);
         }
 
         public void CreateDataTables()
@@ -129,7 +100,7 @@ namespace ComPairSE
             productsTable = new DataTable("Items");
             productsTable.Columns.Add("itemId", typeof(int));
             productsTable.Columns.Add("name", typeof(string));
-            foreach (string shop in Enum.GetNames(typeof(Shop)))
+            foreach (string shop in Enum.GetNames(typeof(ShopEnum)))
                 productsTable.Columns.Add("price" + shop, typeof(int));
 
             tagsTable = new DataTable("Tags");
@@ -186,14 +157,14 @@ namespace ComPairSE
             List<Item> found = GetItems(item.Tags);
             if (!found.Contains(item))
             {
-               //  add new entry to database
+                // add new entry to database
                 DataRow itemRow = productsTable.Rows.Add(
                     null,
                     item.Name,
-                    item.Prices[(int)Shop.Maxima],
-                    item.Prices[(int)Shop.Norfa],
-                    item.Prices[(int)Shop.Rimi],
-                    item.Prices[(int)Shop.Iki]);
+                    item.Prices[(int)ShopEnum.Maxima],
+                    item.Prices[(int)ShopEnum.Norfa],
+                    item.Prices[(int)ShopEnum.Rimi],
+                    item.Prices[(int)ShopEnum.Iki]);
 
                 int itemId = (int)itemRow["itemId"];
 
@@ -207,7 +178,7 @@ namespace ComPairSE
                 }
             }
             else
-           {
+            {
                 // update existing entry
                 DataRow itemRow = productsTable.Rows.Find(found[0].Id);
                 int i = 2;
@@ -223,56 +194,57 @@ namespace ComPairSE
             DataRow itemRow = receiptsTable.Rows.Add(
                 null,
                 receipt.PurchaseTime,
-                receipt.Shop,
-                receipt.TotalPrice,
+                receipt.ShopEnum,
+                receipt.Total,
                 Util.ObjToString(receipt.Items));
         }
 
         public List<Receipt> GetReceipts(DateTime date)
         {
-                IEnumerable <Receipt> currentDayReceipts = from row in receiptsTable.AsEnumerable()
-                                  where ((DateTime)row["date"]).Date == date
-                                  select new Receipt((Shop)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
+            IEnumerable<Receipt> currentDayReceipts = from row in receiptsTable.AsEnumerable()
+                                                      where ((DateTime)row["date"]).Date == date
+                                                      select Receipt.Create((ShopEnum)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
             return currentDayReceipts.Cast<Receipt>().ToList<Receipt>();
         }
 
         public List<Receipt> GetReceipts()
         {
             IEnumerable<Receipt> allReceipts = from row in receiptsTable.AsEnumerable()
-                                               select new Receipt((Shop)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
+                                               select Receipt.Create((ShopEnum)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
 
             return allReceipts.Cast<Receipt>().ToList<Receipt>();
         }
 
-        public void LoadData()
+        public virtual void LoadData()
         {
-            try
+            if (
+                File.Exists(Resources.ItemsTableFile) &&
+                File.Exists(Resources.TagsTableFile) &&
+                File.Exists(Resources.ItemsTagsTableFile)
+                )
             {
                 productsTable = new DataTable();
                 tagsTable = new DataTable();
                 unionTable = new DataTable();
                 dtClarifyWords = new DataTable();
-                receiptsTable = new DataTable();
-                productsTable.ReadXml("Items.xml");
-                tagsTable.ReadXml("Tags.xml");
-                unionTable.ReadXml("ItemsTags.xml");
-                dtClarifyWords.ReadXml("ExplainedWords.xml");
-                receiptsTable.ReadXml("Receipts.xml");
+                productsTable.ReadXml(Resources.ItemsTableFile);
+                tagsTable.ReadXml(Resources.TagsTableFile);
+                unionTable.ReadXml(Resources.ItemsTagsTableFile);
+                //dtClarifyWords.ReadXml("ExplainedWords.xml");
             }
-            catch (FileNotFoundException)
-            {                
+            else
+            {
                 CreateDataTables();
                 InitDataTables();
             }
         }
 
-        public void SaveData()
+        public virtual void SaveData()
         {
-            productsTable.WriteXml("Items.xml", XmlWriteMode.WriteSchema);
-            tagsTable.WriteXml("Tags.xml", XmlWriteMode.WriteSchema);
-            unionTable.WriteXml("ItemsTags.xml", XmlWriteMode.WriteSchema);
-            dtClarifyWords.WriteXml("ExplainedWords.xml", XmlWriteMode.WriteSchema);
-            receiptsTable.WriteXml("Receipts.xml", XmlWriteMode.WriteSchema);
+            productsTable.WriteXml(Resources.ItemsTableFile, XmlWriteMode.WriteSchema);
+            tagsTable.WriteXml(Resources.TagsTableFile, XmlWriteMode.WriteSchema);
+            unionTable.WriteXml(Resources.ItemsTagsTableFile, XmlWriteMode.WriteSchema);
+            //dtClarifyWords.WriteXml("ExplainedWords.xml", XmlWriteMode.WriteSchema);
         }
 
         //Clarification system for words with dot 
@@ -309,6 +281,49 @@ namespace ComPairSE
                 }
             }
         }
+    }
 
+    public class DemoDataManager : DataManager
+    {
+        public override void LoadData()
+        {
+            CreateDataTables();
+            InitDataTables();
+            InitTestTables();
+        }
+
+        public override void SaveData()
+        {
+            // Saving disabled
+        }
+
+        private void InitTestTables()
+        {
+            // HARD-CODE
+            productsTable.Rows.Add(null, "Dvaro Pienas 1l", 1, 3, 10, 52);
+            productsTable.Rows.Add(null, "Rokiskio Pienas 2l", 1, 3, 10, 52);
+            productsTable.Rows.Add(null, "Bandele su varske", 1, 3, 10, 52);
+            productsTable.Rows.Add(null, "Bandele su cinamonu", 1, 3, 10, 52);
+            productsTable.Rows.Add(null, "Dvaro grietine", 1, 3, 10, 52);
+
+            tagsTable.Rows.Add(null, "Dvaro");
+            tagsTable.Rows.Add(null, "Pienas");
+            tagsTable.Rows.Add(null, "Rokiskio");
+            tagsTable.Rows.Add(null, "Bandele");
+            tagsTable.Rows.Add(null, "su varske");
+            tagsTable.Rows.Add(null, "su cinamonu");
+            tagsTable.Rows.Add(null, "grietine");
+
+            unionTable.Rows.Add(1, 1);
+            unionTable.Rows.Add(1, 2);
+            unionTable.Rows.Add(2, 2);
+            unionTable.Rows.Add(2, 3);
+            unionTable.Rows.Add(3, 4);
+            unionTable.Rows.Add(3, 5);
+            unionTable.Rows.Add(4, 4);
+            unionTable.Rows.Add(4, 6);
+            unionTable.Rows.Add(5, 1);
+            unionTable.Rows.Add(5, 7);
+        }
     }
 }

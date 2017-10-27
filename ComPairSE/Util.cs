@@ -9,9 +9,14 @@ namespace ComPairSE
 {
     public static class Util
     {
-        public static decimal ToDecimal(this int arg)
+        public static decimal ToPrice(this int arg)
         {
             return arg / 100m;
+        }
+
+        public static string RemoveDecimalMark(this string arg)
+        {
+            return arg.Replace(",", "").Replace(".", "");
         }
 
         public static string ObjToString(Object obj)

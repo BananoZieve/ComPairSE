@@ -17,7 +17,7 @@ namespace ComPairSE
         IDataManager DataManager;
         TesseractOCR Tesseract;
 
-        public MainForm()
+        public MainForm(IDataManager dataManager)
         {
             InitializeComponent();
             rbFile.Tag = btBrowse;
@@ -37,7 +37,7 @@ namespace ComPairSE
            // this.Width -= this.ClientRectangle.Width - 2 * tbInput.Left - tbInput.Width;
             this.MinimumSize = this.Size; 
             this.MaximumSize = new Size(this.Width, 1080);
-            DataManager = new DataManager();
+            DataManager = dataManager;
             Tesseract = new TesseractOCR();
         }
 
@@ -46,8 +46,8 @@ namespace ComPairSE
             Random rnd = new Random();
             List<Item> list = new List<Item>();
             for (int i = 1; i <= rnd.Next(12,25); i++)
-                list.Add(new Item(i.ToString(), rnd.Next(20)*100 + rnd.Next(2)*50 + 49, Shop.Maxima));
-            Receipt receipt = Receipt.Create(Shop.Maxima, list);
+                list.Add(new Item(i.ToString(), rnd.Next(20)*100 + rnd.Next(2)*50 + 49, ShopEnum.Maxima));
+            Receipt receipt = Receipt.Create(ShopEnum.Maxima, list);
             ReceiptForm receiptForm = new ReceiptForm(receipt);
             receiptForm.Show();
         }
@@ -66,8 +66,9 @@ namespace ComPairSE
                 switch (openFileDialog.FilterIndex)
                 {
                     case 1:
-                        data = File.ReadAllText(tbFile.Text);
-                        break;
+                        data = File.ReadAllText(tbFile.Text); break;
+                    case 2:
+                        data = Tesseract.GetText(tbFile.Text); break;
                     default:
                         break;
                 }
@@ -79,7 +80,7 @@ namespace ComPairSE
                 foreach (Item item in receipt.Items)
                 {
                     DataManager.AddItem(item);
-                    DataManager.ClarificationSystem(item);
+                    //DataManager.ClarificationSystem(item);
                 }
 
             DataManager.AddReceipt(receipt);                  
@@ -88,14 +89,14 @@ namespace ComPairSE
 
         private void button_SearchItemsByTag_Click(object sender, EventArgs e)
         {
-            Receipt receipt = Receipt.Create(tbInput.Text);
+            //Receipt receipt = Receipt.Create(tbInput.Text);
             SearchByTagForm searchByTagForm = new SearchByTagForm();
             searchByTagForm.Show();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            DataManager.LoadData();
+            //DataManager.LoadData();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
