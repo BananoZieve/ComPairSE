@@ -41,7 +41,7 @@ namespace ComPairSE
             {
                 foreach (Receipt receipt in receipts)
                 {
-                    this.listView1.Items.Add(new ListViewItem(new[] { receipt.PurchaseTime.ToString(), Util.ToDecimal(receipt.TotalPrice).ToString("C2"), receipt.Shop.ToString() }));
+                    this.listView1.Items.Add(new ListViewItem(new[] { receipt.PurchaseTime.ToString(), Util.ToPrice(receipt.Total).ToString("C2"), receipt.ShopEnum.ToString() }));
                 }
                 info.Visible = true;
             }
@@ -71,7 +71,7 @@ namespace ComPairSE
             {
                 foreach (Receipt receipt in receipts)
                 {
-                    this.listView1.Items.Add(new ListViewItem(new[] { receipt.PurchaseTime.ToString(), Util.ToDecimal(receipt.TotalPrice).ToString("C2"), receipt.Shop.ToString() }));
+                    this.listView1.Items.Add(new ListViewItem(new[] { receipt.PurchaseTime.ToString(), Util.ToPrice(receipt.Total).ToString("C2"), receipt.ShopEnum.ToString() }));
                 }
                 info.Visible = true;
             }

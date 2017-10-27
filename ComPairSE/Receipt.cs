@@ -58,6 +58,16 @@ namespace ComPairSE
             return new Receipt(shop, items);
         }
 
+        public static Receipt Create(ShopEnum shop, List<Item> items, DateTime dateTime)
+        {
+            return new Receipt(shop, items, dateTime);
+        }
+
+        public static Receipt Create(ShopEnum shop, List<Item> items, DateTime dateTime, int total)
+        {
+            return new Receipt(shop, items, dateTime, total);
+        }
+
         public int CompareTo(object obj)
         {
             if (obj != null && !(obj is Receipt))
@@ -109,6 +119,16 @@ namespace ComPairSE
             Items = items;
             Total = Items.Sum(item => item.Prices[(int)ShopEnum]); // slower than foreach
             PurchaseTime = DateTime.Now;
+        }
+
+        private Receipt(ShopEnum shop, List<Item> items, DateTime dateTime) : this(shop, items)
+        {
+            PurchaseTime = dateTime;
+        }
+
+        private Receipt(ShopEnum shop, List<Item> items, DateTime dateTime, int total) : this(shop, items, dateTime)
+        {
+            Total = total;
         }
 
         public readonly ShopEnum ShopEnum;

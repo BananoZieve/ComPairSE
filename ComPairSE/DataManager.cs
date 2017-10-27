@@ -194,23 +194,23 @@ namespace ComPairSE
             DataRow itemRow = receiptsTable.Rows.Add(
                 null,
                 receipt.PurchaseTime,
-                receipt.Shop,
-                receipt.TotalPrice,
+                receipt.ShopEnum,
+                receipt.Total,
                 Util.ObjToString(receipt.Items));
         }
 
         public List<Receipt> GetReceipts(DateTime date)
         {
-                IEnumerable <Receipt> currentDayReceipts = from row in receiptsTable.AsEnumerable()
-                                  where ((DateTime)row["date"]).Date == date
-                                  select new Receipt((Shop)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
+            IEnumerable<Receipt> currentDayReceipts = from row in receiptsTable.AsEnumerable()
+                                                      where ((DateTime)row["date"]).Date == date
+                                                      select Receipt.Create((ShopEnum)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
             return currentDayReceipts.Cast<Receipt>().ToList<Receipt>();
         }
 
         public List<Receipt> GetReceipts()
         {
             IEnumerable<Receipt> allReceipts = from row in receiptsTable.AsEnumerable()
-                                               select new Receipt((Shop)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
+                                               select Receipt.Create((ShopEnum)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
 
             return allReceipts.Cast<Receipt>().ToList<Receipt>();
         }
@@ -271,10 +271,11 @@ namespace ComPairSE
                             {
                                 rightValue = Interaction.InputBox(word, "Can you clarify this word?", "Default Value", -1, -1);
 
-                            DataRow systemRow = dtClarifyWords.Rows.Add(
-                                null,
-                                word,
-                                rightValue);
+                                DataRow systemRow = dtClarifyWords.Rows.Add(
+                                    null,
+                                    word,
+                                    rightValue);
+                            }
                         }
                     }
                 }

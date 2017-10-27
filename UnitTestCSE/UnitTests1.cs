@@ -75,18 +75,17 @@ namespace UnitTestCSE
     [TestClass]
     public class ReceiptHistoryTests
     {
-        private DataManager DataManager = new DataManager();
+        private IDataManager DataManager = new DemoDataManager();
 
         private System.Collections.Generic.List<Receipt> CreateReceipts()
         {
-            DataManager.CreateDataTables();
-            DataManager.InitDataTables();
+            DataManager.LoadData();
 
-            System.Collections.Generic.List<Item> itemList = new System.Collections.Generic.List<Item>() { new Item("Pienas", 80, Shop.Norfa, new string[]{ "Pienas", "Dvaro", "Riebus" }) };
+            System.Collections.Generic.List<Item> itemList = new System.Collections.Generic.List<Item>() { new Item("Pienas", 80, ShopEnum.Norfa) };
             System.Collections.Generic.List<Receipt> receiptList = new System.Collections.Generic.List<Receipt>()
             {
-            Receipt.Create(Shop.Norfa, itemList),
-            new Receipt(Shop.Norfa, itemList, new DateTime(2000, 10, 10), 80)
+            Receipt.Create(ShopEnum.Norfa, itemList),
+            Receipt.Create(ShopEnum.Norfa, itemList, new DateTime(2000, 10, 10), 80)
             };
 
             return receiptList;
