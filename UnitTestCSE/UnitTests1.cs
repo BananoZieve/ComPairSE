@@ -71,4 +71,45 @@ namespace UnitTestCSE
             Assert.AreEqual(ShopEnum.Iki, receiptList[3].ShopEnum);
         }
     }
+
+    [TestClass]
+    public class ReceiptHistoryTests
+    {
+        private DataManager DataManager = new DataManager();
+
+        private System.Collections.Generic.List<Receipt> CreateReceipts()
+        {
+            DataManager.CreateDataTables();
+            DataManager.InitDataTables();
+
+            System.Collections.Generic.List<Item> itemList = new System.Collections.Generic.List<Item>() { new Item("Pienas", 80, Shop.Norfa, new string[]{ "Pienas", "Dvaro", "Riebus" }) };
+            System.Collections.Generic.List<Receipt> receiptList = new System.Collections.Generic.List<Receipt>()
+            {
+            Receipt.Create(Shop.Norfa, itemList),
+            new Receipt(Shop.Norfa, itemList, new DateTime(2000, 10, 10), 80)
+            };
+
+            return receiptList;
+    }
+
+
+
+        [TestMethod]
+        public void GetReceipts()
+        {
+            System.Collections.Generic.List<Receipt> receiptList = CreateReceipts();
+            DataManager.AddReceipt(receiptList[0]);
+            Assert.IsNotNull(DataManager.GetReceipts());
+        }
+
+        [TestMethod]
+        public void GetReceiptsByDate()
+        {
+            System.Collections.Generic.List<Receipt> receiptList = CreateReceipts();
+            DataManager.AddReceipt(receiptList[0]);
+            Assert.IsNotNull(DataManager.GetReceipts(DateTime.Now));
+            Assert.IsNotNull(DataManager.GetReceipts(new DateTime(2000,10,10)));
+        }
+
+    }
 }

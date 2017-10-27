@@ -32,11 +32,11 @@ namespace ComPairSE
             else return this.Name.Equals(other.Name);
         }
 
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
-        public int[] Prices { get; private set; } // in Euro cents
+        public int[] Prices { get; set; } // in Euro cents
 
         private string[] tags;
         public string[] Tags

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.VisualBasic;
 using ComPairSE.Properties;
+using System.Xml.Linq;
 
 namespace ComPairSE
 {
@@ -17,6 +18,8 @@ namespace ComPairSE
         void AddItem(Item product);
         List<Item> GetItems(params string[] tags);
         void AddReceipt(Receipt receipt);
+        List<Receipt> GetReceipts(DateTime date);
+        List<Receipt> GetReceipts();
         void ClarificationSystem(Item item);
     }
 
@@ -27,6 +30,9 @@ namespace ComPairSE
         protected DataTable unionTable;
         private DataSet dataSet = new DataSet();
         private DataTable dtClarifyWords;
+        private DataTable receiptsTable;
+        private DataSet dataSetReceipts = new DataSet();
+
 
         public List<Item> GetItems(params string[] tags)
         {
@@ -109,6 +115,14 @@ namespace ComPairSE
             dtClarifyWords.Columns.Add("ID", typeof(int));
             dtClarifyWords.Columns.Add("nameBefore", typeof(string));
             dtClarifyWords.Columns.Add("nameAfter", typeof(string));
+
+            receiptsTable = new DataTable("Receipts");
+            receiptsTable.Columns.Add("receiptID", typeof(int));
+            receiptsTable.Columns.Add("date", typeof(DateTime));
+            receiptsTable.Columns.Add("shop", typeof(Shop));
+            receiptsTable.Columns.Add("price", typeof(int));
+            receiptsTable.Columns.Add("items", typeof(string));
+
         }
 
         public void InitDataTables()
@@ -130,6 +144,12 @@ namespace ComPairSE
             columnClarifyId.AutoIncrementSeed = 1;
             columnClarifyId.AutoIncrementStep = 1;
             dtClarifyWords.PrimaryKey = new DataColumn[] { columnClarifyId };
+
+            DataColumn columnReceiptId = receiptsTable.Columns["receiptID"];
+            columnReceiptId.AutoIncrement = true;
+            columnReceiptId.AutoIncrementSeed = 1;
+            columnReceiptId.AutoIncrementStep = 1;
+            receiptsTable.PrimaryKey = new DataColumn[] { columnReceiptId };
         }
 
         public void AddItem(Item item)
@@ -171,7 +191,28 @@ namespace ComPairSE
 
         public void AddReceipt(Receipt receipt)
         {
-            throw new NotImplementedException();
+            DataRow itemRow = receiptsTable.Rows.Add(
+                null,
+                receipt.PurchaseTime,
+                receipt.Shop,
+                receipt.TotalPrice,
+                Util.ObjToString(receipt.Items));
+        }
+
+        public List<Receipt> GetReceipts(DateTime date)
+        {
+                IEnumerable <Receipt> currentDayReceipts = from row in receiptsTable.AsEnumerable()
+                                  where ((DateTime)row["date"]).Date == date
+                                  select new Receipt((Shop)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
+            return currentDayReceipts.Cast<Receipt>().ToList<Receipt>();
+        }
+
+        public List<Receipt> GetReceipts()
+        {
+            IEnumerable<Receipt> allReceipts = from row in receiptsTable.AsEnumerable()
+                                               select new Receipt((Shop)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
+
+            return allReceipts.Cast<Receipt>().ToList<Receipt>();
         }
 
         public virtual void LoadData()
@@ -221,7 +262,14 @@ namespace ComPairSE
                     {
                         if (!word.Equals(""))
                         {
-                            rightValue = Interaction.InputBox(word, "Can you clarify this word?", "Default Value", -1, -1);
+                            XDocument doc = XDocument.Load("ExplainedWords.xml");
+
+                            var wordExist = doc.Descendants("ClarifyWords")
+                                .Any(x => (string)x.Element("nameBefore") == word);
+
+                            if (!wordExist)
+                            {
+                                rightValue = Interaction.InputBox(word, "Can you clarify this word?", "Default Value", -1, -1);
 
                             DataRow systemRow = dtClarifyWords.Rows.Add(
                                 null,

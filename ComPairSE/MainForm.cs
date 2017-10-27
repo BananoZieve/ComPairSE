@@ -34,8 +34,8 @@ namespace ComPairSE
             openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 #endif
             
-            this.Width -= this.ClientRectangle.Width - 2 * tbInput.Left - tbInput.Width;
-            this.MinimumSize = this.Size;
+           // this.Width -= this.ClientRectangle.Width - 2 * tbInput.Left - tbInput.Width;
+            this.MinimumSize = this.Size; 
             this.MaximumSize = new Size(this.Width, 1080);
             DataManager = dataManager;
             Tesseract = new TesseractOCR();
@@ -82,7 +82,8 @@ namespace ComPairSE
                     DataManager.AddItem(item);
                     //DataManager.ClarificationSystem(item);
                 }
-                   
+
+            DataManager.AddReceipt(receipt);                  
             receiptForm.Show();
         }
 
@@ -127,6 +128,14 @@ namespace ComPairSE
                 if (ctrl != null)
                     ctrl.Enabled = rb.Checked;
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+            this.Visible = false;
+            HistoryForm form = new HistoryForm(this, DataManager);
+            form.Show();
         }
     }
 }
