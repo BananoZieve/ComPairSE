@@ -75,7 +75,7 @@
             this.DatePicker.Name = "DatePicker";
             this.DatePicker.Size = new System.Drawing.Size(119, 22);
             this.DatePicker.TabIndex = 3;
-            this.DatePicker.Value = new System.DateTime(2017, 10, 14, 16, 51, 57, 0);
+            this.DatePicker.Value = new System.DateTime(2017, 10, 28, 0, 0, 0, 0);
             this.DatePicker.Visible = false;
             // 
             // ShowHistory
