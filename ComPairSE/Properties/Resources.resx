@@ -145,4 +145,7 @@
   <data name="TagsTableFile" xml:space="preserve">
     <value>Tags.xml</value>
   </data>
+  <data name="ReceiptsTableFile" xml:space="preserve">
+    <value>Receipts.xml</value>
+  </data>
 </root>

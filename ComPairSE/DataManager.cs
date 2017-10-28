@@ -119,7 +119,7 @@ namespace ComPairSE
             receiptsTable = new DataTable("Receipts");
             receiptsTable.Columns.Add("receiptID", typeof(int));
             receiptsTable.Columns.Add("date", typeof(DateTime));
-            receiptsTable.Columns.Add("shop", typeof(Shop));
+            receiptsTable.Columns.Add("shop", typeof(ShopEnum));
             receiptsTable.Columns.Add("price", typeof(int));
             receiptsTable.Columns.Add("items", typeof(string));
 
@@ -220,16 +220,19 @@ namespace ComPairSE
             if (
                 File.Exists(Resources.ItemsTableFile) &&
                 File.Exists(Resources.TagsTableFile) &&
-                File.Exists(Resources.ItemsTagsTableFile)
+                File.Exists(Resources.ItemsTagsTableFile) &&
+                File.Exists(Resources.ReceiptsTableFile)
                 )
             {
                 productsTable = new DataTable();
                 tagsTable = new DataTable();
                 unionTable = new DataTable();
                 dtClarifyWords = new DataTable();
+                receiptsTable = new DataTable();
                 productsTable.ReadXml(Resources.ItemsTableFile);
                 tagsTable.ReadXml(Resources.TagsTableFile);
                 unionTable.ReadXml(Resources.ItemsTagsTableFile);
+                receiptsTable.ReadXml(Resources.ReceiptsTableFile);
                 //dtClarifyWords.ReadXml("ExplainedWords.xml");
             }
             else
@@ -244,6 +247,7 @@ namespace ComPairSE
             productsTable.WriteXml(Resources.ItemsTableFile, XmlWriteMode.WriteSchema);
             tagsTable.WriteXml(Resources.TagsTableFile, XmlWriteMode.WriteSchema);
             unionTable.WriteXml(Resources.ItemsTagsTableFile, XmlWriteMode.WriteSchema);
+            receiptsTable.WriteXml(Resources.ReceiptsTableFile, XmlWriteMode.WriteSchema);
             //dtClarifyWords.WriteXml("ExplainedWords.xml", XmlWriteMode.WriteSchema);
         }
 

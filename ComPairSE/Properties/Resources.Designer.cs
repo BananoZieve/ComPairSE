@@ -119,6 +119,15 @@ namespace ComPairSE.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Receipts.xml.
+        /// </summary>
+        internal static string ReceiptsTableFile {
+            get {
+                return ResourceManager.GetString("ReceiptsTableFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap search16 {
