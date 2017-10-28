@@ -8,15 +8,19 @@ using Tesseract;
 
 namespace ComPairSE
 {
-    class TesseractOCR
+    public interface IOCR
     {
-        public string GetText(string picture)
+        string GetText(Bitmap bmp);
+    }
+
+    class TesseractOCR : IOCR
+    {
+        public string GetText(Bitmap bmp)
         {
-            Bitmap myBmp = (Bitmap)Image.FromFile(picture);
             var ocrtext = string.Empty;
             using (var engine = new TesseractEngine(@"../../tessdata", "lit", EngineMode.Default))
             {
-                using (var img = PixConverter.ToPix(myBmp))
+                using (var img = PixConverter.ToPix(bmp))
                 {
                     using (var page = engine.Process(img))
                     {
@@ -27,5 +31,6 @@ namespace ComPairSE
 
             return ocrtext;
         }
+
     }
 }
