@@ -20,6 +20,7 @@ namespace ComPairSE
         {
             InitializeComponent();
             this.DataManager = DataManager;
+            this.DatePicker.Value = DateTime.Now;
             this.MainForm = MainForm;
             InitListView();
         }
