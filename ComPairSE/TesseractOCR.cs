@@ -20,7 +20,7 @@ namespace ComPairSE
             var ocrtext = string.Empty;
             using (var engine = new TesseractEngine(@"../../tessdata", "lit1+lit2+lit3+lit4", EngineMode.Default, @"../../config"))
             {
-                using (var img = PixConverter.ToPix(bmp))
+                using (var img = PixConverter.ToPix(bmp.ToGreyscale()))
                 {
                     using (var page = engine.Process(img))
                     {
