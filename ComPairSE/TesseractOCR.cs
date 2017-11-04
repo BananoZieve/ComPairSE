@@ -18,7 +18,7 @@ namespace ComPairSE
         public string GetText(Bitmap bmp)
         {
             var ocrtext = string.Empty;
-            using (var engine = new TesseractEngine(@"../../tessdata", "lit", EngineMode.Default, @"../../config"))
+            using (var engine = new TesseractEngine(@"../../tessdata", "lit1+lit2+lit3+lit4", EngineMode.Default, @"../../config"))
             {
                 using (var img = PixConverter.ToPix(bmp))
                 {
