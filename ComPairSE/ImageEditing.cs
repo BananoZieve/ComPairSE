@@ -12,7 +12,7 @@ namespace ComPairSE
     {
         //Image Processing: http://www.graficaobscura.com/interp/index.html
         //Some ColorMatrixes: http://www.graficaobscura.com/matrix/index.html
-        //A nice way combine ColorMatrixes: https://docs.rainmeter.net/tips/colormatrix-guide/
+        //A nice way to combine ColorMatrixes: https://docs.rainmeter.net/tips/colormatrix-guide/
 
         public static Bitmap Contrast(this Bitmap bitmap)
         {
@@ -74,6 +74,36 @@ namespace ComPairSE
             g.Dispose();
 
             return newBitmap;
+        }
+
+        public static Bitmap Brighten(this Bitmap bitmap)
+        {
+            float b = 0.1f;
+            Bitmap newBitmap = new Bitmap(bitmap.Width, bitmap.Height);
+            Graphics g = Graphics.FromImage(newBitmap);
+
+            {
+                ColorMatrix colorMatrix = new ColorMatrix(
+                 new float[][]
+                 {
+                    new float[] {1, 0, 0, 0, 0},
+                    new float[] {0, 1, 0, 0, 0},
+                    new float[] {0, 0, 1, 0, 0},
+                    new float[] {0, 0, 0, 1, 0},
+                    new float[] {b, b, b, 0, 1}
+                 });
+
+                ImageAttributes attributes = new ImageAttributes();
+
+                attributes.SetColorMatrix(colorMatrix);
+
+                g.DrawImage(bitmap, new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+                   0, 0, bitmap.Width, bitmap.Height, GraphicsUnit.Pixel, attributes);
+
+                g.Dispose();
+
+                return newBitmap;
+            }
         }
     }
 }
