@@ -31,18 +31,17 @@ namespace ComPairSE
        new float[]{ t,  t, t, 0, 1},
 
     });
-
             Bitmap newBitmap = new Bitmap(bitmap.Width, bitmap.Height);
-            Graphics graphics = Graphics.FromImage(newBitmap);
+            Graphics g = Graphics.FromImage(newBitmap);
             ImageAttributes attributes = new ImageAttributes();
 
             attributes.SetColorMatrix(colorMatrix);
 
-            graphics.DrawImage(bitmap, new Rectangle(0, 0, bitmap.Width, bitmap.Height),
+            g.DrawImage(bitmap, new Rectangle(0, 0, bitmap.Width, bitmap.Height),
                0, 0, bitmap.Width, bitmap.Height, GraphicsUnit.Pixel, attributes);
-
-            graphics.Dispose();
-
+            
+            g.Dispose();
+         
             return newBitmap;
         }
 
@@ -50,7 +49,6 @@ namespace ComPairSE
         public static Bitmap ToGreyscale(this Bitmap bitmap)
         {
             Bitmap newBitmap = new Bitmap(bitmap.Width, bitmap.Height);
-
             Graphics g = Graphics.FromImage(newBitmap);
 
             //grayscale ColorMatrix
@@ -70,15 +68,17 @@ namespace ComPairSE
 
             g.DrawImage(bitmap, new Rectangle(0, 0, bitmap.Width, bitmap.Height),
                0, 0, bitmap.Width, bitmap.Height, GraphicsUnit.Pixel, attributes);
-
+            
             g.Dispose();
-
+          
             return newBitmap;
         }
 
         public static Bitmap Brighten(this Bitmap bitmap)
         {
+            //brightness
             float b = 0.1f;
+
             Bitmap newBitmap = new Bitmap(bitmap.Width, bitmap.Height);
             Graphics g = Graphics.FromImage(newBitmap);
 
@@ -99,9 +99,9 @@ namespace ComPairSE
 
                 g.DrawImage(bitmap, new Rectangle(0, 0, bitmap.Width, bitmap.Height),
                    0, 0, bitmap.Width, bitmap.Height, GraphicsUnit.Pixel, attributes);
-
+                
                 g.Dispose();
-
+            
                 return newBitmap;
             }
         }

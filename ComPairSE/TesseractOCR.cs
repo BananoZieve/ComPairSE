@@ -17,10 +17,13 @@ namespace ComPairSE
     {
         public string GetText(Bitmap bmp)
         {
+           //Test output
+           //bmp.Contrast().ToGreyscale().Save("pic.jpg");
+
             var ocrtext = string.Empty;
-            using (var engine = new TesseractEngine(@"../../tessdata", "lit1+lit2+lit3+lit4", EngineMode.Default, @"../../config"))
+            using (var engine = new TesseractEngine(@"../../tessdata", "lit4", EngineMode.Default, @"../../config"))
             {
-                using (var img = PixConverter.ToPix(bmp.ToGreyscale()))
+                using (var img = PixConverter.ToPix(bmp.Contrast().ToGreyscale()))
                 {
                     using (var page = engine.Process(img))
                     {
