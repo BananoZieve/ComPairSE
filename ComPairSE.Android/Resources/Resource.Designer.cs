@@ -47,14 +47,14 @@ namespace ComPairSE.Android
 			// aapt resource value: 0x7f040000
 			public const int buttonBack = 2130968576;
 			
-			// aapt resource value: 0x7f040008
-			public const int buttonCamera = 2130968584;
+			// aapt resource value: 0x7f040007
+			public const int buttonCamera = 2130968583;
 			
 			// aapt resource value: 0x7f040002
 			public const int buttonCreate = 2130968578;
 			
-			// aapt resource value: 0x7f040009
-			public const int buttonGallery = 2130968585;
+			// aapt resource value: 0x7f040008
+			public const int buttonGallery = 2130968584;
 			
 			// aapt resource value: 0x7f040003
 			public const int buttonHistory = 2130968579;
@@ -64,9 +64,6 @@ namespace ComPairSE.Android
 			
 			// aapt resource value: 0x7f040004
 			public const int buttonTest = 2130968580;
-			
-			// aapt resource value: 0x7f040007
-			public const int calendarView1 = 2130968583;
 			
 			// aapt resource value: 0x7f040006
 			public const int searchView1 = 2130968582;
