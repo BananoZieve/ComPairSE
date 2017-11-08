@@ -68,7 +68,7 @@ namespace ComPairSE
                     case 1:
                         data = File.ReadAllText(tbFile.Text); break;
                     case 2:
-                        data = Ocr.GetText(Util.PicToBitmap(tbFile.Text)); break;
+                        data = Ocr.GetText(tbFile.Text); break;
                     default:
                         break;
                 }
@@ -107,7 +107,7 @@ namespace ComPairSE
         private void ClickOcr(object sender, EventArgs e)
         {
             if (openFileDialog.FilterIndex == 2 && tbFile.Text != string.Empty)
-                MessageBox.Show(Ocr.GetText(Util.PicToBitmap(tbFile.Text)));
+                MessageBox.Show(Ocr.GetText(tbFile.Text));
         }
         
         private void btBrowse_Click(object sender, EventArgs e)

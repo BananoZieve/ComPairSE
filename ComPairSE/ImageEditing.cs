@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -104,6 +105,13 @@ namespace ComPairSE
             
                 return newBitmap;
             }
+        }
+
+        public static  Boolean IfRotated(Bitmap imageAfter)
+        {
+            if (imageAfter.Width > imageAfter.Height) return true;
+            else return false;
+            //Cheating for now, will have to read a file header or find some other way to check if rotated.
         }
     }
 }

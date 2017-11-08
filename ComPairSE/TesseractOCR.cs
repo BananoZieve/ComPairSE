@@ -10,20 +10,24 @@ namespace ComPairSE
 {
     public interface IOCR
     {
-        string GetText(Bitmap bmp);
+        string GetText(String image);
     }
 
     class TesseractOCR : IOCR
     {
-        public string GetText(Bitmap bmp)
+        public string GetText(String image)
         {
-           //Test output
-           //bmp.Contrast().ToGreyscale().Save("pic.jpg");
+            var OCRPicture = Util.PicToBitmap(image).Contrast().ToGreyscale();
+            if (ImageEditing.IfRotated(OCRPicture)) OCRPicture.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            //Test output
+            OCRPicture.Save("OCR.jpg");
+
+
 
             var ocrtext = string.Empty;
             using (var engine = new TesseractEngine(@"../../tessdata", "lit4", EngineMode.Default, @"../../config"))
             {
-                using (var img = PixConverter.ToPix(bmp.Contrast().ToGreyscale()))
+                using (var img = PixConverter.ToPix(OCRPicture))
                 {
                     using (var page = engine.Process(img))
                     {
