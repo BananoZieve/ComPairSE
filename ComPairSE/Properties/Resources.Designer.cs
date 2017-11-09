@@ -128,7 +128,8 @@ namespace ComPairSE.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Would you like to help the creators in collecting the receipts data? \n \n (Disclaimer: all the data gathered will be anonymous).
+        ///   Looks up a localized string similar to Would you like to help the creators in collecting the receipts data? 
+        ///Disclaimer: all the data gathered will be anonymous).
         /// </summary>
         internal static string ReceiptsDataQ {
             get {
