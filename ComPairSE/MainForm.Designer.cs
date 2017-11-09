@@ -173,6 +173,7 @@
             this.userSettings.TabIndex = 8;
             this.userSettings.Text = "Settings";
             this.userSettings.UseVisualStyleBackColor = true;
+            this.userSettings.Click += new System.EventHandler(this.userSettings_Click);
             // 
             // MainForm
             // 

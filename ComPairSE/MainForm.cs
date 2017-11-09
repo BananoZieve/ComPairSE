@@ -16,6 +16,9 @@ namespace ComPairSE
     {
         IDataManager DataManager;
         TesseractOCR Tesseract;
+        UserConfigurations userconfig;
+        
+        
 
         public MainForm(IDataManager dataManager)
         {
@@ -39,6 +42,7 @@ namespace ComPairSE
             this.MaximumSize = new Size(this.Width, 1080);
             DataManager = dataManager;
             Tesseract = new TesseractOCR();
+            userconfig = new UserConfigurations();
         }
 
         private void btRnd_Click(object sender, EventArgs e)
@@ -54,7 +58,9 @@ namespace ComPairSE
 
         private void btSubmit_Click(object sender, EventArgs e)
         {
-            string data = string.Empty;
+                userconfig.ReceiptsDataSharing();
+
+                string data = string.Empty;
             if (rbInput.Checked)
             {
                 if (tbInput.Text == string.Empty) { toolTip.Show("Empty field", tbInput, 3000); return; }
@@ -136,6 +142,11 @@ namespace ComPairSE
             this.Visible = false;
             HistoryForm form = new HistoryForm(this, DataManager);
             form.Show();
+        }
+
+        private void userSettings_Click(object sender, EventArgs e)
+        {
+            new SettingsForm().Show();
         }
     }
 }

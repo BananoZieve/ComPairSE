@@ -119,6 +119,33 @@ namespace ComPairSE.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You can always change you choice in the Settings!.
+        /// </summary>
+        internal static string ReceiptsDataNoThankYou {
+            get {
+                return ResourceManager.GetString("ReceiptsDataNoThankYou", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Would you like to help the creators in collecting the receipts data? \n \n (Disclaimer: all the data gathered will be anonymous).
+        /// </summary>
+        internal static string ReceiptsDataQ {
+            get {
+                return ResourceManager.GetString("ReceiptsDataQ", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for your contribution!.
+        /// </summary>
+        internal static string ReceiptsDataThankYou {
+            get {
+                return ResourceManager.GetString("ReceiptsDataThankYou", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Receipts.xml.
         /// </summary>
         internal static string ReceiptsTableFile {

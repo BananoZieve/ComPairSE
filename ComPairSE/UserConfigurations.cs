@@ -1,5 +1,7 @@
-﻿using System;
+﻿using ComPairSE.Properties;
+using System;
 using System.Collections.Generic;
+using System.Deployment.Application;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,18 +14,21 @@ namespace ComPairSE
 
         public void ReceiptsDataSharing()
         {
-            if (!Properties.Settings.Default.ReceiptsDataSharing)
+            if (System.Diagnostics.Debugger.IsAttached || ApplicationDeployment.CurrentDeployment.IsFirstRun )
             {
-                DialogResult dialogResult = MessageBox.Show("Would you like to help the creators in collecting the receipts data? \n \n (Disclaimer: all the data gathered will be anonymous)", "Settings", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
+                if (!Properties.Settings.Default.ReceiptsDataSharing)
                 {
-                    Properties.Settings.Default.ReceiptsDataSharing = true;
-                    Properties.Settings.Default.Save();
-                    MessageBox.Show("Thank you for your contribution!");
-                }
-                else if (dialogResult == DialogResult.No)
-                {
-                    MessageBox.Show("You can always change you choice in the Settings!");
+                    DialogResult dialogResult = MessageBox.Show(Resources.ReceiptsDataQ, "Settings", MessageBoxButtons.YesNo);
+                    if (dialogResult == DialogResult.Yes)
+                    {
+                        Properties.Settings.Default.ReceiptsDataSharing = true;
+                        Properties.Settings.Default.Save();
+                        MessageBox.Show(Resources.ReceiptsDataThankYou);
+                    }
+                    else if (dialogResult == DialogResult.No)
+                    {
+                        MessageBox.Show(Resources.ReceiptsDataNoThankYou);
+                    }
                 }
             }
         }

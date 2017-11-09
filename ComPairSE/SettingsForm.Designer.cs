@@ -35,14 +35,13 @@
             // 
             // receiptsData
             // 
-            this.receiptsData.AutoCheck = false;
             this.receiptsData.Location = new System.Drawing.Point(12, 12);
             this.receiptsData.Name = "receiptsData";
             this.receiptsData.Size = new System.Drawing.Size(210, 40);
             this.receiptsData.TabIndex = 1;
             this.receiptsData.Text = "Allow to anonymously collect receipts data";
             this.receiptsData.UseVisualStyleBackColor = true;
-            this.receiptsData.CheckedChanged += new System.EventHandler(this.OnCheckChange);
+            this.receiptsData.Click += new System.EventHandler(this.OnCheck);
             // 
             // backButton
             // 
