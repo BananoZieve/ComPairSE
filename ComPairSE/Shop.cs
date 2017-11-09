@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,17 +24,27 @@ namespace ComPairSE
     public static class Shop
     {
         public static IShop GetShop(string shopId)
-        {
-            ShopEnum shop;
-            switch (shopId)
-            {
-                case "230335113": shop = ShopEnum.Maxima; break;
-                case "107783219": shop = ShopEnum.Norfa; break;
-                case "237153113": shop = ShopEnum.Rimi; break;
-                case "101937219": shop = ShopEnum.Iki; break;
-                default: throw new ArgumentException("Unknown shop");
-            }
-            return GetShop(shop);
+        {  
+            //finds all VAT codes
+                            ShopEnum shop;
+            var ShopCodes = Properties.Settings.Default.Properties.OfType<SettingsProperty>()
+                  .Where(key => key.Name.EndsWith("VAT"))
+                  .Select(key => new { name = key.Name.Split('_')[0], value = Properties.Settings.Default[key.Name].ToString() })
+                  .ToArray();
+
+            //Looks for the shopID match and finds to which shop it belongs
+            //returns shop's Enum -> shop's object
+             foreach (var i in ShopCodes)
+             {
+                 if (i.value == shopId)
+                 {
+                     shop = (ShopEnum)System.Enum.Parse(typeof(ShopEnum), i.name);
+                     return GetShop(shop);
+                 }
+             }
+
+             throw new ArgumentException("Unknown shop");
+
         }
 
         public static IShop GetShop(ShopEnum shop)

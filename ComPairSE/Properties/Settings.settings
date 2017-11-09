@@ -1,7 +1,18 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ComPairSE.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Maxima_VAT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">230335113</Value>
+    </Setting>
+    <Setting Name="Norfa_VAT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">107783219</Value>
+    </Setting>
+    <Setting Name="Rimi_VAT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">237153113</Value>
+    </Setting>
+    <Setting Name="Iki_VAT" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">101937219</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
