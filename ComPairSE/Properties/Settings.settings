@@ -14,5 +14,8 @@
     <Setting Name="Iki_VAT" Type="System.String" Scope="Application">
       <Value Profile="(Default)">101937219</Value>
     </Setting>
+    <Setting Name="ReceiptsDataSharing" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

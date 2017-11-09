@@ -58,5 +58,17 @@ namespace ComPairSE.Properties {
                 return ((string)(this["Iki_VAT"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool ReceiptsDataSharing {
+            get {
+                return ((bool)(this["ReceiptsDataSharing"]));
+            }
+            set {
+                this["ReceiptsDataSharing"] = value;
+            }
+        }
     }
 }

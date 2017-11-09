@@ -31,7 +31,7 @@ namespace ComPairSE
 #if DEBUG   // project directory
             openFileDialog.InitialDirectory = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\"));
 #else       // my docs
-            openFileDialog1.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 #endif
             
            // this.Width -= this.ClientRectangle.Width - 2 * tbInput.Left - tbInput.Width;

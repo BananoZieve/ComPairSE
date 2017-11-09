@@ -54,6 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserConfigurations.cs" />
     <Compile Include="MainForm2.cs">
       <SubType>Form</SubType>
     </Compile>
