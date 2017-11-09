@@ -41,6 +41,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.btRnd = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.userSettings = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbInput
@@ -164,11 +165,21 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // userSettings
+            // 
+            this.userSettings.Location = new System.Drawing.Point(420, 4);
+            this.userSettings.Name = "userSettings";
+            this.userSettings.Size = new System.Drawing.Size(75, 28);
+            this.userSettings.TabIndex = 8;
+            this.userSettings.Text = "Settings";
+            this.userSettings.UseVisualStyleBackColor = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(501, 389);
+            this.Controls.Add(this.userSettings);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btBrowse);
@@ -205,6 +216,7 @@
         private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.Button btRnd;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button userSettings;
     }
 }
 
