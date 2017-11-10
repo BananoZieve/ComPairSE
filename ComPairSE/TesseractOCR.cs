@@ -8,15 +8,26 @@ using Tesseract;
 
 namespace ComPairSE
 {
-    class TesseractOCR
+    public interface IOCR
     {
-        public string GetText(string picture)
+        string GetText(String image);
+    }
+
+    class TesseractOCR : IOCR
+    {
+        public string GetText(String image)
         {
-            Bitmap myBmp = (Bitmap)Image.FromFile(picture);
+            var OCRPicture = Util.PicToBitmap(image).Contrast().ToGreyscale();
+            if (ImageEditing.IfRotated(OCRPicture)) OCRPicture.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            //Test output
+            OCRPicture.Save("OCR.jpg");
+
+
+
             var ocrtext = string.Empty;
-            using (var engine = new TesseractEngine(@"../../tessdata", "lit", EngineMode.Default))
+            using (var engine = new TesseractEngine(@"../../tessdata", "lit4", EngineMode.Default, @"../../config"))
             {
-                using (var img = PixConverter.ToPix(myBmp))
+                using (var img = PixConverter.ToPix(OCRPicture))
                 {
                     using (var page = engine.Process(img))
                     {
@@ -27,5 +38,6 @@ namespace ComPairSE
 
             return ocrtext;
         }
+
     }
 }
