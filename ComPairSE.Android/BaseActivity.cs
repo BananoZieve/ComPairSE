@@ -26,13 +26,16 @@ namespace ComPairSE.Android
 
         protected virtual void InitControls()
         {
-            Button buttonBack = FindViewById<Button>(Resource.Id.buttonBack);
-            buttonBack.Click += buttonBack_Click;
         }
 
-        protected virtual void buttonBack_Click(object sender, EventArgs e)
+        public override void OnBackPressed()
         {
-            Finish();
+            base.OnBackPressed();
+        }
+
+        public override void Finish()
+        {
+            base.Finish();
         }
     }
 }

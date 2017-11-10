@@ -5,9 +5,10 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
-    <Button
-        android:text="Back"
+    <TextView
+        android:text="This is the base layout"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonBack" />
+        android:id="@+id/textView1" />
 </LinearLayout>
