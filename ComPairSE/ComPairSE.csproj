@@ -61,6 +61,7 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserConfigurations.cs" />
+    <Compile Include="ImageEditing.cs" />
     <Compile Include="MainForm2.cs">
       <SubType>Form</SubType>
     </Compile>

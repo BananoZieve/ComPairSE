@@ -15,10 +15,9 @@ namespace ComPairSE
     public partial class MainForm : Form
     {
         IDataManager DataManager;
-        TesseractOCR Tesseract;
         UserConfigurations userconfig;
-        
-        
+        IOCR Ocr;
+
 
         public MainForm(IDataManager dataManager)
         {
@@ -41,8 +40,9 @@ namespace ComPairSE
             this.MinimumSize = this.Size; 
             this.MaximumSize = new Size(this.Width, 1080);
             DataManager = dataManager;
-            Tesseract = new TesseractOCR();
+
             userconfig = new UserConfigurations();
+            Ocr = new TesseractOCR();
         }
 
         private void btRnd_Click(object sender, EventArgs e)
@@ -74,7 +74,7 @@ namespace ComPairSE
                     case 1:
                         data = File.ReadAllText(tbFile.Text); break;
                     case 2:
-                        data = Tesseract.GetText(tbFile.Text); break;
+                        data = Ocr.GetText(tbFile.Text); break;
                     default:
                         break;
                 }
@@ -113,7 +113,7 @@ namespace ComPairSE
         private void ClickOcr(object sender, EventArgs e)
         {
             if (openFileDialog.FilterIndex == 2 && tbFile.Text != string.Empty)
-                MessageBox.Show(Tesseract.GetText(tbFile.Text));
+                MessageBox.Show(Ocr.GetText(tbFile.Text));
         }
         
         private void btBrowse_Click(object sender, EventArgs e)
