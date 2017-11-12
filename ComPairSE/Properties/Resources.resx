@@ -148,4 +148,14 @@
   <data name="ReceiptsTableFile" xml:space="preserve">
     <value>Receipts.xml</value>
   </data>
+  <data name="ReceiptsDataNoThankYou" xml:space="preserve">
+    <value>You can always change you choice in the Settings!</value>
+  </data>
+  <data name="ReceiptsDataQ" xml:space="preserve">
+    <value>Would you like to help the creators in collecting the receipts data? 
+Disclaimer: all the data gathered will be anonymous)</value>
+  </data>
+  <data name="ReceiptsDataThankYou" xml:space="preserve">
+    <value>Thank you for your contribution!</value>
+  </data>
 </root>
