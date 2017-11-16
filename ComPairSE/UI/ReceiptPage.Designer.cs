@@ -1,4 +1,4 @@
-﻿namespace ComPairSE.UI
+﻿namespace ComPairSEBack.UI
 {
     partial class ReceiptPage
     {
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.receiptView = new ComPairSE.UI.ReceiptView();
+            this.receiptView = new ComPairSEBack.UI.ReceiptView();
             this.SuspendLayout();
             // 
             // receiptView1

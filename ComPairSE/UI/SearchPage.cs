@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ComPairSE.UI
+namespace ComPairSEBack.UI
 {
     public partial class SearchPage : Page
     {

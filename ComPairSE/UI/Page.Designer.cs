@@ -1,4 +1,4 @@
-﻿namespace ComPairSE.UI
+﻿namespace ComPairSEBack.UI
 {
     partial class Page
     {

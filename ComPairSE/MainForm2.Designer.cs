@@ -1,4 +1,4 @@
-﻿namespace ComPairSE
+﻿namespace ComPairSEBack
 {
     partial class MainForm2
     {
@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.scanPage1 = new ComPairSE.UI.ScanPage();
-            this.receiptPage1 = new ComPairSE.UI.ReceiptPage();
-            this.homePage1 = new ComPairSE.UI.HomePage();
-            this.searchPage1 = new ComPairSE.UI.SearchPage();
-            this.cartPage1 = new ComPairSE.UI.CartPage();
-            this.receiptComparePage1 = new ComPairSE.UI.ReceiptComparePage();
-            this.receiptHistoryPage1 = new ComPairSE.UI.ReceiptHistoryPage();
+            this.scanPage1 = new ComPairSEBack.UI.ScanPage();
+            this.receiptPage1 = new ComPairSEBack.UI.ReceiptPage();
+            this.homePage1 = new ComPairSEBack.UI.HomePage();
+            this.searchPage1 = new ComPairSEBack.UI.SearchPage();
+            this.cartPage1 = new ComPairSEBack.UI.CartPage();
+            this.receiptComparePage1 = new ComPairSEBack.UI.ReceiptComparePage();
+            this.receiptHistoryPage1 = new ComPairSEBack.UI.ReceiptHistoryPage();
             this.SuspendLayout();
             // 
             // scanPage1

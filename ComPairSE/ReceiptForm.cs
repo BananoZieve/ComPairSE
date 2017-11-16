@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ComPairSE
+namespace ComPairSEBack
 {
     public partial class ReceiptForm : Form
     {
@@ -26,12 +27,16 @@ namespace ComPairSE
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        public ReceiptForm(Receipt receipt) : this()
+        public ReceiptForm(JObject receipt, string shop) : this()
         {
-            if (receipt.Items != null)
-                foreach (Item item in receipt.Items)
-                    dgvReceipt.Rows.Add(item.Name, item.Prices[(int)receipt.ShopEnum].ToPrice().ToString("C2"));
-            tbTotal.Text = receipt.Total.ToPrice().ToString("C2");
+              JToken token = receipt;
+              if (receipt.SelectToken("Items") != null)
+                  foreach ( JToken item in receipt.SelectToken("Items"))
+                 {
+                      dgvReceipt.Rows.Add(item.SelectToken("Name"), item.SelectToken("Prices")[int.Parse(shop)]);
+                 }
+            tbTotal.Text = (int.Parse((String)receipt.SelectToken("Total"))).ToPrice().ToString("C2");
+
         }
 
         private void ReceiptForm_MouseWheel(object sender, MouseEventArgs e)

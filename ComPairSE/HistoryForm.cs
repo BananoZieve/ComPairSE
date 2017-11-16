@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ComPairSE
+namespace ComPairSEBack
 {
     public partial class HistoryForm : Form
     {
@@ -86,7 +86,7 @@ namespace ComPairSE
 
         private void info_Click(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count > 0)
+          /*  if (listView1.SelectedItems.Count > 0)
             {
                 ReceiptForm receiptForm = new ReceiptForm(receipts.ElementAt(listView1.SelectedIndices[0]));
                 receiptForm.Show();
@@ -95,6 +95,7 @@ namespace ComPairSE
             {
                 toolTip.Show("Select an item first", listView1, 3000);
             }
+            */
         }
     }
 }

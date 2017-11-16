@@ -1,4 +1,6 @@
 ﻿#define OCR
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,17 +12,18 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ComPairSE
+namespace ComPairSEBack
 {
     public partial class MainForm : Form
     {
         IDataManager DataManager;
         UserConfigurations userconfig;
         IOCR Ocr;
-
+        ComPairSE.FirstService.DataServiceClient firstServiceClient;
 
         public MainForm(IDataManager dataManager)
         {
+            firstServiceClient = new ComPairSE.FirstService.DataServiceClient();
             InitializeComponent();
             rbFile.Tag = btBrowse;
             rbInput.Tag = tbInput;
@@ -47,13 +50,14 @@ namespace ComPairSE
 
         private void btRnd_Click(object sender, EventArgs e)
         {
-            Random rnd = new Random();
+           /* Random rnd = new Random();
             List<Item> list = new List<Item>();
             for (int i = 1; i <= rnd.Next(12,25); i++)
                 list.Add(new Item(i.ToString(), rnd.Next(20)*100 + rnd.Next(2)*50 + 49, ShopEnum.Maxima));
             Receipt receipt = Receipt.Create(ShopEnum.Maxima, list);
             ReceiptForm receiptForm = new ReceiptForm(receipt);
             receiptForm.Show();
+            */
         }
 
         private void btSubmit_Click(object sender, EventArgs e)
@@ -79,18 +83,17 @@ namespace ComPairSE
                         break;
                 }
             }
-
-            Receipt receipt = Receipt.Create(data);
-            ReceiptForm receiptForm = new ReceiptForm(receipt);
-            if (receipt.Items != null)
-                foreach (Item item in receipt.Items)
-                {
-                    DataManager.AddItem(item);
-                    //DataManager.ClarificationSystem(item);
-                }
-
-            DataManager.AddReceipt(receipt);                  
+            var response = firstServiceClient.CreateReceipt(data);
+            ReceiptForm receiptForm = new ReceiptForm(JObject.Parse(response[0]), response[1]);
             receiptForm.Show();
+            /* 
+              
+                      //DataManager.ClarificationSystem(item);
+              
+
+              DataManager.AddReceipt(receipt);                  
+              receiptForm.Show();
+              */
         }
 
         private void button_SearchItemsByTag_Click(object sender, EventArgs e)
@@ -107,7 +110,7 @@ namespace ComPairSE
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DataManager.SaveData();
+            //DataManager.SaveData();
         }
 
         private void ClickOcr(object sender, EventArgs e)

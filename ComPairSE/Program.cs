@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace ComPairSE
+namespace ComPairSEBack
 {
     static class Program
     {

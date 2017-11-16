@@ -1,4 +1,4 @@
-﻿using ComPairSE.Properties;
+﻿using ComPairSEBack.Properties;
 using System;
 using System.Collections.Generic;
 using System.Deployment.Application;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ComPairSE
+namespace ComPairSEBack
 {
     class UserConfigurations
     {

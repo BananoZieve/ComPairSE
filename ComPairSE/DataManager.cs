@@ -6,10 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.VisualBasic;
-using ComPairSE.Properties;
+using ComPairSEBack.Properties;
 using System.Xml.Linq;
 
-namespace ComPairSE
+namespace ComPairSEBack
 {
     public interface IDataManager
     {
@@ -224,7 +224,7 @@ namespace ComPairSE
                 File.Exists(Resources.ReceiptsTableFile)
                 )
             {
-                productsTable = new DataTable();
+               /* productsTable = new DataTable();
                 tagsTable = new DataTable();
                 unionTable = new DataTable();
                 dtClarifyWords = new DataTable();
@@ -233,7 +233,7 @@ namespace ComPairSE
                 tagsTable.ReadXml(Resources.TagsTableFile);
                 unionTable.ReadXml(Resources.ItemsTagsTableFile);
                 receiptsTable.ReadXml(Resources.ReceiptsTableFile);
-                //dtClarifyWords.ReadXml("ExplainedWords.xml");
+                //dtClarifyWords.ReadXml("ExplainedWords.xml");*/
             }
             else
             {

@@ -58,9 +58,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ComPairSE\ComPairSE.csproj">
+    <ProjectReference Include="..\ComPairSE\ComPairSEFront.csproj">
       <Project>{2a6a8104-05b8-41f8-9be8-f5625363f3a5}</Project>
-      <Name>ComPairSE</Name>
+      <Name>ComPairSEFront</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

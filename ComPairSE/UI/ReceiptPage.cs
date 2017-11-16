@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
 
-namespace ComPairSE.UI
+namespace ComPairSEBack.UI
 {
     public partial class ReceiptPage : Page
     {
