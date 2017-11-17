@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
-namespace ComPairSEBack
+namespace ComPairSE
 {
     public class Receipt : IComparable<Receipt>, IComparable
     {

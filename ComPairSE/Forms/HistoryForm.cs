@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ComPairSEBack
+namespace ComPairSE
 {
     public partial class HistoryForm : Form
     {

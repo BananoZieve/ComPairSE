@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace ComPairSEBack
+namespace ComPairSE
 {
     class UserConfigurations
     {

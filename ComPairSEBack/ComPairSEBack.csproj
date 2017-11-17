@@ -54,7 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="ImageEditing.cs" />
     <Compile Include="Item.cs" />
@@ -80,6 +80,24 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ex16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ex32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

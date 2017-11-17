@@ -117,50 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ex16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ex16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ex32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ex32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ExplainedWordsTableFile" xml:space="preserve">
-    <value>ExplainedWords.xml</value>
-  </data>
-  <data name="ItemsTableFile" xml:space="preserve">
-    <value>Items.xml</value>
-  </data>
-  <data name="ItemsTagsTableFile" xml:space="preserve">
-    <value>ItemsTags.xml</value>
-  </data>
-  <data name="plus16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="plus32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ReceiptsDataNoThankYou" xml:space="preserve">
-    <value>You can always change you choice in the Settings!</value>
-  </data>
-  <data name="ReceiptsDataQ" xml:space="preserve">
-    <value>Would you like to help the creators in collecting the receipts data? </value>
-  </data>
-  <data name="ReceiptsDataThankYou" xml:space="preserve">
-    <value>Thank you for your contribution!</value>
-  </data>
-  <data name="ReceiptsTableFile" xml:space="preserve">
-    <value>Receipts.xml</value>
-  </data>
-  <data name="search16" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="search32" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\search32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="String" xml:space="preserve">
-    <value>Disclaimer: all the data gathered will be anonymous)</value>
-  </data>
-  <data name="TagsTableFile" xml:space="preserve">
-    <value>Tags.xml</value>
-  </data>
+  <metadata name="columnItem.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="columnPrice.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

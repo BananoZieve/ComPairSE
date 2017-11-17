@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComPairSEBack
+namespace ComPairSE
 {
     public static class ImageEditing
     {

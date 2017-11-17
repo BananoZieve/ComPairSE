@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ComPairSEBack.Properties {
+namespace ComPairSE.Properties {
     using System;
     
     
@@ -61,6 +61,35 @@ namespace ComPairSEBack.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ex16 {
+            get {
+                object obj = ResourceManager.GetObject("ex16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ex32 {
+            get {
+                object obj = ResourceManager.GetObject("ex32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ExplainedWords.xml.
+        /// </summary>
+        internal static string ExplainedWordsTableFile {
+            get {
+                return ResourceManager.GetString("ExplainedWordsTableFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Items.xml.
         /// </summary>
         internal static string ItemsTableFile {
@@ -75,6 +104,26 @@ namespace ComPairSEBack.Properties {
         internal static string ItemsTagsTableFile {
             get {
                 return ResourceManager.GetString("ItemsTagsTableFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plus16 {
+            get {
+                object obj = ResourceManager.GetObject("plus16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap plus32 {
+            get {
+                object obj = ResourceManager.GetObject("plus32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -111,6 +160,26 @@ namespace ComPairSEBack.Properties {
         internal static string ReceiptsTableFile {
             get {
                 return ResourceManager.GetString("ReceiptsTableFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap search16 {
+            get {
+                object obj = ResourceManager.GetObject("search16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap search32 {
+            get {
+                object obj = ResourceManager.GetObject("search32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

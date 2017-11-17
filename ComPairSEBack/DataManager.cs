@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.VisualBasic;
-using ComPairSEBack.Properties;
+using ComPairSE.Properties;
 using System.Xml.Linq;
 
 
-namespace ComPairSEBack
+namespace ComPairSE
 {
     public interface IDataManager
     {
@@ -246,7 +246,7 @@ namespace ComPairSEBack
                 tagsTable.ReadXml(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.TagsTableFile);
                 unionTable.ReadXml(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.ItemsTagsTableFile);
                 receiptsTable.ReadXml(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.ReceiptsTableFile);
-                //dtClarifyWords.ReadXml("ExplainedWords.xml");
+                //dtClarifyWords.ReadXml("AppDomain.CurrentDomain.BaseDirectory" + @"/" + Resources.ExplainedWordsTableFile);
             }
             else
             {
@@ -261,7 +261,7 @@ namespace ComPairSEBack
             tagsTable.WriteXml(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.TagsTableFile, XmlWriteMode.WriteSchema);
             unionTable.WriteXml(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.ItemsTagsTableFile, XmlWriteMode.WriteSchema);
             receiptsTable.WriteXml(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.ReceiptsTableFile, XmlWriteMode.WriteSchema);
-            //dtClarifyWords.WriteXml("ExplainedWords.xml", XmlWriteMode.WriteSchema);
+           // dtClarifyWords.WriteXml(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.ExplainedWordsTableFile, XmlWriteMode.WriteSchema);
         }
 
         //Clarification system for words with dot 
@@ -279,7 +279,7 @@ namespace ComPairSEBack
                     {
                         if (!word.Equals(""))
                         {
-                            XDocument doc = XDocument.Load("ExplainedWords.xml");
+                            XDocument doc = XDocument.Load(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.ExplainedWordsTableFile);
 
                             var wordExist = doc.Descendants("ClarifyWords")
                                 .Any(x => (string)x.Element("nameBefore") == word);

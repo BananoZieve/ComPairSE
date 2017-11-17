@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ComPairSEBack.Properties {
+namespace ComPairSE.Properties {
     using System;
     
     

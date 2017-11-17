@@ -1,4 +1,4 @@
-﻿namespace ComPairSEBack
+﻿namespace ComPairSE
 {
     partial class HistoryForm
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ComPairSEBack
+namespace ComPairSE
 {
     public enum ShopEnum
     {
@@ -27,9 +27,9 @@ namespace ComPairSEBack
         {  
             //finds all VAT codes
                             ShopEnum shop;
-            var ShopCodes = ComPairSEBack.Properties.Settings.Default.Properties.OfType<SettingsProperty>()
+            var ShopCodes = Properties.Settings.Default.Properties.OfType<SettingsProperty>()
                   .Where(key => key.Name.EndsWith("VAT"))
-                  .Select(key => new { name = key.Name.Split('_')[0], value = ComPairSEBack.Properties.Settings.Default[key.Name].ToString() })
+                  .Select(key => new { name = key.Name.Split('_')[0], value = Properties.Settings.Default[key.Name].ToString() })
                   .ToArray();
 
             //Looks for the shopID match and finds to which shop it belongs

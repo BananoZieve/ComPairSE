@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ComPairSEBack;
+using ComPairSE;
 using System.Linq;
 
 namespace UnitTestCSE

@@ -34,24 +34,24 @@
   </Items>
   <Items>
     <itemId>2</itemId>
-    <name>Sumuštinių duona BEATOS VIRTUVĖ su sėklomis</name>
-    <priceMaxima>126</priceMaxima>
+    <name>Higieniniai paketai NATURELLA ULTRA NIGHT</name>
+    <priceMaxima>194</priceMaxima>
     <priceNorfa>0</priceNorfa>
     <priceRimi>0</priceRimi>
     <priceIki>0</priceIki>
   </Items>
   <Items>
     <itemId>3</itemId>
-    <name>Grietinė FARM MILK, 30% rieb.</name>
-    <priceMaxima>78</priceMaxima>
+    <name>Aukščiausios rūšies kvietiniai miltai KAUNO GRŪD</name>
+    <priceMaxima>86</priceMaxima>
     <priceNorfa>0</priceNorfa>
     <priceRimi>0</priceRimi>
     <priceIki>0</priceIki>
   </Items>
   <Items>
     <itemId>4</itemId>
-    <name>Pyragėlis MARCIPANINIS SUKUTIS</name>
-    <priceMaxima>128</priceMaxima>
+    <name>Higieniniai paketai NATURELLA NORMAL PLUS</name>
+    <priceMaxima>79</priceMaxima>
     <priceNorfa>0</priceNorfa>
     <priceRimi>0</priceRimi>
     <priceIki>0</priceIki>
@@ -66,14 +66,54 @@
   </Items>
   <Items>
     <itemId>6</itemId>
-    <name>Mažas pyragėlis su obuolių įdaru</name>
-    <priceMaxima>132</priceMaxima>
+    <name>Pomidorai</name>
+    <priceMaxima>87</priceMaxima>
     <priceNorfa>0</priceNorfa>
     <priceRimi>0</priceRimi>
     <priceIki>0</priceIki>
   </Items>
   <Items>
     <itemId>7</itemId>
+    <name>Grietinėtis</name>
+    <priceMaxima>114</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>8</itemId>
+    <name>Varškės sūris OPTIMA LINIJA, 22% rieb.</name>
+    <priceMaxima>156</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>9</itemId>
+    <name>Sumuštinių duona BEATOS VIRTUVĖ su sėklomis</name>
+    <priceMaxima>126</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>10</itemId>
+    <name>Fermentinis ROKIŠKIO sūris, 45% rieb. s. m.</name>
+    <priceMaxima>135</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>11</itemId>
+    <name>Sviestas FARM MILK, 82% rieb.</name>
+    <priceMaxima>137</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>12</itemId>
     <name>Glaistytas varškės sūrelis FARM MILK (vanilės skonio)</name>
     <priceMaxima>76</priceMaxima>
     <priceNorfa>0</priceNorfa>
@@ -81,7 +121,55 @@
     <priceIki>0</priceIki>
   </Items>
   <Items>
-    <itemId>8</itemId>
+    <itemId>13</itemId>
+    <name>Juodoji arbata DILMAH PREMIUM</name>
+    <priceMaxima>138</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>14</itemId>
+    <name>Mažas pyragėlis su obuolių įdaru</name>
+    <priceMaxima>132</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>15</itemId>
+    <name>Nuolaida Arbatai -30%</name>
+    <priceMaxima>-41</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>16</itemId>
+    <name>Nuolaida kvitui</name>
+    <priceMaxima>-393</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>17</itemId>
+    <name>Grietinė FARM MILK, 30% rieb.</name>
+    <priceMaxima>78</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>18</itemId>
+    <name>Pyragėlis MARCIPANINIS SUKUTIS</name>
+    <priceMaxima>128</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>19</itemId>
     <name>Slyviniai pomidorai (57-67 mm)</name>
     <priceMaxima>58</priceMaxima>
     <priceNorfa>0</priceNorfa>
@@ -89,7 +177,7 @@
     <priceIki>0</priceIki>
   </Items>
   <Items>
-    <itemId>9</itemId>
+    <itemId>20</itemId>
     <name>Tualetinis popierius TENTO ECONOMY</name>
     <priceMaxima>49</priceMaxima>
     <priceNorfa>0</priceNorfa>
@@ -97,7 +185,7 @@
     <priceIki>0</priceIki>
   </Items>
   <Items>
-    <itemId>10</itemId>
+    <itemId>21</itemId>
     <name>Nuolaida Tualetiniam popieriui, nosinaitėms -30%*</name>
     <priceMaxima>-15</priceMaxima>
     <priceNorfa>0</priceNorfa>

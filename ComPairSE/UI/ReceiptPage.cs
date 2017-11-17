@@ -18,10 +18,10 @@ namespace ComPairSEBack.UI
             InitializeComponent();
         }
         
-        public Receipt Receipt
-        {
-            get { return receiptView.Receipt; }
-            set { receiptView.Receipt = value; }
-        }
+        //public Receipt Receipt
+        //{
+        //    get { return receiptView.Receipt; }
+        //    set { receiptView.Receipt = value; }
+        //}
     }
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace ComPairSEBack
+namespace ComPairSE
 {
     static class Program
     {
@@ -18,15 +18,15 @@ namespace ComPairSEBack
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            IDataManager dataManager;
+          //  IDataManager dataManager;
 
-            if (args.Contains("-demo")) dataManager = new DemoDataManager();
-            else dataManager = new DataManager();
+          //  if (args.Contains("-demo")) dataManager = new DemoDataManager();
+         //   else dataManager = new DataManager();
 
-            dataManager.LoadData();
+         //   dataManager.LoadData();
 
-            if (args.Contains("-v2")) Application.Run(new MainForm2(dataManager));
-            else Application.Run(new MainForm(dataManager));
+            //if (args.Contains("-v2")) Application.Run(new MainForm2(dataManager));
+            Application.Run(new MainForm());
         }
     }
 }
