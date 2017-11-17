@@ -12,9 +12,22 @@ namespace WebApplication1
     public interface IDataService
     {
         [OperationContract]
-        string Test(string hey);
+        string CreateReceipt(string receiptData);
 
         [OperationContract]
-        string[] CreateReceipt(string receiptData);
+        string getAllReceiptsFromHistory();
+
+        [OperationContract]
+        void LoadDataFromFile();
+
+        [OperationContract]
+        void SaveDataToFile();
+
+        [OperationContract]
+        string GetReceiptByID(int id);
+
+        [OperationContract]
+        string GetReceiptsByDate(DateTime date);
+
     }
 }

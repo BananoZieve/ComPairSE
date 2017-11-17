@@ -27,14 +27,14 @@ namespace ComPairSEBack
             this.StartPosition = FormStartPosition.CenterScreen;
         }
 
-        public ReceiptForm(JObject receipt, string shop) : this()
+        public ReceiptForm(JObject receipt) : this()
         {
-              JToken token = receipt;
-              if (receipt.SelectToken("Items") != null)
-                  foreach ( JToken item in receipt.SelectToken("Items"))
-                 {
-                      dgvReceipt.Rows.Add(item.SelectToken("Name"), item.SelectToken("Prices")[int.Parse(shop)]);
-                 }
+            JToken token = receipt;
+            if (receipt.SelectToken("Items") != null)
+                foreach (JToken item in receipt.SelectToken("Items"))
+                {
+                    dgvReceipt.Rows.Add(item.SelectToken("Name"), ((int)item.SelectToken("Prices")[int.Parse(receipt.SelectToken("ShopEnum").ToString())]).ToPrice().ToString("C2"));
+                }
             tbTotal.Text = (int.Parse((String)receipt.SelectToken("Total"))).ToPrice().ToString("C2");
 
         }

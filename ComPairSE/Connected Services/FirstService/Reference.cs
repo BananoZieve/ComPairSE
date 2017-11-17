@@ -15,17 +15,41 @@ namespace ComPairSE.FirstService {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="FirstService.IDataService")]
     public interface IDataService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/Test", ReplyAction="http://tempuri.org/IDataService/TestResponse")]
-        string Test(string hey);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/Test", ReplyAction="http://tempuri.org/IDataService/TestResponse")]
-        System.Threading.Tasks.Task<string> TestAsync(string hey);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/CreateReceipt", ReplyAction="http://tempuri.org/IDataService/CreateReceiptResponse")]
+        string CreateReceipt(string receiptData);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/CreateReceipt", ReplyAction="http://tempuri.org/IDataService/CreateReceiptResponse")]
-        string[] CreateReceipt(string receiptData);
+        System.Threading.Tasks.Task<string> CreateReceiptAsync(string receiptData);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/CreateReceipt", ReplyAction="http://tempuri.org/IDataService/CreateReceiptResponse")]
-        System.Threading.Tasks.Task<string[]> CreateReceiptAsync(string receiptData);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/getAllReceiptsFromHistory", ReplyAction="http://tempuri.org/IDataService/getAllReceiptsFromHistoryResponse")]
+        string getAllReceiptsFromHistory();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/getAllReceiptsFromHistory", ReplyAction="http://tempuri.org/IDataService/getAllReceiptsFromHistoryResponse")]
+        System.Threading.Tasks.Task<string> getAllReceiptsFromHistoryAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/LoadDataFromFile", ReplyAction="http://tempuri.org/IDataService/LoadDataFromFileResponse")]
+        void LoadDataFromFile();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/LoadDataFromFile", ReplyAction="http://tempuri.org/IDataService/LoadDataFromFileResponse")]
+        System.Threading.Tasks.Task LoadDataFromFileAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/SaveDataToFile", ReplyAction="http://tempuri.org/IDataService/SaveDataToFileResponse")]
+        void SaveDataToFile();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/SaveDataToFile", ReplyAction="http://tempuri.org/IDataService/SaveDataToFileResponse")]
+        System.Threading.Tasks.Task SaveDataToFileAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/GetReceiptByID", ReplyAction="http://tempuri.org/IDataService/GetReceiptByIDResponse")]
+        string GetReceiptByID(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/GetReceiptByID", ReplyAction="http://tempuri.org/IDataService/GetReceiptByIDResponse")]
+        System.Threading.Tasks.Task<string> GetReceiptByIDAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/GetReceiptsByDate", ReplyAction="http://tempuri.org/IDataService/GetReceiptsByDateResponse")]
+        string GetReceiptsByDate(System.DateTime date);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDataService/GetReceiptsByDate", ReplyAction="http://tempuri.org/IDataService/GetReceiptsByDateResponse")]
+        System.Threading.Tasks.Task<string> GetReceiptsByDateAsync(System.DateTime date);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,20 +79,52 @@ namespace ComPairSE.FirstService {
                 base(binding, remoteAddress) {
         }
         
-        public string Test(string hey) {
-            return base.Channel.Test(hey);
-        }
-        
-        public System.Threading.Tasks.Task<string> TestAsync(string hey) {
-            return base.Channel.TestAsync(hey);
-        }
-        
-        public string[] CreateReceipt(string receiptData) {
+        public string CreateReceipt(string receiptData) {
             return base.Channel.CreateReceipt(receiptData);
         }
         
-        public System.Threading.Tasks.Task<string[]> CreateReceiptAsync(string receiptData) {
+        public System.Threading.Tasks.Task<string> CreateReceiptAsync(string receiptData) {
             return base.Channel.CreateReceiptAsync(receiptData);
+        }
+        
+        public string getAllReceiptsFromHistory() {
+            return base.Channel.getAllReceiptsFromHistory();
+        }
+        
+        public System.Threading.Tasks.Task<string> getAllReceiptsFromHistoryAsync() {
+            return base.Channel.getAllReceiptsFromHistoryAsync();
+        }
+        
+        public void LoadDataFromFile() {
+            base.Channel.LoadDataFromFile();
+        }
+        
+        public System.Threading.Tasks.Task LoadDataFromFileAsync() {
+            return base.Channel.LoadDataFromFileAsync();
+        }
+        
+        public void SaveDataToFile() {
+            base.Channel.SaveDataToFile();
+        }
+        
+        public System.Threading.Tasks.Task SaveDataToFileAsync() {
+            return base.Channel.SaveDataToFileAsync();
+        }
+        
+        public string GetReceiptByID(int id) {
+            return base.Channel.GetReceiptByID(id);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetReceiptByIDAsync(int id) {
+            return base.Channel.GetReceiptByIDAsync(id);
+        }
+        
+        public string GetReceiptsByDate(System.DateTime date) {
+            return base.Channel.GetReceiptsByDate(date);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetReceiptsByDateAsync(System.DateTime date) {
+            return base.Channel.GetReceiptsByDateAsync(date);
         }
     }
 }

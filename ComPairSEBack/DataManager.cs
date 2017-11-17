@@ -19,8 +19,9 @@ namespace ComPairSEBack
         void AddItem(Item product);
         List<Item> GetItems(params string[] tags);
         void AddReceipt(Receipt receipt);
-        List<Receipt> GetReceipts(DateTime date);
-        List<Receipt> GetReceipts();
+        List<dynamic> GetReceipts(DateTime date);
+        List<dynamic> GetReceipts();
+        dynamic GetReceiptByID(int id);
         void ClarificationSystem(Item item);
     }
 
@@ -30,8 +31,8 @@ namespace ComPairSEBack
         protected DataTable tagsTable;
         protected DataTable unionTable;
         private DataSet dataSet = new DataSet();
-        private DataTable dtClarifyWords;
-        private DataTable receiptsTable;
+        protected DataTable dtClarifyWords;
+        protected DataTable receiptsTable;
         private DataSet dataSetReceipts = new DataSet();
 
 
@@ -200,29 +201,40 @@ namespace ComPairSEBack
                 Util.ObjToString(receipt.Items));
         }
 
-        public List<Receipt> GetReceipts(DateTime date)
+        public List<dynamic> GetReceipts(DateTime date)
         {
-            IEnumerable<Receipt> currentDayReceipts = from row in receiptsTable.AsEnumerable()
-                                                      where ((DateTime)row["date"]).Date == date
-                                                      select Receipt.Create((ShopEnum)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
-            return currentDayReceipts.Cast<Receipt>().ToList<Receipt>();
+            var receipts = from row in receiptsTable.AsEnumerable()
+                              where ((DateTime)row["date"]).Date == date
+                              select new { ID = (int)row["receiptID"], Date = (DateTime)row["date"], Price = (int)row["price"], Shop = ((ShopEnum)row["shop"]).ToString() };
+
+            return receipts.Cast<dynamic>().ToList();
         }
 
-        public List<Receipt> GetReceipts()
+        public List<dynamic> GetReceipts()
         {
-            IEnumerable<Receipt> allReceipts = from row in receiptsTable.AsEnumerable()
-                                               select Receipt.Create((ShopEnum)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
+            var allReceipts = from row in receiptsTable.AsEnumerable()
+                              select new { ID = (int)row["receiptID"], Date = (DateTime)row["date"], Price = (int)row["price"], Shop = ((ShopEnum)row["shop"]).ToString() };
+            //  select Receipt.Create((ShopEnum)row["shop"], Util.StringToObj<Item>((string)row["items"]), (DateTime)row["date"], (int)row["price"]);
 
-            return allReceipts.Cast<Receipt>().ToList<Receipt>();
+            return allReceipts.Cast<dynamic>().ToList();
         }
+
+        public dynamic GetReceiptByID(int id)
+        {
+            var receipt = (from row in receiptsTable.AsEnumerable()
+                           where ((int)row["receiptID"]) == id
+                           select new { ID = (int)row["receiptID"], ShopEnum = (ShopEnum)row["shop"], Items = Util.StringToObj<Item>((string)row["items"]) , Total = (int)row["price"]}).First();
+            return receipt;
+        }
+
 
         public virtual void LoadData()
         {
             if (
-                File.Exists(Resources.ItemsTableFile) &&
-                File.Exists(Resources.TagsTableFile) &&
-                File.Exists(Resources.ItemsTagsTableFile) &&
-                File.Exists(Resources.ReceiptsTableFile)
+                File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.ItemsTableFile) &&
+                File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.TagsTableFile) &&
+                File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.ItemsTagsTableFile) &&
+                File.Exists(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.ReceiptsTableFile)
                 )
             {
                 productsTable = new DataTable();
@@ -230,10 +242,10 @@ namespace ComPairSEBack
                 unionTable = new DataTable();
                 dtClarifyWords = new DataTable();
                 receiptsTable = new DataTable();
-                productsTable.ReadXml(Resources.ItemsTableFile);
-                tagsTable.ReadXml(Resources.TagsTableFile);
-                unionTable.ReadXml(Resources.ItemsTagsTableFile);
-                receiptsTable.ReadXml(Resources.ReceiptsTableFile);
+                productsTable.ReadXml(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.ItemsTableFile);
+                tagsTable.ReadXml(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.TagsTableFile);
+                unionTable.ReadXml(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.ItemsTagsTableFile);
+                receiptsTable.ReadXml(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.ReceiptsTableFile);
                 //dtClarifyWords.ReadXml("ExplainedWords.xml");
             }
             else
@@ -245,10 +257,10 @@ namespace ComPairSEBack
 
         public virtual void SaveData()
         {
-            productsTable.WriteXml(Resources.ItemsTableFile, XmlWriteMode.WriteSchema);
-            tagsTable.WriteXml(Resources.TagsTableFile, XmlWriteMode.WriteSchema);
-            unionTable.WriteXml(Resources.ItemsTagsTableFile, XmlWriteMode.WriteSchema);
-            receiptsTable.WriteXml(Resources.ReceiptsTableFile, XmlWriteMode.WriteSchema);
+            productsTable.WriteXml(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.ItemsTableFile, XmlWriteMode.WriteSchema);
+            tagsTable.WriteXml(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.TagsTableFile, XmlWriteMode.WriteSchema);
+            unionTable.WriteXml(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.ItemsTagsTableFile, XmlWriteMode.WriteSchema);
+            receiptsTable.WriteXml(AppDomain.CurrentDomain.BaseDirectory + @"/" + Resources.ReceiptsTableFile, XmlWriteMode.WriteSchema);
             //dtClarifyWords.WriteXml("ExplainedWords.xml", XmlWriteMode.WriteSchema);
         }
 

@@ -1,0 +1,107 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="Items" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Items">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="itemId" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="1" type="xs:int" />
+                <xs:element name="name" type="xs:string" minOccurs="0" />
+                <xs:element name="priceMaxima" type="xs:int" minOccurs="0" />
+                <xs:element name="priceNorfa" type="xs:int" minOccurs="0" />
+                <xs:element name="priceRimi" type="xs:int" minOccurs="0" />
+                <xs:element name="priceIki" type="xs:int" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+      <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+        <xs:selector xpath=".//Items" />
+        <xs:field xpath="itemId" />
+      </xs:unique>
+    </xs:element>
+  </xs:schema>
+  <Items>
+    <itemId>1</itemId>
+    <name>DVARO pienas, 2,5% rieb.</name>
+    <priceMaxima>86</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>2</itemId>
+    <name>Sumuštinių duona BEATOS VIRTUVĖ su sėklomis</name>
+    <priceMaxima>126</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>3</itemId>
+    <name>Grietinė FARM MILK, 30% rieb.</name>
+    <priceMaxima>78</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>4</itemId>
+    <name>Pyragėlis MARCIPANINIS SUKUTIS</name>
+    <priceMaxima>128</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>5</itemId>
+    <name>šaltai rūkyta SAMSONO dešra, a. r.</name>
+    <priceMaxima>309</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>6</itemId>
+    <name>Mažas pyragėlis su obuolių įdaru</name>
+    <priceMaxima>132</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>7</itemId>
+    <name>Glaistytas varškės sūrelis FARM MILK (vanilės skonio)</name>
+    <priceMaxima>76</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>8</itemId>
+    <name>Slyviniai pomidorai (57-67 mm)</name>
+    <priceMaxima>58</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>9</itemId>
+    <name>Tualetinis popierius TENTO ECONOMY</name>
+    <priceMaxima>49</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+  <Items>
+    <itemId>10</itemId>
+    <name>Nuolaida Tualetiniam popieriui, nosinaitėms -30%*</name>
+    <priceMaxima>-15</priceMaxima>
+    <priceNorfa>0</priceNorfa>
+    <priceRimi>0</priceRimi>
+    <priceIki>0</priceIki>
+  </Items>
+</NewDataSet>

@@ -224,7 +224,7 @@ namespace ComPairSEBack
                 File.Exists(Resources.ReceiptsTableFile)
                 )
             {
-               /* productsTable = new DataTable();
+                productsTable = new DataTable();
                 tagsTable = new DataTable();
                 unionTable = new DataTable();
                 dtClarifyWords = new DataTable();

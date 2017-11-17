@@ -236,9 +236,6 @@
     <None Include="Connected Services\FirstService\DataService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\FirstService\DataService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="Connected Services\FirstService\Service.wsdl" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

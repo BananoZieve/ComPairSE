@@ -22,8 +22,8 @@ namespace ComPairSEBack
         ComPairSE.FirstService.DataServiceClient firstServiceClient;
 
         public MainForm(IDataManager dataManager)
-        {
-            firstServiceClient = new ComPairSE.FirstService.DataServiceClient();
+        { 
+
             InitializeComponent();
             rbFile.Tag = btBrowse;
             rbInput.Tag = tbInput;
@@ -46,6 +46,7 @@ namespace ComPairSEBack
 
             userconfig = new UserConfigurations();
             Ocr = new TesseractOCR();
+            firstServiceClient = new ComPairSE.FirstService.DataServiceClient();
         }
 
         private void btRnd_Click(object sender, EventArgs e)
@@ -84,33 +85,27 @@ namespace ComPairSEBack
                 }
             }
             var response = firstServiceClient.CreateReceipt(data);
-            ReceiptForm receiptForm = new ReceiptForm(JObject.Parse(response[0]), response[1]);
+            ReceiptForm receiptForm = new ReceiptForm(JObject.Parse(response));
             receiptForm.Show();
             /* 
-              
                       //DataManager.ClarificationSystem(item);
-              
-
-              DataManager.AddReceipt(receipt);                  
-              receiptForm.Show();
               */
         }
 
         private void button_SearchItemsByTag_Click(object sender, EventArgs e)
         {
-            //Receipt receipt = Receipt.Create(tbInput.Text);
             SearchByTagForm searchByTagForm = new SearchByTagForm();
             searchByTagForm.Show();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            //DataManager.LoadData();
+          firstServiceClient.LoadDataFromFile();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //DataManager.SaveData();
+            firstServiceClient.SaveDataToFile();
         }
 
         private void ClickOcr(object sender, EventArgs e)
@@ -143,7 +138,7 @@ namespace ComPairSEBack
         {
 
             this.Visible = false;
-            HistoryForm form = new HistoryForm(this, DataManager);
+            HistoryForm form = new HistoryForm(this);
             form.Show();
         }
 

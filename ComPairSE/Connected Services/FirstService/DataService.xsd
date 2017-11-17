@@ -1,20 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:58067/DataService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:element name="Test">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="hey" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="TestResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="TestResult" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="CreateReceipt">
     <xs:complexType>
       <xs:sequence>
@@ -25,7 +10,67 @@
   <xs:element name="CreateReceiptResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="CreateReceiptResult" nillable="true" type="q1:ArrayOfstring" />
+        <xs:element minOccurs="0" name="CreateReceiptResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllReceiptsFromHistory">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getAllReceiptsFromHistoryResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="getAllReceiptsFromHistoryResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadDataFromFile">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="LoadDataFromFileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveDataToFile">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveDataToFileResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceiptByID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceiptByIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetReceiptByIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceiptsByDate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="date" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceiptsByDateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetReceiptsByDateResult" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

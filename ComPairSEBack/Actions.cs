@@ -14,14 +14,38 @@ namespace ComPairSEBack
         public Actions(IDataManager manager)
         {
             dataManager = manager;
-            dataManager.LoadData();
         }
-        public string[] UploadReceipt(string receiptData)
+        public string UploadReceipt(string receiptData)
         {
             Receipt receipt = Receipt.Create(receiptData);
             dataManager.AddReceipt(receipt);
             receipt.Items.ForEach(dataManager.AddItem);
-            return new string[] { Util.ObjToString(receipt), ((int)receipt.ShopEnum).ToString() };
+            return Util.ObjToString(receipt);
+        }
+
+        public string GetReceiptsHistory()
+        {
+           return Util.ObjToString(dataManager.GetReceipts());
+        }
+
+        public void SaveToFile()
+        {
+            dataManager.SaveData();
+        }
+
+        public void LoadFromFile()
+        {
+            dataManager.LoadData();
+        }
+
+        public string GetReceiptByID(int id)
+        {
+            return Util.ObjToString(dataManager.GetReceiptByID(id));
+        }
+
+        public string GetReceiptsByDate(DateTime date)
+        {
+            return Util.ObjToString(dataManager.GetReceipts(date));
         }
     }
 }

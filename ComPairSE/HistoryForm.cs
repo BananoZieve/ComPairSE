@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,17 +13,18 @@ namespace ComPairSEBack
 {
     public partial class HistoryForm : Form
     {
-        IDataManager DataManager;
         Form MainForm;
-        List<Receipt> receipts;
+        ComPairSE.FirstService.DataServiceClient dataService;
+        List<JToken> response;
 
-        public HistoryForm(Form MainForm, IDataManager DataManager)
+        public HistoryForm(Form MainForm)
         {
             InitializeComponent();
-            this.DataManager = DataManager;
             this.DatePicker.Value = DateTime.Now;
             this.MainForm = MainForm;
+            dataService = new ComPairSE.FirstService.DataServiceClient();
             InitListView();
+            response = new List<JToken>();
         }
 
         private void InitListView()
@@ -37,12 +39,14 @@ namespace ComPairSEBack
         private void button2_Click(object sender, EventArgs e)
         {
             this.listView1.Items.Clear();
-            this.receipts = DataManager.GetReceipts();
-            if (receipts.Count > 0)
+            JToken token = JArray.Parse(dataService.getAllReceiptsFromHistory());
+            
+            if (token != null)
             {
-                foreach (Receipt receipt in receipts)
+                foreach (JToken t in token)
                 {
-                    this.listView1.Items.Add(new ListViewItem(new[] { receipt.PurchaseTime.ToString(), Util.ToPrice(receipt.Total).ToString("C2"), receipt.ShopEnum.ToString() }));
+                    response.Add(t);
+                    this.listView1.Items.Add(new ListViewItem(new[] { (string)t.SelectToken("Date"), Util.ToPrice(int.Parse((t.SelectToken("Price").ToString()))).ToString("C2"), (string)t.SelectToken("Shop") }));
                 }
                 info.Visible = true;
             }
@@ -50,6 +54,7 @@ namespace ComPairSEBack
             {
                 info.Visible = false;
             }
+            
         }
 
         private void HistoryForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -65,14 +70,16 @@ namespace ComPairSEBack
 
         private void ShowHistory_Click(object sender, EventArgs e)
         {
+            
             this.listView1.Items.Clear();
-            this.receipts = DataManager.GetReceipts(DatePicker.Value.Date);
+            JToken token = JArray.Parse(dataService.GetReceiptsByDate(DatePicker.Value.Date));
 
-            if (receipts.Count > 0)
+            if (token != null)
             {
-                foreach (Receipt receipt in receipts)
+                foreach (JToken t in token)
                 {
-                    this.listView1.Items.Add(new ListViewItem(new[] { receipt.PurchaseTime.ToString(), Util.ToPrice(receipt.Total).ToString("C2"), receipt.ShopEnum.ToString() }));
+                    response.Add(t);
+                    this.listView1.Items.Add(new ListViewItem(new[] { (string)t.SelectToken("Date"), Util.ToPrice(int.Parse((t.SelectToken("Price").ToString()))).ToString("C2"), (string)t.SelectToken("Shop") }));
                 }
                 info.Visible = true;
             }
@@ -82,20 +89,24 @@ namespace ComPairSEBack
             }
             DatePicker.Visible = false;
             ShowHistory.Visible = false;
+            
         }
 
         private void info_Click(object sender, EventArgs e)
         {
-          /*  if (listView1.SelectedItems.Count > 0)
+            
+            if (listView1.SelectedItems.Count > 0)
             {
-                ReceiptForm receiptForm = new ReceiptForm(receipts.ElementAt(listView1.SelectedIndices[0]));
+                var receipt = dataService.GetReceiptByID((int)(response.ElementAt(listView1.SelectedIndices[0])).SelectToken("ID"));
+                ReceiptForm receiptForm = new ReceiptForm(JObject.Parse(receipt));
                 receiptForm.Show();
             }
             else
             {
                 toolTip.Show("Select an item first", listView1, 3000);
             }
-            */
+            
+            
         }
     }
 }
