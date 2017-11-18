@@ -1,4 +1,4 @@
-﻿namespace ComPairSEBack.UI
+﻿namespace ComPairSE.UI
 {
     partial class SearchPage
     {
@@ -50,7 +50,7 @@
             // 
             // btSearch
             // 
-            this.btSearch.Image = global::ComPairSEBack.Properties.Resources.search16;
+            this.btSearch.Image = global::ComPairSE.Properties.Resources.search16;
             this.btSearch.Location = new System.Drawing.Point(198, 25);
             this.btSearch.Name = "btSearch";
             this.btSearch.Size = new System.Drawing.Size(24, 24);

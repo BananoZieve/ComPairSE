@@ -1,4 +1,4 @@
-﻿namespace ComPairSEBack.UI
+﻿namespace ComPairSE.UI
 {
     partial class ReceiptView
     {

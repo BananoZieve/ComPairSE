@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
 
-namespace ComPairSEBack.UI
+namespace ComPairSE.UI
 {
     public partial class ReceiptPage : Page
     {
@@ -18,10 +18,10 @@ namespace ComPairSEBack.UI
             InitializeComponent();
         }
         
-        //public Receipt Receipt
-        //{
-        //    get { return receiptView.Receipt; }
-        //    set { receiptView.Receipt = value; }
-        //}
+        public Receipt Receipt
+        {
+            get { return receiptView.Receipt; }
+            set { receiptView.Receipt = value; }
+        }
     }
 }

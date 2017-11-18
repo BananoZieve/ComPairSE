@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ComPairSEBack.UI
+namespace ComPairSE.UI
 {
     public partial class ReceiptComparePage : Page
     {
