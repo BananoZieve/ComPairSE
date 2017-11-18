@@ -61,18 +61,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="SettingsForm.cs">
+    <Compile Include="Forms\SettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SettingsForm.Designer.cs">
+    <Compile Include="Forms\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UserConfigurations.cs" />
     <Compile Include="ImageEditing.cs" />
-    <Compile Include="MainForm2.cs">
+    <Compile Include="Forms\MainForm2.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm2.Designer.cs">
+    <Compile Include="Forms\MainForm2.Designer.cs">
       <DependentUpon>MainForm2.cs</DependentUpon>
     </Compile>
     <Compile Include="Shop.cs" />
@@ -105,41 +105,41 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="HistoryForm.cs">
+    <Compile Include="Forms\HistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="HistoryForm.Designer.cs">
+    <Compile Include="Forms\HistoryForm.Designer.cs">
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="TesseractOCR.cs" />
     <Compile Include="DataManager.cs" />
-    <Compile Include="FoundItemsByTagForm.cs">
+    <Compile Include="Forms\FoundItemsByTagForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FoundItemsByTagForm.Designer.cs">
+    <Compile Include="Forms\FoundItemsByTagForm.Designer.cs">
       <DependentUpon>FoundItemsByTagForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Receipt.cs" />
-    <Compile Include="ReceiptForm.cs">
+    <Compile Include="Forms\ReceiptForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReceiptForm.Designer.cs">
+    <Compile Include="Forms\ReceiptForm.Designer.cs">
       <DependentUpon>ReceiptForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ReceiptManager.cs" />
-    <Compile Include="SearchByTagForm.cs">
+    <Compile Include="Forms\SearchByTagForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchByTagForm.Designer.cs">
+    <Compile Include="Forms\SearchByTagForm.Designer.cs">
       <DependentUpon>SearchByTagForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\CartPage.cs">
@@ -179,23 +179,23 @@
       <DependentUpon>SearchPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Util.cs" />
-    <EmbeddedResource Include="SettingsForm.resx">
+    <EmbeddedResource Include="Forms\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FoundItemsByTagForm.resx">
+    <EmbeddedResource Include="Forms\FoundItemsByTagForm.resx">
       <DependentUpon>FoundItemsByTagForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm2.resx">
+    <EmbeddedResource Include="Forms\MainForm2.resx">
       <DependentUpon>MainForm2.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\ItemView.resx">
       <DependentUpon>ItemView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="HistoryForm.resx">
+    <EmbeddedResource Include="Forms\HistoryForm.resx">
       <DependentUpon>HistoryForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\HomePage.resx">
@@ -209,10 +209,10 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReceiptForm.resx">
+    <EmbeddedResource Include="Forms\ReceiptForm.resx">
       <DependentUpon>ReceiptForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchByTagForm.resx">
+    <EmbeddedResource Include="Forms\SearchByTagForm.resx">
       <DependentUpon>SearchByTagForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UI\CartPage.resx">

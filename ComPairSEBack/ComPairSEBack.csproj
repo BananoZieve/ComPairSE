@@ -54,7 +54,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="ImageEditing.cs" />
     <Compile Include="Item.cs" />
@@ -70,7 +70,6 @@
     </Compile>
     <Compile Include="Receipt.cs" />
     <Compile Include="Shop.cs" />
-    <Compile Include="TesseractOCR.cs" />
     <Compile Include="Actions.cs" />
     <Compile Include="UserConfigurations.cs" />
     <Compile Include="Util.cs" />
