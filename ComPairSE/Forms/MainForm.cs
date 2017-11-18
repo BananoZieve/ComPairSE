@@ -16,12 +16,11 @@ namespace ComPairSEBack
 {
     public partial class MainForm : Form
     {
-        IDataManager DataManager;
         UserConfigurations userconfig;
         IOCR Ocr;
         ComPairSE.FirstService.DataServiceClient firstServiceClient;
 
-        public MainForm(IDataManager dataManager)
+        public MainForm()
         { 
 
             InitializeComponent();
@@ -42,7 +41,6 @@ namespace ComPairSEBack
            // this.Width -= this.ClientRectangle.Width - 2 * tbInput.Left - tbInput.Width;
             this.MinimumSize = this.Size; 
             this.MaximumSize = new Size(this.Width, 1080);
-            DataManager = dataManager;
 
             userconfig = new UserConfigurations();
             Ocr = new TesseractOCR();

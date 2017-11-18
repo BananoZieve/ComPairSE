@@ -23,10 +23,10 @@ namespace ComPairSEBack
             if (args.Contains("-demo")) dataManager = new DemoDataManager();
             else dataManager = new DataManager();
 
-            dataManager.LoadData();
+            //dataManager.LoadData();
 
             if (args.Contains("-v2")) Application.Run(new MainForm2(dataManager));
-            else Application.Run(new MainForm(dataManager));
+            else Application.Run(new MainForm());
         }
     }
 }

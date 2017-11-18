@@ -230,13 +230,13 @@
     <EmbeddedResource Include="UI\SearchPage.resx">
       <DependentUpon>SearchPage.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="Connected Services\FirstService\DataService.xsd">
+    <None Include="Connected Services\FirstService\DataService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\FirstService\DataService1.xsd">
+    <None Include="Connected Services\FirstService\DataService21.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\FirstService\Service.wsdl" />
+    <None Include="Connected Services\FirstService\Service1.wsdl" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -260,13 +260,13 @@
     <None Include="Resources\plus16.png" />
     <None Include="Resources\search16.png" />
     <None Include="Resources\search32.png" />
-    <None Include="Connected Services\FirstService\DataService.disco" />
     <None Include="Connected Services\FirstService\configuration91.svcinfo" />
     <None Include="Connected Services\FirstService\configuration.svcinfo" />
     <None Include="Connected Services\FirstService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <None Include="Connected Services\FirstService\DataService1.disco" />
     <Content Include="x64\liblept172.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
