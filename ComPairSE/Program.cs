@@ -18,15 +18,15 @@ namespace ComPairSE
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-          //  IDataManager dataManager;
+            IDataManager dataManager;
 
-          //  if (args.Contains("-demo")) dataManager = new DemoDataManager();
-         //   else dataManager = new DataManager();
+            if (args.Contains("-demo")) dataManager = new DemoDataManager();
+            else dataManager = new DataManager();
 
-         //   dataManager.LoadData();
+            dataManager.LoadData();
 
-            //if (args.Contains("-v2")) Application.Run(new MainForm2(dataManager));
-            Application.Run(new MainForm());
+            if (args.Contains("-v2")) Application.Run(new MainForm2(dataManager));
+            else Application.Run(new MainForm(dataManager));
         }
     }
 }
