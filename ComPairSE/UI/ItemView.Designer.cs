@@ -1,4 +1,4 @@
-﻿namespace ComPairSE
+﻿namespace ComPairSEBack
 {
     partial class ItemView
     {
@@ -47,7 +47,7 @@
             // 
             this.btRemove.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btRemove.Enabled = false;
-            this.btRemove.Image = global::ComPairSE.Properties.Resources.ex16;
+            this.btRemove.Image = global::ComPairSEBack.Properties.Resources.ex16;
             this.btRemove.Location = new System.Drawing.Point(192, 3);
             this.btRemove.Name = "btRemove";
             this.btRemove.Size = new System.Drawing.Size(24, 24);
@@ -59,7 +59,7 @@
             // btAdd
             // 
             this.btAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btAdd.Image = global::ComPairSE.Properties.Resources.plus16;
+            this.btAdd.Image = global::ComPairSEBack.Properties.Resources.plus16;
             this.btAdd.Location = new System.Drawing.Point(192, 3);
             this.btAdd.Name = "btAdd";
             this.btAdd.Size = new System.Drawing.Size(24, 24);
